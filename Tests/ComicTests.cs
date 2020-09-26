@@ -9,8 +9,11 @@ using System.Text;
 namespace Tests
 {
     [TestClass]
-    public class StripTests
+    public class ComicTests
     {
+        /// <summary>
+        /// Tests the DuplicateAuthor check in the Comic class constructor.
+        /// </summary>
         [TestMethod]
         public void CheckDuplicateAuthors()
         {
@@ -31,7 +34,10 @@ namespace Tests
             act.Should().NotThrow<DomainException>();
         }
 
-                [TestMethod]
+        /// <summary>
+        /// Tests the DuplicatePublisher check in the Comic class constructor.
+        /// </summary>
+        [TestMethod]
         public void CheckDuplicatePublishers()
         {
             List<Author> authors = new List<Author>() { new Author("Voornaam", "Achternaam") };
