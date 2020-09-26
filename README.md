@@ -16,7 +16,7 @@
 * Unit Tests
 * Voldoende Documentatie
 
-## Deel1: StripCatalogus
+## Deel 1: StripCatalogus
 
 | Strip               | Vb.                               |
 | ------------------- |:---------------------------------:|
@@ -25,7 +25,7 @@
 | Auteurs             | Gosciny René & Uderzo Albert      |
 | Uitgeverij          | Dargaud                           |
 
-### User resuirements
+### User requirements
 1) Strips toevoegen aan catalogus
     * Hulp bij invoegen (autocomplete)
     * GEEN DUBBELS (Strips, auteurs, uitgeverij)
