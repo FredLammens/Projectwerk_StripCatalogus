@@ -30,5 +30,5 @@
     * Hulp bij invoegen (autocomplete)
     * GEEN DUBBELS (Strips, auteurs, uitgeverij)
     * Aanpassingen strips op een gebruikvriendelijke manier
-    * Aanpassingen strips moeten eenvoudig op te zoeken zijn
+    * Aanpassingen strips => moeten eenvoudig op te zoeken zijn
 2) Catalogus importeren/exporteren (JSON bestand)
