@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {}
+    "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {
+    "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
+        "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
         "projectName": "Projectwerk_StripCatalogus_UI",
-        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
-        "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\obj\\",
+        "projectPath": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
