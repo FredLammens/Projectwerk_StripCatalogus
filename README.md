@@ -25,10 +25,13 @@
 | Auteurs             | Gosciny René & Uderzo Albert      |
 | Uitgeverij          | Dargaud                           |
 
-### User requirements
+### User requirements:
 1) Strips toevoegen aan catalogus
     * Hulp bij invoegen (autocomplete)
     * GEEN DUBBELS (Strips, auteurs, uitgeverij)
     * Aanpassingen strips op een gebruikvriendelijke manier
     * Aanpassingen strips => moeten eenvoudig op te zoeken zijn
-2) Catalogus importeren/exporteren (JSON bestand)
+2) Catalogus importeren/exporteren (JSON bestand)    
+### Ontwerp:    
+#### DomeinOntwerp:    
+![DomeinOntwerp](https://user-images.githubusercontent.com/23512215/94350985-754a7980-0054-11eb-98b4-751692f9f79a.jpg)
