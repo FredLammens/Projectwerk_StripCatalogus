@@ -65,6 +65,14 @@ namespace DomainLibrary.ComicClasses
 
         }
 
+        #endregion
+
+        #region Functionality
+        /// <summary>
+        /// Check whether a given list of publishers has a duplicate.
+        /// </summary>
+        /// <param name="publishers">List of publishers to check</param>
+        /// <returns></returns>
         private bool DuplicatePublishers(List<Publisher> publishers)
         {
             if (publishers.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
@@ -73,6 +81,11 @@ namespace DomainLibrary.ComicClasses
                 return false;
         }
 
+        /// <summary>
+        /// Check whether a given list of authors has a duplicate.
+        /// </summary>
+        /// <param name="authors">List of authors to check</param>
+        /// <returns></returns>
         private bool DuplicateAuthors(List<Author> authors)
         {
             if (authors.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
@@ -80,11 +93,6 @@ namespace DomainLibrary.ComicClasses
             else
                 return false;
         }
-        #endregion
-
-        #region Functionality
-
-
         #endregion
     }
 }
