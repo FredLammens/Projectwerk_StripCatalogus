@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj": {}
+    "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj": {
+    "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj",
+        "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj",
         "projectName": "DomainLibrary",
-        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj",
-        "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\obj\\",
+        "projectPath": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

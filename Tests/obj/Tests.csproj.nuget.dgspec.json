@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Tests\\Tests.csproj": {}
+    "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Tests\\Tests.csproj": {
+    "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Tests\\Tests.csproj",
+        "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Tests\\Tests.csproj",
-        "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Tests\\obj\\",
+        "projectPath": "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "F:\\School\\Hogent\\Projectwerk\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
