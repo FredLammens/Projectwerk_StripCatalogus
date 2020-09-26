@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qhfpHIVlec6UKKe6DTnO63xAsA7bdzMe3Hp2J5wdLJ8LV78eULr4n4ontWwS3Ll6xtImIAJEwUAl1/lrQcR2TQ==",
+  "dgSpecHash": "exiH3VO1TpfZlAmtb1txXeAbdSe73IiZeJaW7u6SgG9f3xTISLjhmihVCdlAEIVaih2zipBn6mlc+pGochh0Bg==",
   "success": true,
   "projectFilePath": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\aaron\\.nuget\\packages\\fluentassertions\\5.10.3\\fluentassertions.5.10.3.nupkg.sha512",
+    "C:\\Users\\aaron\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.0\\system.configuration.configurationmanager.4.4.0.nupkg.sha512",
+    "C:\\Users\\aaron\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+  ],
   "logs": []
 }
