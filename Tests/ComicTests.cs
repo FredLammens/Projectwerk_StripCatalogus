@@ -1,5 +1,5 @@
 ﻿using DomainLibrary;
-using DomainLibrary.ComicClasses;
+using DomainLibrary.DomainLayer;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
