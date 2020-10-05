@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj": {}
+    "D:\\School\\projectWerk\\Git Repo\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj": {
+    "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj",
+        "projectUniqueName": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj",
         "projectName": "DomainLibrary",
-        "projectPath": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj",
-        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
-        "outputPath": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\obj\\",
+        "projectPath": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj",
+        "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
+        "outputPath": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -56,17 +56,17 @@
         }
       }
     },
-    "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj": {
+    "D:\\School\\projectWerk\\Git Repo\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj",
+        "projectUniqueName": "D:\\School\\projectWerk\\Git Repo\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "F:\\School\\Hogent\\Projectwerk\\Tests\\Tests.csproj",
-        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
-        "outputPath": "F:\\School\\Hogent\\Projectwerk\\Tests\\obj\\",
+        "projectPath": "D:\\School\\projectWerk\\Git Repo\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
+        "outputPath": "D:\\School\\projectWerk\\Git Repo\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj": {
-                "projectPath": "F:\\School\\Hogent\\Projectwerk\\DomainLibrary\\DomainLibrary.csproj"
+              "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj": {
+                "projectPath": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj"
               }
             }
           }
