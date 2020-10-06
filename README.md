@@ -33,14 +33,13 @@
     * Aanpassingen strips => moeten eenvoudig op te zoeken zijn
 2) Catalogus importeren/exporteren (JSON bestand)    
 ### Ontwerp:    
-![ontwerp](https://user-images.githubusercontent.com/23512215/95026627-fd530380-0692-11eb-8243-6dbe302f6234.jpg)
+![uml](https://user-images.githubusercontent.com/23512215/95238609-09150600-080a-11eb-8d9f-49b645af5a18.jpg)
+
 #### DomeinOntwerp:    
-![domein_uml](https://user-images.githubusercontent.com/23512215/95231393-635e9880-0803-11eb-967a-e5e39046423e.jpg)
+![DomainLayer_uml](https://user-images.githubusercontent.com/23512215/95238605-087c6f80-080a-11eb-8715-ea81164724e1.jpg)
 
 #### DataLayerOntwerp:    
-![datalayer_uml](https://user-images.githubusercontent.com/23512215/95231387-60fc3e80-0803-11eb-9309-e3de9a9f050a.jpg)
+![DataLayer_uml](https://user-images.githubusercontent.com/23512215/95238610-09150600-080a-11eb-8280-445b9dbc469b.jpg)
 
 #### ViewModelOntwerp :    
-![viewmodel_uml](https://user-images.githubusercontent.com/23512215/95231399-648fc580-0803-11eb-8ac2-bdd07875399b.jpg)
-
-
+![ViewModel_uml](https://user-images.githubusercontent.com/23512215/95238608-09150600-080a-11eb-8594-f74b4cddc11c.jpg)
