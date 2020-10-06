@@ -35,4 +35,12 @@
 ### Ontwerp:    
 ![ontwerp](https://user-images.githubusercontent.com/23512215/95026627-fd530380-0692-11eb-8243-6dbe302f6234.jpg)
 #### DomeinOntwerp:    
+![domein_uml](https://user-images.githubusercontent.com/23512215/95231393-635e9880-0803-11eb-967a-e5e39046423e.jpg)
+
+#### DataLayerOntwerp:    
+![datalayer_uml](https://user-images.githubusercontent.com/23512215/95231387-60fc3e80-0803-11eb-9309-e3de9a9f050a.jpg)
+
+#### ViewModelOntwerp :    
+![viewmodel_uml](https://user-images.githubusercontent.com/23512215/95231399-648fc580-0803-11eb-8ac2-bdd07875399b.jpg)
+
 
