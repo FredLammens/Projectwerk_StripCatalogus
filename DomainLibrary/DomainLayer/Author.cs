@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DomainLibrary.ComicClasses
+namespace DomainLibrary.DomainLayer
 {
     /// <summary>
     /// This class is a person who writes comics.
