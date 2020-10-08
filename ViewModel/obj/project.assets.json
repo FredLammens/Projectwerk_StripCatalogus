@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj",
-      "projectName": "DataLayer",
-      "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj",
+      "projectName": "ViewModel",
+      "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj",
       "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\obj\\",
+      "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",

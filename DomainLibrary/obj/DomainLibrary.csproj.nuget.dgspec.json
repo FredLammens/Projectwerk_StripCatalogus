@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj": {}
+    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj": {}
   },
   "projects": {
-    "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj": {
+    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj",
         "projectName": "DomainLibrary",
-        "projectPath": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\DomainLibrary.csproj",
-        "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\projectWerk\\Git Repo\\DomainLibrary\\obj\\",
+        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj",
+        "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

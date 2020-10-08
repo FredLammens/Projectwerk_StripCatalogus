@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {}
+    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj": {
+    "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
-        "projectName": "Projectwerk_StripCatalogus_UI",
-        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
+        "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj",
+        "projectName": "ViewModel",
+        "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\ViewModel.csproj",
         "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus\\obj\\",
+        "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\ViewModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,12 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "dependencies": {
-            "FluentAssertions": {
-              "target": "Package",
-              "version": "[5.10.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -56,9 +50,6 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WPF": {
-              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
