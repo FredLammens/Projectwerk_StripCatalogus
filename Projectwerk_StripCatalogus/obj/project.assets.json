@@ -149,19 +149,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\niels\\.nuget\\packages\\": {}
+    "C:\\Users\\aaron\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\School\\projectWerk\\Git Repo\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
+      "projectUniqueName": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
       "projectName": "Projectwerk_StripCatalogus_UI",
-      "projectPath": "D:\\School\\projectWerk\\Git Repo\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
-      "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
-      "outputPath": "D:\\School\\projectWerk\\Git Repo\\Projectwerk_StripCatalogus\\obj\\",
+      "projectPath": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\Projectwerk_StripCatalogus_UI.csproj",
+      "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+      "outputPath": "F:\\School\\Hogent\\Projectwerk\\Projectwerk_StripCatalogus\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
