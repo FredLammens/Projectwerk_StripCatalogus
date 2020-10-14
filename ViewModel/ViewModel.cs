@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 
 namespace ViewModel
@@ -15,8 +16,8 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        private ObservableCollection<ComicsView> comics;
-        public ObservableCollection<ComicsView> Comics 
+        private ObservableCollection<ViewComic> comics;
+        public ObservableCollection<ViewComic> Comics 
         {
             get { return comics; }
             set {
@@ -24,27 +25,28 @@ namespace ViewModel
                 RaisePropertyChanged("Comics");
             }
         }
+        private List<ViewComic> allComics;
         public string InputTitle { get; set; }
         public string InputSeries { get; set; }
         public int InputSeriesNr { get; set; }
         public string InputAuthor { get; set; }
         public string InputPublisher { get; set; }
 
-        public List<ComicsView> SearchTitle() 
+        public void SearchTitle(string title) 
         {
-            throw new NotImplementedException();
+            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Title == title));
         }
-        public List<ComicsView> SearchSeries()
+        public void SearchSeries(string series)
         {
-            throw new NotImplementedException();
+            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Series == series));
         }
-        public List<ComicsView> SearchAuthors()
+        public void SearchAuthors(string authors)
         {
-            throw new NotImplementedException();
+            Comics = new ObservableCollection<ViewComic>(allComics.Where());
         }
-        public List<ComicsView> SearchPublishingHouse()
+        public void SearchPublishingHouse(string publishingHouse)
         {
-            throw new NotImplementedException();
+            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Title == title));
         }
         public void AddComic() { }
         public void ImportComic(string comicsFile) { }
