@@ -8,7 +8,7 @@ namespace DomainLibrary.Repositories
     /// <summary>
     /// A collection of comics in the database.
     /// </summary>
-    interface IComicRepository
+    public interface IComicRepository
     {
         #region Operations
         /// <summary>
