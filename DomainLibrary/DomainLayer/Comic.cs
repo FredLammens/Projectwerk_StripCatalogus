@@ -29,9 +29,9 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         public List<Author> Authors { get; set; }
         /// <summary>
-        /// The publisher(s) that published the comic.
+        /// The publisher that published the comic.
         /// </summary>
-        public List<Publisher> Publishers { get; set; }
+        public Publisher Publisher { get; set; }
         #endregion
 
         #region Constructors
@@ -50,8 +50,8 @@ namespace DomainLibrary.DomainLayer
         /// <param name="series">The series the comic belongs to.</param>
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
-        /// <param name="publishers">The publisher(s) that published the comic.</param>
-        public Comic(string title, string series, int seriesNumber, List<Author> authors, List<Publisher> publishers)
+        /// <param name="publisher">The publisher that published the comic.</param>
+        public Comic(string title, string series, int seriesNumber, List<Author> authors,Publisher publisher)
         {
             Title = title;
             Series = series;
@@ -59,9 +59,7 @@ namespace DomainLibrary.DomainLayer
             if (DuplicateAuthors(authors))
                 throw new DomainException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
-            if (DuplicatePublishers(publishers))
-                throw new DomainException("Een strip kan niet twee keer dezelfde uitgeverij hebben.");
-            Publishers = publishers;
+            Publisher = publisher;
 
 
         }

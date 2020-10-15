@@ -22,7 +22,7 @@ namespace DataLayer.DataBaseClasses
         /// <summary>
         /// The series the comic belongs to.
         /// </summary>
-        public string Series { get; set; }
+        public DSeries Series { get; set; }
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
@@ -32,9 +32,9 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         public List<DAuthor> Authors { get; set; }
         /// <summary>
-        /// The publisher(s) that published the comic.
+        /// The publisher that published the comic.
         /// </summary>
-        public List<DPublisher> Publishers { get; set; }
+        public DPublisher Publisher { get; set; }
         #endregion
 
         #region Constructors
@@ -53,8 +53,8 @@ namespace DataLayer.DataBaseClasses
         /// <param name="series">The series the comic belongs to.</param>
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
-        /// <param name="publishers">The publisher(s) that published the comic.</param>
-        public DComic(string title, string series, int seriesNumber, List<DAuthor> authors, List<DPublisher> publishers)
+        /// <param name="publisher">The publisher that published the comic.</param>
+        public DComic(string title, DSeries series, int seriesNumber, List<DAuthor> authors, DPublisher publisher)
         {
             Title = title;
             Series = series;
@@ -62,9 +62,7 @@ namespace DataLayer.DataBaseClasses
             if (DuplicateAuthors(authors))
                 throw new DataException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
-            if (DuplicatePublishers(publishers))
-                throw new DataException("Een strip kan niet twee keer dezelfde uitgeverij hebben.");
-            Publishers = publishers;
+            Publisher = publisher;
 
 
         }
@@ -72,19 +70,6 @@ namespace DataLayer.DataBaseClasses
         #endregion
 
         #region Functionality
-        /// <summary>
-        /// Check whether a given list of publishers has a duplicate.
-        /// </summary>
-        /// <param name="publishers">List of publishers to check</param>
-        /// <returns></returns>
-        private bool DuplicatePublishers(List<DPublisher> publishers)
-        {
-            if (publishers.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
-                return true;
-            else
-                return false;
-        }
-
         /// <summary>
         /// Check whether a given list of authors has a duplicate.
         /// </summary>

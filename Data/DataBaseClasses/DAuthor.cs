@@ -15,16 +15,9 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// The authors first name.
+        /// The authors name.
         /// </summary>
-        public string FirstName { get; set; }
-        /// <summary>
-        /// The authors last name.
-        /// </summary>
-        public string LastName { get; set; }
-        /// <summary>
-        /// The comics written by the author.
-        /// </summary>
+        public string Name { get; set; }
         #endregion
 
         #region Constructors
@@ -38,12 +31,10 @@ namespace DataLayer.DataBaseClasses
         /// <summary>
         /// A constuctor that makes an Author object.
         /// </summary>
-        /// <param name="firstName">The first name of the author.</param>
         /// <param name="lastName">The last name of the author.</param>
-        public DAuthor(string firstName, string lastName)
+        public DAuthor(string name)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
         }
         #endregion
 
@@ -51,12 +42,11 @@ namespace DataLayer.DataBaseClasses
         public override bool Equals(object obj)
         {
             return obj is DAuthor author &&
-                   FirstName == author.FirstName &&
-                   LastName == author.LastName;
+                   Name == author.Name;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(FirstName, LastName);
+            return HashCode.Combine(Name);
         }
         #endregion
     }

@@ -18,25 +18,30 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A DComic object.</returns>
         public static DComic ToDComic(Comic comic)
         {
-            DComic toReturn = new DComic(comic.Title, comic.Series, comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublishers(comic.Publishers));
+            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
             return toReturn;
         }
+
         /// <summary>
-        /// Transforms a list of Publisher objects into a list of DPublisher objects.
+        /// Makes a new DSeries object from a given string.
         /// </summary>
-        /// <param name="publishers">Publishers to transform.</param>
-        /// <returns>A list of of DPublisher objects.</returns>
-        private static List<DPublisher> ToDPublishers(List<Publisher> publishers)
+        /// <param name="series">Name of the sereis</param>
+        /// <returns>A new DSereis object</returns>
+        private static DSeries ToDSeries(string series)
         {
-            List<DPublisher> toReturn = new List<DPublisher>();
-
-            foreach (var publisher in publishers)
-            {
-                toReturn.Add(new DPublisher(publisher.Name));
-            }
-
-            return toReturn;
+            return new DSeries(series);
         }
+
+        /// <summary>
+        /// Transforms a Publisher object into a DPublisher object.
+        /// </summary>
+        /// <param name="publisher">Publisher to transform.</param>
+        /// <returns>A list of of DPublisher objects.</returns>
+        private static DPublisher ToDPublisher(Publisher publisher)
+        {
+            return new DPublisher(publisher.Name);
+        }
+
         /// <summary>
         /// Transforms a list of Author objects into a list of DAuthor objects.
         /// </summary>
@@ -48,7 +53,7 @@ namespace DataLayer.DataBaseClasses
 
             foreach(var author in authors)
             {
-                toReturn.Add(new DAuthor(author.FirstName, author.LastName));
+                toReturn.Add(new DAuthor(author.Name));
             }
 
             return toReturn;
@@ -64,7 +69,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Comic object.</returns>
         public static Comic ToComic(DComic dComic)
         {
-            Comic toReturn = new Comic(dComic.Title, dComic.Series, dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublishers(dComic.Publishers));
+            Comic toReturn = new Comic(dComic.Title, dComic.Series.Name, dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
             return toReturn;
         }
         /// <summary>
@@ -72,16 +77,9 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="dPublishers">DPublishers to transform.</param>
         /// <returns>A list of of Publisher objects.</returns>
-        private static List<Publisher> ToPublishers(List<DPublisher> dPublishers)
+        private static Publisher ToPublisher(DPublisher dPublisher)
         {
-            List<Publisher> toReturn = new List<Publisher>();
-
-            foreach (var dPublisher in dPublishers)
-            {
-                toReturn.Add(new Publisher(dPublisher.Name));
-            }
-
-            return toReturn;
+            return new Publisher(dPublisher.Name);
         }
         /// <summary>
         /// Transforms a list of DAuthor objects into a list of Author objects.
@@ -94,7 +92,7 @@ namespace DataLayer.DataBaseClasses
 
             foreach (var dAuthor in dAuthors)
             {
-                toReturn.Add(new Author(dAuthor.FirstName, dAuthor.LastName));
+                toReturn.Add(new Author(dAuthor.Name));
             }
 
             return toReturn;
