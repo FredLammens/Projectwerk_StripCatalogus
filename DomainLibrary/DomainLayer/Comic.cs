@@ -23,7 +23,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
-        public int SeriesNumber { get; set; }
+        public int? SeriesNumber { get; set; }
         /// <summary>
         /// The autor(s) that wrote this comic
         /// </summary>
@@ -51,7 +51,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
-        public Comic(string title, string series, int seriesNumber, List<Author> authors,Publisher publisher)
+        public Comic(string title, string series, int? seriesNumber, List<Author> authors,Publisher publisher)
         {
             Title = title;
             Series = series;

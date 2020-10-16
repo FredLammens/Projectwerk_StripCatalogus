@@ -8,7 +8,7 @@ namespace DataLayer.DataBaseClasses
     /// <summary>
     /// This class represents a comic inside the database.
     /// </summary>
-    class DComic
+    public class DComic
     {
         #region Properties
         /// <summary>
@@ -26,7 +26,7 @@ namespace DataLayer.DataBaseClasses
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
-        public int SeriesNumber { get; set; }
+        public int? SeriesNumber { get; set; }
         /// <summary>
         /// The autor(s) that wrote this comic
         /// </summary>
@@ -54,7 +54,7 @@ namespace DataLayer.DataBaseClasses
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
-        public DComic(string title, DSeries series, int seriesNumber, List<DAuthor> authors, DPublisher publisher)
+        public DComic(string title, DSeries series, int? seriesNumber, List<DAuthor> authors, DPublisher publisher)
         {
             Title = title;
             Series = series;
@@ -63,8 +63,6 @@ namespace DataLayer.DataBaseClasses
                 throw new DataException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
             Publisher = publisher;
-
-
         }
 
         #endregion

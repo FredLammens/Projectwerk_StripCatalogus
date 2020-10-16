@@ -11,7 +11,7 @@ namespace DomainLibrary.DomainLayer
     {
         #region Properties
         /// <summary>
-        /// The authors first name.
+        /// The authors name.
         /// </summary>
         public string Name { get; set; }
         #endregion
@@ -27,8 +27,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// A constuctor that makes an Author object.
         /// </summary>
-        /// <param name="firstName">The first name of the author.</param>
-        /// <param name="lastName">The last name of the author.</param>
+        /// <param name="name">The name of the author.</param>
         public Author(string name)
         {
            Name = name;

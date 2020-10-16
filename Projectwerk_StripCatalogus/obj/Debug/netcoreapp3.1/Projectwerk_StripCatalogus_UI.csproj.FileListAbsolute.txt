@@ -28,3 +28,23 @@ D:\School\projectWerk\Git Repo\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.
 D:\School\projectWerk\Git Repo\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.dll
 D:\School\projectWerk\Git Repo\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.pdb
 D:\School\projectWerk\Git Repo\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.genruntimeconfig.cache
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.exe
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.deps.json
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.runtimeconfig.json
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.runtimeconfig.dev.json
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.dll
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.pdb
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\FluentAssertions.dll
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\AddComicPage.g.cs
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\CataloguePage.g.cs
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\AddComicPage.baml
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\CataloguePage.baml
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\MainWindow.baml
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.g.resources
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.AssemblyInfoInputs.cache
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.AssemblyInfo.cs
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.csproj.CoreCompileInputs.cache
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.csproj.CopyComplete
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.dll
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.pdb
+F:\School\Hogent\Projectwerk\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.genruntimeconfig.cache

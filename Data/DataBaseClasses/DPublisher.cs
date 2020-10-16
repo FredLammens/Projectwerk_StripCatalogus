@@ -7,7 +7,7 @@ namespace DataLayer.DataBaseClasses
     /// <summary>
     /// This class represents a publisher inside the database.
     /// </summary>
-    class DPublisher
+    public class DPublisher
     {
         #region Properties
         /// <summary>

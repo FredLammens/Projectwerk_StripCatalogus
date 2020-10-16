@@ -7,7 +7,7 @@ namespace DataLayer.DataBaseClasses
     /// <summary>
     /// This class represents an author inside the database.
     /// </summary>
-    class DAuthor
+    public class DAuthor
     {
         #region Properties
         /// <summary>

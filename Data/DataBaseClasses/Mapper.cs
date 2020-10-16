@@ -8,7 +8,7 @@ namespace DataLayer.DataBaseClasses
     /// <summary>
     /// A class to transform object to and from the DataClasses
     /// </summary>
-    class Mapper
+    public class Mapper
     {
         #region toDComic
         /// <summary>
@@ -51,7 +51,7 @@ namespace DataLayer.DataBaseClasses
         {
             List<DAuthor> toReturn = new List<DAuthor>();
 
-            foreach(var author in authors)
+            foreach (var author in authors)
             {
                 toReturn.Add(new DAuthor(author.Name));
             }
