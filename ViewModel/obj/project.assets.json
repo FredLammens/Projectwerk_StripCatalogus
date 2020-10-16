@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "DataLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DataLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLayer.dll": {}
+        }
+      },
+      "DomainLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DomainLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DomainLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DataLayer/1.0.0": {
+      "type": "project",
+      "path": "../Data/DataLayer.csproj",
+      "msbuildProject": "../Data/DataLayer.csproj"
+    },
+    "DomainLibrary/1.0.0": {
+      "type": "project",
+      "path": "../DomainLibrary/DomainLibrary.csproj",
+      "msbuildProject": "../DomainLibrary/DomainLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "DataLayer >= 1.0.0",
+      "DomainLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Biebem\\.nuget\\packages\\": {}
@@ -32,7 +67,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj": {
+              "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj"
+            },
+            "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj": {
+              "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\DomainLibrary\\DomainLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

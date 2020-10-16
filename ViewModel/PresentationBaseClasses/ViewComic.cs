@@ -31,7 +31,7 @@ namespace ViewModel
         /// <summary>
         /// The publisher(s) that published the comic.
         /// </summary>
-        public List<ViewPublisher> Publishers { get; set; }
+        public ViewPublisher Publisher { get; set; }
         #endregion
 
         #region Constructors
@@ -51,7 +51,7 @@ namespace ViewModel
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publishers">The publisher(s) that published the comic.</param>
-        public ViewComic(string title, string series, int seriesNumber, List<ViewAuthor> authors, List<ViewPublisher> publishers)
+        public ViewComic(string title, string series, int seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
         {
             Title = title;
             Series = series;
@@ -59,9 +59,7 @@ namespace ViewModel
             if (DuplicateAuthors(authors))
                 throw new PresentationException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
-            if (DuplicatePublishers(publishers))
-                throw new PresentationException("Een strip kan niet twee keer dezelfde uitgeverij hebben.");
-            Publishers = publishers;
+            Publisher = publisher;
 
         }
 
@@ -98,7 +96,6 @@ namespace ViewModel
         #endregion
 
         #region Comparing
-
         public override bool Equals(object obj)
         {
             return obj is ViewComic comic &&
@@ -106,13 +103,14 @@ namespace ViewModel
                    Series == comic.Series &&
                    SeriesNumber == comic.SeriesNumber &&
                    EqualityComparer<List<ViewAuthor>>.Default.Equals(Authors, comic.Authors) &&
-                   EqualityComparer<List<ViewPublisher>>.Default.Equals(Publishers, comic.Publishers);
+                   EqualityComparer<ViewPublisher>.Default.Equals(Publisher, comic.Publisher);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Title, Series, SeriesNumber, Authors, Publishers);
+            return HashCode.Combine(Title, Series, SeriesNumber, Authors, Publisher);
         }
+
         #endregion
     }
 }
