@@ -6,13 +6,22 @@ using ViewModel.PresentationBaseClasses;
 
 namespace ViewModel
 {
-    public class Mapper //extension method van maken 
+    public class Mapper
     {
+        /// <summary>
+        /// Maps a viewcomic object to a comic object. So that it can be transfered to the domainLayer.
+        /// </summary>
+        /// <param name="viewcomic">viewcomic object</param>
+        /// <returns></returns>
         public static Comic ViewComicMapper(ViewComic viewcomic) 
         {
             return new Comic(viewcomic.Title, viewcomic.Series, viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), viewcomic.Publisher);
         }
-
+        /// <summary>
+        /// Maps a list of ViewAuthors objects to Authors objects. So that it can be transfered to the domainLayer.
+        /// </summary>
+        /// <param name="viewAuthors"></param>
+        /// <returns></returns>
         private static List<Author> ViewAuthorMapper(List<ViewAuthor> viewAuthors) 
         {
             List<Author> authors = new List<Author>();
@@ -21,15 +30,6 @@ namespace ViewModel
                 authors.Add(new Author(author.Name));
             }
             return authors;
-        }
-        private static List<Publisher> ViewPublisherMapper(List<ViewPublisher> viewPublishers) 
-        {
-            List<Publisher> publishers = new List<Publisher>();
-            foreach (ViewPublisher publisher in viewPublishers)
-            {
-                publishers.Add(new Publisher(publisher.Name));
-            }
-            return publishers;
         }
     }
 }
