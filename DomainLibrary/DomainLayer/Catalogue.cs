@@ -7,7 +7,7 @@ namespace DomainLibrary.DomainLayer
     /// <summary>
     /// A class that represents a collection of comic objects.
     /// </summary>
-    class Catalogue
+    public class Catalogue
     {
         #region Properties
         /// <summary>

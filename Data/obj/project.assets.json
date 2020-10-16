@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\niels\\.nuget\\packages\\": {}
+    "C:\\Users\\Biebem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\School\\projectWerk\\Git Repo\\Data\\DataLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj",
       "projectName": "DataLayer",
-      "projectPath": "D:\\School\\projectWerk\\Git Repo\\Data\\DataLayer.csproj",
-      "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
-      "outputPath": "D:\\School\\projectWerk\\Git Repo\\Data\\obj\\",
+      "projectPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\DataLayer.csproj",
+      "packagesPath": "C:\\Users\\Biebem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Biebem\\Documents\\Visual Studio Projects\\Projectwerk_StripCatalogus\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Biebem\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

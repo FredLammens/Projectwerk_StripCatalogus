@@ -8,7 +8,7 @@ namespace DomainLibrary
     /// <summary>
     /// An interface for the unit of work.
     /// </summary>
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         #region Properties
         /// <summary>
