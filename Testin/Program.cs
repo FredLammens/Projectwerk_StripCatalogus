@@ -4,6 +4,7 @@ using DataLayer.DataBaseClasses;
 using DomainLibrary.DomainLayer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Testin
 {
@@ -13,9 +14,15 @@ namespace Testin
         {
             AdoNetContext anc = new AdoNetContext(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=Projectwerk-Stripcatalogus;Integrated Security=True;Pooling=False", true);
             ComicRepository cr = new ComicRepository(anc);
-            Comic comic = new Comic("Title 17", "Series 45", 9, new List<Author>() { new Author("Name of author 2"), new Author("Name of author "), new Author("Name of author 3") }, new Publisher("Publisher 8"));
+            Comic comic = new Comic("Title 16", "Series 9", 10, new List<Author>() { new Author("Name of author 9"), new Author("Name of author 02"), new Author("Name of author 55") }, new Publisher("Publisher 45"));
             cr.AddComic(comic);
             anc.SaveChanges();
+            List<Comic> comics = cr.GetComics().ToList();
+            cr.RemoveComic(comic);
+            comics = cr.GetComics().ToList();
+            cr.AddComic(comic);
+            comics = cr.GetComics().ToList();
+            Console.WriteLine();
         }
     }
 }

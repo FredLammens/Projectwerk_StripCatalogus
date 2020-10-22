@@ -17,42 +17,19 @@ namespace Tests
         [TestMethod]
         public void CheckDuplicateAuthors()
         {
-            Author author1 = new Author("Voornaam1", "Achternaam1");
-            Author author2 = new Author("Voornaam2", "Achternaam2");
+            Author author1 = new Author("Naam1");
+            Author author2 = new Author("Naam2");
             List<Author> authors = new List<Author>() { author1, author1 };
 
-            List<Publisher> publishers = new List<Publisher>() { new Publisher("Uitgevrij") };
+            Publisher publisher = new Publisher("Uitgevrij");
 
-            Action act = () => new Comic("Titel", "Series", 1, authors, publishers);
+            Action act = () => new Comic("Titel", "Series", 1, authors, publisher);
 
             act.Should().Throw<DomainException>().WithMessage("Een strip kan niet twee keer dezelfde autheur hebben.");
 
             authors = new List<Author>() { author1, author2};
 
-            act = () => new Comic("Titel", "Series", 1, authors, publishers);
-
-            act.Should().NotThrow<DomainException>();
-        }
-
-        /// <summary>
-        /// Tests the DuplicatePublisher check in the Comic class constructor.
-        /// </summary>
-        [TestMethod]
-        public void CheckDuplicatePublishers()
-        {
-            List<Author> authors = new List<Author>() { new Author("Voornaam", "Achternaam") };
-
-            Publisher publisher1 = new Publisher("Uitgevrij1");
-            Publisher publisher2 = new Publisher("Uitgevrij2");
-            List<Publisher> publishers = new List<Publisher>() {publisher1, publisher1};
-
-            Action act = () => new Comic("Titel", "Series", 1, authors, publishers);
-
-            act.Should().Throw<DomainException>().WithMessage("Een strip kan niet twee keer dezelfde uitgeverij hebben.");
-
-            publishers = new List<Publisher>() { publisher1, publisher2 };
-
-            act = () => new Comic("Titel", "Series", 1, authors, publishers);
+            act = () => new Comic("Titel", "Series", 1, authors, publisher);
 
             act.Should().NotThrow<DomainException>();
         }

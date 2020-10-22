@@ -8,20 +8,19 @@ namespace DomainLibrary
     /// <summary>
     /// An interface for the unit of work.
     /// </summary>
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         #region Properties
         /// <summary>
         /// A collection of comics in the database.
         /// </summary>
-        public IComicRepository Comics { get; set; }
+        public IComicRepository Comics { get;}
         #endregion
         #region Operations
         /// <summary>
-        /// Will finish the database operation.
+        /// Saves the changes made to the database.
         /// </summary>
-        /// <returns>Wheter the operation was a succes.</returns>
-        public int Complete();
+        public void SaveChanges();
         #endregion
     }
 }
