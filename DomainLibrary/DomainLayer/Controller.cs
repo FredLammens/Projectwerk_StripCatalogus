@@ -8,7 +8,7 @@ namespace DomainLibrary.DomainLayer
     /// <summary>
     /// Controlls aal actions in the domain layer.
     /// </summary>
-    class Controller
+    public class Controller
     {
         #region Properties
         private IUnitOfWork uow;

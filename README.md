@@ -31,8 +31,16 @@
     * GEEN DUBBELS (Strips, auteurs, uitgeverij)
     * Aanpassingen strips op een gebruikvriendelijke manier
     * Aanpassingen strips => moeten eenvoudig op te zoeken zijn
-2) Catalogus importeren/exporteren (JSON bestand)    
-### Ontwerp:    
-![ontwerp](https://user-images.githubusercontent.com/23512215/95026627-fd530380-0692-11eb-8243-6dbe302f6234.jpg)
-#### DomeinOntwerp:    
+2) Catalogus importeren/exporteren (JSON bestand)  
 
+### Ontwerp:    
+![ontwerp](https://user-images.githubusercontent.com/23512215/95454585-f404b800-096c-11eb-878c-261c50368eac.jpg)
+
+#### DomeinOntwerp:    
+![DomainLayer_uml](https://user-images.githubusercontent.com/23512215/95454581-f36c2180-096c-11eb-822e-7451a35e18fd.jpg)
+
+#### DataLayerOntwerp:    
+![DataLayer_uml](https://user-images.githubusercontent.com/23512215/95454579-f2d38b00-096c-11eb-966d-954ab205cde1.jpg)
+
+#### ViewModelOntwerp :    
+![ViewModel_uml](https://user-images.githubusercontent.com/23512215/95454582-f36c2180-096c-11eb-9dba-fd104cf9cfa6.jpg)
