@@ -15,7 +15,7 @@ namespace ViewModel
         /// <returns></returns>
         public static Comic ViewComicMapper(ViewComic viewcomic) 
         {
-            return new Comic(viewcomic.Title, viewcomic.Series, viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), viewcomic.Publisher);
+            return new Comic(viewcomic.Title, viewcomic.Series, viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
         }
         /// <summary>
         /// Maps a list of ViewAuthors objects to Authors objects. So that it can be transfered to the domainLayer.
