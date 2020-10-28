@@ -6,34 +6,32 @@ using System.Text;
 namespace DomainLibrary.DomainLayer
 {
     /// <summary>
-    /// This class is a place that publishes comics.
+    /// This class represents a series.
     /// </summary>
-    public class Publisher
+    public class Series
     {
         #region Properties
         /// <summary>
-        /// The name of the publisher.
+        /// The name of the series.
         /// </summary>
         [JsonProperty("Naam")]
         public string Name { get; set; }
-
         #endregion
 
         #region Constructors
         /// <summary>
         /// An empty constructor.
         /// </summary>
-        public Publisher()
+        public Series()
         {
 
         }
-
         /// <summary>
-        /// A constuctor that makes a Publisher object..
+        /// Makes a Series object.
         /// </summary>
-        /// <param name="name">The name of the publisher.</param>
+        /// <param name="name">The name of the series.</param>
         [JsonConstructor]
-        public Publisher(string name)
+        public Series(string name)
         {
             Name = name;
         }
@@ -42,8 +40,8 @@ namespace DomainLibrary.DomainLayer
         #region Comparing
         public override bool Equals(object obj)
         {
-            return obj is Publisher publisher &&
-                   Name == publisher.Name;
+            return obj is Series series &&
+                   Name == series.Name;
         }
 
         public override int GetHashCode()

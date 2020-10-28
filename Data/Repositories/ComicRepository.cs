@@ -66,6 +66,7 @@ namespace Data.Repositories
             }
             return toReturn;
         }
+
         /// <summary>
         /// Maps a record to a DComic object.
         /// </summary>
@@ -75,7 +76,10 @@ namespace Data.Repositories
         {
             dComic.Id = (int)record["Comic_Id"];
             dComic.Title = (string)record["Title"];
-            dComic.SeriesNumber = (int?)record["SeriesNr"];
+            if (record["SeriesNr"] == DBNull.Value)
+                dComic.SeriesNumber = null;
+            else
+                dComic.SeriesNumber = (int?)record["SeriesNr"];
             dComic.Publisher = new DPublisher();
             dComic.Publisher.Id = (int)record["Publisher_Id"];
             dComic.Publisher.Name = (string)record["Publisher_Name"];
@@ -104,6 +108,7 @@ namespace Data.Repositories
                 return items;
             }
         }
+
         /// <summary>
         /// Maps a record to a DAuthor object.
         /// </summary>
@@ -118,12 +123,12 @@ namespace Data.Repositories
         public void AddComic(Comic comic)
         {
             DComic toAdd = Mapper.ToDComic(comic);
-            Console.WriteLine(toAdd.Publisher.Id);
             AddDComic(toAdd);
+            Console.WriteLine(toAdd.Id);
             AddDPublisher(toAdd);
-            Console.WriteLine(toAdd.Id);
+            Console.WriteLine(toAdd.Publisher.Id);
             AddDSeries(toAdd);
-            Console.WriteLine(toAdd.Id);
+            Console.WriteLine(toAdd.Series.Id);
             AddDAuthors(toAdd);
             foreach (var auth in toAdd.Authors)
             {
@@ -193,7 +198,6 @@ namespace Data.Repositories
 
             }
         }
-
 
         /// <summary>
         /// Adds a DSeries to the database.
@@ -280,7 +284,6 @@ namespace Data.Repositories
             }
         }
 
-
         public void AddComics(IEnumerable<Comic> comics)
         {
             var comicsList = comics.ToList();
@@ -289,7 +292,6 @@ namespace Data.Repositories
                 this.AddComic(comicsList[i]);
             }
         }
-
 
         public IEnumerable<Comic> GetComics()
         {
@@ -307,7 +309,6 @@ namespace Data.Repositories
             }
 
         }
-
 
         public void RemoveComic(Comic comic)
         {

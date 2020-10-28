@@ -18,10 +18,6 @@ namespace DataLayer.DataBaseClasses
         /// The name of the series.
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// All comics belonging to the series.
-        /// </summary>
-        List<DComic> Comics { get; set; } = new List<DComic>();
         #endregion
 
         #region Constructors
