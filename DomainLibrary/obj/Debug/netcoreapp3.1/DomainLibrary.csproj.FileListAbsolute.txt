@@ -1,9 +1,0 @@
-F:\School\Hogent\Projectwerk\DomainLibrary\bin\Debug\netcoreapp3.1\DomainLibrary.deps.json
-F:\School\Hogent\Projectwerk\DomainLibrary\bin\Debug\netcoreapp3.1\DomainLibrary.dll
-F:\School\Hogent\Projectwerk\DomainLibrary\bin\Debug\netcoreapp3.1\DomainLibrary.pdb
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.csprojAssemblyReference.cache
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.AssemblyInfoInputs.cache
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.AssemblyInfo.cs
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.csproj.CoreCompileInputs.cache
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.dll
-F:\School\Hogent\Projectwerk\DomainLibrary\obj\Debug\netcoreapp3.1\DomainLibrary.pdb
