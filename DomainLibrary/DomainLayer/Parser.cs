@@ -18,7 +18,7 @@ namespace DomainLibrary.DomainLayer
             }
         }
 
-        static public void SerializeComics(List<Comic> comics, string path)
+        public static void SerializeComics(List<Comic> comics, string path)
         {
   
             path += @"/Strips.json";

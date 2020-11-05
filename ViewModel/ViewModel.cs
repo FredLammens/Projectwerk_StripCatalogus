@@ -69,15 +69,23 @@ namespace ViewModel
         /// domainLayer controller object
         /// </summary>
         readonly Controller controller;
-
-
+        /// <summary>
+        /// Constructor for initializing allcomics and comics.
+        /// </summary>
+        public async Task InitializeComicsAsync()
+        {
+            //allcomics initialized 
+            allComics = await Task.Run(() => Mapper.ComicsMapper(controller.GetCatalogue().Comics));
+            //initalize comics with allcomics
+            Comics = new ObservableCollection<ViewComic>(allComics);
+        }
         /// <summary>
         /// DataBindinded method for changing the comicslist to a comicslist where the title matches. 
         /// </summary>
         /// <param name="title">title to match</param>
         public void SearchTitle(string title) 
         {
-            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Title.Contains(title))); //tolower? afhankelijk van hoe in db gestoken 
+            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Title.Contains(title)));
         }
         /// <summary>
         ///  DataBindinded method for changing the comicslist to a comicslist where the series matches. 

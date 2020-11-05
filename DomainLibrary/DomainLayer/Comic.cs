@@ -74,18 +74,6 @@ namespace DomainLibrary.DomainLayer
         #endregion
 
         #region Functionality
-        /// <summary>
-        /// Check whether a given list of publishers has a duplicate.
-        /// </summary>
-        /// <param name="publishers">List of publishers to check</param>
-        /// <returns></returns>
-        private bool DuplicatePublishers(List<Publisher> publishers)
-        {
-            if (publishers.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
-                return true;
-            else
-                return false;
-        }
 
         /// <summary>
         /// Check whether a given list of authors has a duplicate.
@@ -98,6 +86,23 @@ namespace DomainLibrary.DomainLayer
                 return true;
             else
                 return false;
+        }
+        #endregion
+
+        #region Comparing
+        public override bool Equals(object obj)
+        {
+            return obj is Comic comic &&
+                   Title == comic.Title &&
+                   EqualityComparer<Series>.Default.Equals(Series, comic.Series) &&
+                   SeriesNumber == comic.SeriesNumber &&
+                   EqualityComparer<List<Author>>.Default.Equals(Authors, comic.Authors) &&
+                   EqualityComparer<Publisher>.Default.Equals(Publisher, comic.Publisher);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Title, Series, SeriesNumber, Authors, Publisher);
         }
         #endregion
     }

@@ -23,7 +23,7 @@ namespace ViewModel
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
-        public int SeriesNumber { get; set; }
+        public int? SeriesNumber { get; set; }
         /// <summary>
         /// The autor(s) that wrote this comic
         /// </summary>
@@ -51,7 +51,7 @@ namespace ViewModel
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publishers">The publisher(s) that published the comic.</param>
-        public ViewComic(string title, string series, int seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
+        public ViewComic(string title, string series, int? seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
         {
             Title = title;
             Series = series;

@@ -7,43 +7,47 @@ using System.Text;
 namespace DomainLibrary.DomainLayer
 {
     /// <summary>
-    /// Controlls aal actions in the domain layer.
+    /// Controlls all actions in the domain layer.
     /// </summary>
     public class Controller
     {
         #region Properties
         private IUnitOfWork uow;
+        private Catalogue catalogue;
 
         #endregion
 
         #region Constuctors
         /// <summary>
-        /// A constructor that makes a Controller object.
+        /// A constructor that makes a Controller object and initializes the catalogue with all comics from the database.
         /// </summary>
         /// <param name="uow">An object that implements the IUnitOfWork interface.</param>
         public Controller(IUnitOfWork uow)
         {
             this.uow = uow;
+            //laden van catalogue
+            catalogue = new Catalogue(uow.Comics.GetComics().ToHashSet());
         }
         #endregion
 
         #region Operations
         /// <summary>
-        /// Adds a comic to the database.
+        /// Adds a comic to the database and catalogue.
         /// </summary>
         /// <param name="comic">Comic to add.</param>
         public void AddComic(Comic comic)
         {
+            catalogue.AddComic(comic);
             uow.Comics.AddComic(comic);
             uow.SaveChanges();
         }
         /// <summary>
-        /// Retrieves all comics from the database.
+        /// Returns the catalogue
         /// </summary>
         /// <returns>A catalogue of comics.</returns>
-        public Catalogue GetComics()
-        {
-            return new Catalogue( uow.Comics.GetComics().ToList());
+        public Catalogue GetCatalogue()
+        {        
+            return catalogue;
         }
         /// <summary>
         /// Import all comics from a json file.
@@ -59,6 +63,7 @@ namespace DomainLibrary.DomainLayer
         public void ExportComics(List<Comic> comics, string path )
         {
             Parser.SerializeComics(comics, path);
+            uow.SaveChanges();
         }
         #endregion
 
