@@ -1,0 +1,93 @@
+CREATE TABLE [Publishers]
+(
+ [ID]       int IDENTITY (1, 1) NOT NULL ,
+ [Name]     varchar(50) NOT NULL ,
+ [Comic_ID] int NOT NULL ,
+
+
+ CONSTRAINT [PK_publisher] PRIMARY KEY CLUSTERED ([ID] ASC),
+ CONSTRAINT [FK_81] FOREIGN KEY ([Comic_ID])  REFERENCES [Comics]([ID])
+);
+GO
+
+
+CREATE NONCLUSTERED INDEX [fkIdx_81] ON [Publishers] 
+ (
+  [Comic_ID] ASC
+ )
+
+GO
+
+
+
+CREATE TABLE [Comics]
+(
+ [ID]            int IDENTITY (1, 1) NOT NULL ,
+ [Title]         varchar(50) NOT NULL ,
+ [SeriesNr]      int NULL ,
+ [IsInCatalogue] bit NOT NULL CONSTRAINT [DF_Comics_IsInCatalogue] DEFAULT 1 ,
+
+
+ CONSTRAINT [PK_comic] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+GO
+
+CREATE TABLE [Series]
+(
+ [ID]       int IDENTITY (1, 1) NOT NULL ,
+ [Name]     varchar(50) NOT NULL ,
+ [Comic_ID] int NOT NULL ,
+
+
+ CONSTRAINT [PK_series] PRIMARY KEY CLUSTERED ([ID] ASC),
+ CONSTRAINT [FK_57] FOREIGN KEY ([Comic_ID])  REFERENCES [Comics]([ID])
+);
+GO
+
+
+CREATE NONCLUSTERED INDEX [fkIdx_57] ON [Series] 
+ (
+  [Comic_ID] ASC
+ )
+
+GO
+
+
+
+CREATE TABLE [Authors]
+(
+ [ID]   int IDENTITY (1, 1) NOT NULL ,
+ [Name] varchar(50) NOT NULL ,
+
+
+ CONSTRAINT [PK_author] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+GO
+
+
+CREATE TABLE [Comics_Authors]
+(
+ [Comics_ID]  int NOT NULL ,
+ [Authors_ID] int NOT NULL ,
+
+
+ CONSTRAINT [FK_67] FOREIGN KEY ([Comics_ID])  REFERENCES [Comics]([ID]),
+ CONSTRAINT [FK_76] FOREIGN KEY ([Authors_ID])  REFERENCES [Authors]([ID])
+);
+GO
+
+
+CREATE NONCLUSTERED INDEX [fkIdx_67] ON [Comics_Authors] 
+ (
+  [Comics_ID] ASC
+ )
+
+GO
+
+CREATE NONCLUSTERED INDEX [fkIdx_76] ON [Comics_Authors] 
+ (
+  [Authors_ID] ASC
+ )
+
+GO
+

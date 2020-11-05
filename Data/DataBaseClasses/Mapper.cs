@@ -18,7 +18,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A DComic object.</returns>
         public static DComic ToDComic(Comic comic)
         {
-            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
+            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series.Name), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
             return toReturn;
         }
 
@@ -69,7 +69,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Comic object.</returns>
         public static Comic ToComic(DComic dComic)
         {
-            Comic toReturn = new Comic(dComic.Title, dComic.Series.Name, dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
+            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series.Name), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
             return toReturn;
         }
         /// <summary>
@@ -96,6 +96,16 @@ namespace DataLayer.DataBaseClasses
             }
 
             return toReturn;
+        }
+
+        /// <summary>
+        /// Makes a new DSeries object from a given string.
+        /// </summary>
+        /// <param name="dSeries">Name of the sereis</param>
+        /// <returns>A new DSereis object</returns>
+        private static Series ToSeries(string dSeries)
+        {
+            return new Series(dSeries);
         }
 
         #endregion

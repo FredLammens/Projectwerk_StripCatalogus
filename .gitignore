@@ -358,3 +358,9 @@ MigrationBackup/
 .ionide/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio
+
+.vs/
+Data/obj/Debug/netcoreapp3.1
+DomainLibrary/obj/Debug/netcoreapp3.1
+Viewmodel/obj/Debug/netcoreapp3.1
+Viewmodel/obj/

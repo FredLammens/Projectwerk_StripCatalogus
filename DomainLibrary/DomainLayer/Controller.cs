@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -25,6 +26,7 @@ namespace DomainLibrary.DomainLayer
             this.uow = uow;
         }
         #endregion
+
         #region Operations
         /// <summary>
         /// Adds a comic to the database.
@@ -33,6 +35,7 @@ namespace DomainLibrary.DomainLayer
         public void AddComic(Comic comic)
         {
             uow.Comics.AddComic(comic);
+            uow.SaveChanges();
         }
         /// <summary>
         /// Retrieves all comics from the database.
@@ -45,16 +48,17 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Import all comics from a json file.
         /// </summary>
-        public void ImportComics()
+        public void ImportComics(string path)
         {
-            throw new NotImplementedException();
+           uow.Comics.AddComics(Parser.DeSerializeComics(path));
+           uow.SaveChanges();
         }
         /// <summary>
         /// Export all comics in the catalogue to a json file.
         /// </summary>
-        public void ExportComics()
+        public void ExportComics(List<Comic> comics, string path )
         {
-            throw new NotImplementedException();
+            Parser.SerializeComics(comics, path);
         }
         #endregion
 
