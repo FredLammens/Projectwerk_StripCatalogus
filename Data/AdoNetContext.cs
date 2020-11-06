@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,12 +27,33 @@ namespace DataLayer
         /// </summary>
         /// <param name="connectionString">Connection string for the database</param>
         /// <param name="ownsConnection">Wheter this context owns the connection.</param>
-        public AdoNetContext(string connectionString, bool ownsConnection)
+        public AdoNetContext(bool ownsConnection, string db = "Production")
         {
-            connection = new SqlConnection(connectionString);
+            connection = new SqlConnection(GetConnectionString(db));
             connection.Open();
             this.ownsConnection = ownsConnection;
             transaction = connection.BeginTransaction();
+        }
+
+        private String GetConnectionString(string db = "Production")
+        {
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile(@"Files\appsettings.json", optional: false);
+
+            string connectionString = null;
+
+            var configuration = builder.Build();
+            switch (db)
+            {
+                case "Production":
+                    connectionString = configuration.GetConnectionString("ProdSQLconnection").ToString();
+                    break;
+                case "Test":
+                    connectionString = configuration.GetConnectionString("TestSQLconnection").ToString();
+                    break;
+            }
+
+            return connectionString;
         }
 
         /// <summary>
