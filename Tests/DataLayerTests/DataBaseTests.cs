@@ -13,7 +13,7 @@ namespace Tests
     [TestClass]
     public class DataBaseTests
     {
-        AdoNetContext context = new AdoNetContext(@"Data Source=PC-KDM\SQLEXPRESS;Initial Catalog=StripsTest;Integrated Security=True", true);
+        AdoNetContext context = new AdoNetContext(true);
         [TestMethod]
         public void TestAddComic()
         {

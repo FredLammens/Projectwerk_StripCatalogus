@@ -26,8 +26,7 @@ namespace DataLayer
         /// </summary>
         public UnitOfWork()
         {
-            string connection = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Projectwerk-Stripcatalogus;Integrated Security=True;Pooling=False";
-            context = new AdoNetContext(connection, true);
+            context = new AdoNetContext(true);
             if (Comics == null)
             {
                 Comics = new ComicRepository(context);

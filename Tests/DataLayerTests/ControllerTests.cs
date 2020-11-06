@@ -17,7 +17,7 @@ namespace Tests
         {
             IUnitOfWork uow = new UnitOfWork();
             Controller controller = new Controller(uow);
-            string path = "C:/Users/User/Desktop/DATAPW/dump (1).json";
+            string path = "C:/Users/User/Desktop/DATAPW/dump (1).json"; //moet naar eigen dump path omgezet worden.
             controller.ImportComics(path);
 
         }
@@ -26,7 +26,7 @@ namespace Tests
         {
             IUnitOfWork uow = new UnitOfWork();
             Controller controller = new Controller(uow);
-            string path = "C:/Users/User/Desktop/DATAPW";
+            string path = "C:/Users/User/Desktop/DATAPW";//moet naar eigen dump path omgezet worden.
             List<Comic> comics = new List<Comic>();
             Catalogue catalogue = new Catalogue();
             catalogue = controller.GetCatalogue();
