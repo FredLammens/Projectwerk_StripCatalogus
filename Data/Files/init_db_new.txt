@@ -1,68 +1,67 @@
 CREATE TABLE [Publishers]
 (
- [ID]       int IDENTITY (1, 1) NOT NULL ,
- [Name]     varchar(50) NOT NULL ,
- [Comic_ID] int NOT NULL ,
+ [ID]   int IDENTITY (1, 1) NOT NULL ,
+ [Name] varchar(100) NOT NULL ,
 
 
- CONSTRAINT [PK_publisher] PRIMARY KEY CLUSTERED ([ID] ASC),
- CONSTRAINT [FK_81] FOREIGN KEY ([Comic_ID])  REFERENCES [Comics]([ID])
+ CONSTRAINT [PK_publisher] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 GO
-
-
-CREATE NONCLUSTERED INDEX [fkIdx_81] ON [Publishers] 
- (
-  [Comic_ID] ASC
- )
-
-GO
-
-
 
 CREATE TABLE [Comics]
 (
  [ID]            int IDENTITY (1, 1) NOT NULL ,
- [Title]         varchar(50) NOT NULL ,
+ [Title]         varchar(100) NOT NULL ,
  [SeriesNr]      int NULL ,
  [IsInCatalogue] bit NOT NULL CONSTRAINT [DF_Comics_IsInCatalogue] DEFAULT 1 ,
+ [Publisher_ID]  int NOT NULL ,
+ [Comic_ID]      int NOT NULL ,
 
 
- CONSTRAINT [PK_comic] PRIMARY KEY CLUSTERED ([ID] ASC)
-);
-GO
-
-CREATE TABLE [Series]
-(
- [ID]       int IDENTITY (1, 1) NOT NULL ,
- [Name]     varchar(50) NOT NULL ,
- [Comic_ID] int NOT NULL ,
-
-
- CONSTRAINT [PK_series] PRIMARY KEY CLUSTERED ([ID] ASC),
- CONSTRAINT [FK_57] FOREIGN KEY ([Comic_ID])  REFERENCES [Comics]([ID])
+ CONSTRAINT [PK_comic] PRIMARY KEY CLUSTERED ([ID] ASC),
+ CONSTRAINT [FK_85] FOREIGN KEY ([Publisher_ID])  REFERENCES [Publishers]([ID]),
+ CONSTRAINT [FK_91] FOREIGN KEY ([Comic_ID])  REFERENCES [Series]([ID])
 );
 GO
 
 
-CREATE NONCLUSTERED INDEX [fkIdx_57] ON [Series] 
+CREATE NONCLUSTERED INDEX [fkIdx_85] ON [Comics] 
+ (
+  [Publisher_ID] ASC
+ )
+
+GO
+
+CREATE NONCLUSTERED INDEX [fkIdx_91] ON [Comics] 
  (
   [Comic_ID] ASC
  )
 
 GO
 
+
+
+CREATE TABLE [Series]
+(
+ [ID]   int IDENTITY (1, 1) NOT NULL ,
+ [Name] varchar(100) NOT NULL ,
+
+
+ CONSTRAINT [PK_series] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+GO
 
 
 CREATE TABLE [Authors]
 (
  [ID]   int IDENTITY (1, 1) NOT NULL ,
- [Name] varchar(50) NOT NULL ,
+ [Name] varchar(100) NOT NULL ,
 
 
  CONSTRAINT [PK_author] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 GO
+
 
 
 CREATE TABLE [Comics_Authors]

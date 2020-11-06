@@ -12,8 +12,4 @@
     <ProjectReference Include="..\DomainLibrary\DomainLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
 </Project>
