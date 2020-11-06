@@ -66,7 +66,6 @@ namespace Data.Repositories
             }
             return toReturn;
         }
-
         /// <summary>
         /// Maps a record to a DComic object.
         /// </summary>
@@ -76,10 +75,7 @@ namespace Data.Repositories
         {
             dComic.Id = (int)record["Comic_Id"];
             dComic.Title = (string)record["Title"];
-            if (record["SeriesNr"] == DBNull.Value)
-                dComic.SeriesNumber = null;
-            else
-                dComic.SeriesNumber = (int?)record["SeriesNr"];
+            dComic.SeriesNumber = (int?)record["SeriesNr"];
             dComic.Publisher = new DPublisher();
             dComic.Publisher.Id = (int)record["Publisher_Id"];
             dComic.Publisher.Name = (string)record["Publisher_Name"];
@@ -108,7 +104,6 @@ namespace Data.Repositories
                 return items;
             }
         }
-
         /// <summary>
         /// Maps a record to a DAuthor object.
         /// </summary>
@@ -123,12 +118,9 @@ namespace Data.Repositories
         public void AddComic(Comic comic)
         {
             DComic toAdd = Mapper.ToDComic(comic);
-            AddDComic(toAdd);
-            Console.WriteLine(toAdd.Id);
             AddDPublisher(toAdd);
-            Console.WriteLine(toAdd.Publisher.Id);
+            AddDComic(toAdd);
             AddDSeries(toAdd);
-            Console.WriteLine(toAdd.Series.Id);
             AddDAuthors(toAdd);
             foreach (var auth in toAdd.Authors)
             {
@@ -147,9 +139,11 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @seriesNR;";
+                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @seriesNR AND Comics.Publisher_ID = @publiserId AND Comics.Series_Id = @series_Id;";
                 command.AddParameter("title", dComic.Title);
                 command.AddParameter("seriesNR", dComic.SeriesNumber);
+                command.AddParameter("publiserId", dComic.Publisher.Id);
+                command.AddParameter("series_Id", dComic.Series.Id);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
@@ -162,8 +156,8 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    command.CommandText = @"Insert into Comics (Title, SeriesNr) " +
-                                           "values (@title, @seriesNR) " +
+                    command.CommandText = @"Insert into Comics (Title, SeriesNr, Publisher_ID) " +
+                                           "values (@title, @seriesNR, @publiserId) " +
                                            "SELECT CAST(scope_identity() AS int);";
                     dComic.Id = (int)command.ExecuteScalar();
                 }
@@ -178,9 +172,8 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Publishers Where Publishers.name = @name AND Publishers.Comic_ID = @comicId";
+                command.CommandText = @"Select * From Publishers Where Publishers.name = @name";
                 command.AddParameter("name", dComic.Publisher.Name);
-                command.AddParameter("comicId", dComic.Id);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
@@ -190,14 +183,15 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    command.CommandText = @"Insert into Publishers (Name, Comic_ID) " +
-                                           "values (@name, @comicId)" +
+                    command.CommandText = @"Insert into Publishers (Name) " +
+                                           "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
                     dComic.Publisher.Id = (int)command.ExecuteScalar();
                 }
 
             }
         }
+
 
         /// <summary>
         /// Adds a DSeries to the database.
@@ -207,9 +201,8 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Series Where Series.name = @name AND Series.Comic_ID = @comicId";
+                command.CommandText = @"Select * From Series Where Series.name = @name";
                 command.AddParameter("name", dComic.Series.Name);
-                command.AddParameter("comicId", dComic.Id);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
@@ -219,8 +212,8 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    command.CommandText = @"Insert into Series (Name ,Comic_ID) " +
-                                           "values (@name, @comicId)" +
+                    command.CommandText = @"Insert into Series (Name) " +
+                                           "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
                     dComic.Series.Id = (int)command.ExecuteScalar();
                 }
@@ -284,6 +277,7 @@ namespace Data.Repositories
             }
         }
 
+
         public void AddComics(IEnumerable<Comic> comics)
         {
             var comicsList = comics.ToList();
@@ -293,6 +287,7 @@ namespace Data.Repositories
             }
         }
 
+
         public IEnumerable<Comic> GetComics()
         {
             using (var command = context.CreateCommand())
@@ -301,7 +296,7 @@ namespace Data.Repositories
                                       "Publishers.ID as Publisher_Id, Publishers.Name as Publisher_Name, " +
                                       "Series.ID as Series_ID, Series.Name as Series_Name " +
                                       "FROM Comics " +
-                                      "INNER Join Publishers ON Publishers.Comic_ID = Comics.ID " +
+                                      "INNER Join Publishers ON Publishers.ID = Comics.Publisher_ID " +
                                       "INNER Join Series ON Series.Comic_ID = Comics.ID " +
                                       "Where Comics.IsInCatalogue = 1;";
 
@@ -309,6 +304,7 @@ namespace Data.Repositories
             }
 
         }
+
 
         public void RemoveComic(Comic comic)
         {
