@@ -79,13 +79,13 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="publishers">List of publishers to check</param>
         /// <returns></returns>
-        private bool DuplicatePublishers(List<Publisher> publishers)
+      /*  private bool DuplicatePublishers(List<Publisher> publishers)
         {
             if (publishers.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
                 return true;
             else
                 return false;
-        }
+        }*/
 
         /// <summary>
         /// Check whether a given list of authors has a duplicate.

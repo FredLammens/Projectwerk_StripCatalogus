@@ -26,7 +26,7 @@ namespace DataLayer
         /// </summary>
         public UnitOfWork()
         {
-            string connection = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Projectwerk-Stripcatalogus;Integrated Security=True;Pooling=False";
+            string connection = @"Data Source=PC-KDM\SQLEXPRESS;Initial Catalog=Strips;Integrated Security=True";
             context = new AdoNetContext(connection, true);
             if (Comics == null)
             {

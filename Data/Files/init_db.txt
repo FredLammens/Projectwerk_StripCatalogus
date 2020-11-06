@@ -1,7 +1,7 @@
 CREATE TABLE [Publishers]
 (
  [ID]       int IDENTITY (1, 1) NOT NULL ,
- [Name]     varchar(50) NOT NULL ,
+ [Name]     varchar(100) NOT NULL ,
  [Comic_ID] int NOT NULL ,
 
 
@@ -23,7 +23,7 @@ GO
 CREATE TABLE [Comics]
 (
  [ID]            int IDENTITY (1, 1) NOT NULL ,
- [Title]         varchar(50) NOT NULL ,
+ [Title]         varchar(100) NOT NULL ,
  [SeriesNr]      int NULL ,
  [IsInCatalogue] bit NOT NULL CONSTRAINT [DF_Comics_IsInCatalogue] DEFAULT 1 ,
 
@@ -35,7 +35,7 @@ GO
 CREATE TABLE [Series]
 (
  [ID]       int IDENTITY (1, 1) NOT NULL ,
- [Name]     varchar(50) NOT NULL ,
+ [Name]     varchar(100) NOT NULL ,
  [Comic_ID] int NOT NULL ,
 
 
@@ -57,7 +57,7 @@ GO
 CREATE TABLE [Authors]
 (
  [ID]   int IDENTITY (1, 1) NOT NULL ,
- [Name] varchar(50) NOT NULL ,
+ [Name] varchar(100) NOT NULL ,
 
 
  CONSTRAINT [PK_author] PRIMARY KEY CLUSTERED ([ID] ASC)

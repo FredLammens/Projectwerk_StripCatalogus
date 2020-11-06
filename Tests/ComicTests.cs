@@ -23,13 +23,13 @@ namespace Tests
 
             Publisher publisher = new Publisher("Uitgevrij");
 
-            Action act = () => new Comic("Titel", "Series", 1, authors, publisher);
+            Action act = () => new Comic("Titel", new Series("Series"), 1, authors, publisher);
 
             act.Should().Throw<DomainException>().WithMessage("Een strip kan niet twee keer dezelfde autheur hebben.");
 
-            authors = new List<Author>() { author1, author2};
+            authors = new List<Author>() { author1, author2 };
 
-            act = () => new Comic("Titel", "Series", 1, authors, publisher);
+            act = () => new Comic("Titel", new Series("Series"), 1, authors, publisher);
 
             act.Should().NotThrow<DomainException>();
         }
