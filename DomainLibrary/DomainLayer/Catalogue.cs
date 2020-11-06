@@ -13,7 +13,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// A collection of Comic objects.
         /// </summary>
-        public HashSet<Comic> Comics { get; private set; }
+        public HashSet<Comic> Comics { get; private set; } = new HashSet<Comic>();
         #endregion
 
         #region Constructors
@@ -37,7 +37,11 @@ namespace DomainLibrary.DomainLayer
         #region Methods
         public void AddComic(Comic comic) 
         {
-            Comics.Add(comic);
+            if (!Comics.Add(comic)) 
+            {
+                throw new DomainException($"De strip {comic.Title} zit al in de catalogus.");
+            }
+
         }
         #endregion
 
