@@ -34,13 +34,13 @@
 2) Catalogus importeren/exporteren (JSON bestand)  
 
 ### Ontwerp:    
-![ontwerp](https://user-images.githubusercontent.com/23512215/95454585-f404b800-096c-11eb-878c-261c50368eac.jpg)
+![ontwerp](https://user-images.githubusercontent.com/23512215/98315262-217a6b00-1fd8-11eb-8b23-df4db4980d08.jpg)
 
 #### DomeinOntwerp:    
-![DomainLayer_uml](https://user-images.githubusercontent.com/23512215/95454581-f36c2180-096c-11eb-822e-7451a35e18fd.jpg)
+![DomainLayer](https://user-images.githubusercontent.com/23512215/98315258-1f181100-1fd8-11eb-951b-c39e65a0673b.jpg)
 
 #### DataLayerOntwerp:    
-![DataLayer_uml](https://user-images.githubusercontent.com/23512215/95454579-f2d38b00-096c-11eb-966d-954ab205cde1.jpg)
+![DataLayer](https://user-images.githubusercontent.com/23512215/98315235-11628b80-1fd8-11eb-9a78-047da42e7420.jpg)
 
 #### ViewModelOntwerp :    
-![ViewModel_uml](https://user-images.githubusercontent.com/23512215/95454582-f36c2180-096c-11eb-9dba-fd104cf9cfa6.jpg)
+![ViewModel](https://user-images.githubusercontent.com/23512215/98315265-22ab9800-1fd8-11eb-92c3-a96681bfc68d.jpg)
