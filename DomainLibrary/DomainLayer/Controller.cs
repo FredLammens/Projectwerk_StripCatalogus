@@ -60,9 +60,9 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Export all comics in the catalogue to a json file.
         /// </summary>
-        public void ExportComics(List<Comic> comics, string path )
-        {
-            Parser.SerializeComics(comics, path);
+        public void ExportComics( string path )
+        {       
+            Parser.SerializeComics(catalogue.Comics.ToList(), path);
             uow.SaveChanges();
         }
         #endregion
