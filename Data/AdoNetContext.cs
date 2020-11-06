@@ -25,7 +25,7 @@ namespace DataLayer
         /// <summary>
         /// Makes a AdoNewtContext object
         /// </summary>
-        /// <param name="connectionString">Connection string for the database</param>
+        /// <param name="db">Which database to use, defult is production.</param>
         /// <param name="ownsConnection">Wheter this context owns the connection.</param>
         public AdoNetContext(bool ownsConnection, string db = "Production")
         {
@@ -35,6 +35,11 @@ namespace DataLayer
             transaction = connection.BeginTransaction();
         }
 
+        /// <summary>
+        /// Determines connection string based on given db string.
+        /// </summary>
+        /// <param name="db">Which database to use, default is production.</param>
+        /// <returns>The connection string.</returns>
         private String GetConnectionString(string db = "Production")
         {
             var builder = new ConfigurationBuilder();
