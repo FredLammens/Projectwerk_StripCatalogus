@@ -66,18 +66,6 @@ namespace ViewModel
         #endregion
 
         #region Functionality
-        /// <summary>
-        /// Check whether a given list of publishers has a duplicate.
-        /// </summary>
-        /// <param name="publishers">List of publishers to check</param>
-        /// <returns></returns>
-        private bool DuplicatePublishers(List<ViewPublisher> publishers)
-        {
-            if (publishers.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
-                return true;
-            else
-                return false;
-        }
 
         /// <summary>
         /// Check whether a given list of authors has a duplicate.
