@@ -41,6 +41,10 @@ namespace DomainLibrary.DomainLayer
             uow.Comics.AddComic(comic);
             uow.SaveChanges();
         }
+        /// <summary>
+        /// Adds comics to database and catalogue.
+        /// </summary>
+        /// <param name="comics">List of comics to add</param>
         public void AddComics(IList<Comic> comics) 
         {
             foreach (Comic comic in comics)
