@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,6 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// The name of the series.
         /// </summary>
-        [JsonProperty("Naam")]
         public string Name { get; set; }
         #endregion
 
@@ -30,7 +29,6 @@ namespace DomainLibrary.DomainLayer
         /// Makes a Series object.
         /// </summary>
         /// <param name="name">The name of the series.</param>
-        [JsonConstructor]
         public Series(string name)
         {
             Name = name;

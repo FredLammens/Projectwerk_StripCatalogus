@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,22 +16,27 @@ namespace ViewModel
         /// <summary>
         /// The title of the comic
         /// </summary>
+        [JsonProperty("Titel")]
         public string Title { get; set; }
         /// <summary>
         /// The series the comic belongs to.
         /// </summary>
+        [JsonProperty("Reeks")]
         public string Series { get; set; }
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
+        [JsonProperty("Nr")]
         public int? SeriesNumber { get; set; }
         /// <summary>
         /// The autor(s) that wrote this comic
         /// </summary>
+        [JsonProperty("Auteurs")]
         public List<ViewAuthor> Authors { get; set; }
         /// <summary>
         /// The publisher(s) that published the comic.
         /// </summary>
+        [JsonProperty("Uitgeverij")]
         public ViewPublisher Publisher { get; set; }
         #endregion
 
@@ -51,6 +57,7 @@ namespace ViewModel
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publishers">The publisher(s) that published the comic.</param>
+        [JsonConstructor]
         public ViewComic(string title, string series, int? seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
         {
             Title = title;

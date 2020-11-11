@@ -21,6 +21,7 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        #region Collections
         /// <summary>
         /// variable that holds all comics with getter and setter => setter raises property changed when object changes.
         /// </summary>
@@ -40,6 +41,8 @@ namespace ViewModel
         /// holds all comics , used for searching through the list.
         /// </summary>
         private List<ViewComic> allComics;
+        #endregion
+        #region DataBindableProperties
         /// <summary>
         /// DataBindinded variable for Comic-Title
         /// </summary>
@@ -64,11 +67,14 @@ namespace ViewModel
         /// DataBindinded variable for Comic-Publisher
         /// </summary>
         public string InputPublisher { get; set; }
-
+        #endregion
+        #region DataLayerController
         /// <summary>
         /// domainLayer controller object
         /// </summary>
         readonly Controller controller;
+        #endregion
+        #region Initializers
         /// <summary>
         /// Constructor for initializing allcomics and comics.
         /// </summary>
@@ -79,6 +85,8 @@ namespace ViewModel
             //initalize comics with allcomics
             Comics = new ObservableCollection<ViewComic>(allComics);
         }
+        #endregion
+        #region SearchMethods
         /// <summary>
         /// DataBindinded method for changing the comicslist to a comicslist where the title matches. 
         /// </summary>
@@ -111,6 +119,8 @@ namespace ViewModel
         {
             Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Publisher.Name.Contains(publisherName)));
         }
+        #endregion
+        #region DoMethods
         /// <summary>
         ///  DataBindinded method for adding a comic.
         /// </summary>
@@ -124,12 +134,37 @@ namespace ViewModel
             await Task.Run(() => controller.AddComic(Mapper.ViewComicMapper(comic)));
         }
         /// <summary>
+        /// Imports the compics via the filepath
+        /// </summary>
+        /// <param name="comicsFilePath"> path of the comicsFile</param>
+        public void ImportComic(string comicsFilePath) 
+        {
+            //controller.AddComic();
+            List<ViewComic> comics = Parser.DeSerializeComics(comicsFilePath).ToList();
+            List<Comic> comicsToImport = new List<Comic>();
+            foreach (ViewComic comic in comics)
+            {
+                comicsToImport.Add(Mapper.ViewComicMapper(comic));
+            }
+            controller.AddComics(comicsToImport);
+        }
+        /// <summary>
+        /// Exports the comics to a json file in the designated path
+        /// </summary>
+        /// <param name="path">path where JSONfile needs to be exported to</param>
+        public void ExportComic(string path) 
+        {
+            Parser.SerializeComics(allComics, path);
+        }
+        #endregion
+        #region privateHelperMethods
+        /// <summary>
         /// Takes the authorInputString and returns a list of ViewAuthors
         /// </summary>
         /// <param name="authors">InputString from authors</param>
         /// <param name="delimeter"> the sign for seperating authors</param>
         /// <returns></returns>
-        private List<ViewAuthor> AuthorSplitter(string authors, string delimeter = ",") 
+        private List<ViewAuthor> AuthorSplitter(string authors, string delimeter = ",")
         {
             string[] splittedAuthors = authors.Split(delimeter);
             List<ViewAuthor> viewAuthors = new List<ViewAuthor>();
@@ -139,21 +174,6 @@ namespace ViewModel
             }
             return viewAuthors;
         }
-        /// <summary>
-        /// Imports the compics via the filepath
-        /// </summary>
-        /// <param name="comicsFilePath"> path of the comicsFile</param>
-        public void ImportComic(string comicsFilePath) 
-        {
-            controller.ImportComics(comicsFilePath);
-        }
-        /// <summary>
-        /// Exports the comics to a json file in the designated path
-        /// </summary>
-        /// <param name="path">path where JSONfile needs to be exported to</param>
-        public void ExportComic(string path) 
-        {
-            controller.ExportComics(path);
-        }
+        #endregion
     }
 }

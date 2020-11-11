@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace ViewModel.PresentationBaseClasses
         /// <summary>
         /// The name of the publisher.
         /// </summary>
+        [JsonProperty("Naam")]
         public string Name { get; set; }
 
         #endregion
@@ -27,6 +29,7 @@ namespace ViewModel.PresentationBaseClasses
         /// A constuctor that makes a Publisher object..
         /// </summary>
         /// <param name="name">The name of the publisher.</param>
+        [JsonConstructor]
         public ViewPublisher(string name)
         {
             Name = name;

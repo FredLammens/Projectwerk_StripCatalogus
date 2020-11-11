@@ -26,7 +26,7 @@ namespace DomainLibrary.DomainLayer
         {
             this.uow = uow;
             //laden van catalogue
-            catalogue = new Catalogue(uow.Comics.GetComics().ToHashSet());
+            catalogue = new Catalogue(uow.Comics.GetComics().ToList());
         }
         #endregion
 
@@ -42,28 +42,25 @@ namespace DomainLibrary.DomainLayer
             uow.SaveChanges();
         }
         /// <summary>
+        /// Adds comics to database and catalogue.
+        /// </summary>
+        /// <param name="comics">List of comics to add</param>
+        public void AddComics(IList<Comic> comics) 
+        {
+            foreach (Comic comic in comics)
+            {
+                catalogue.AddComic(comic);
+                uow.Comics.AddComic(comic);
+            }
+            uow.SaveChanges();
+        }
+        /// <summary>
         /// Returns the catalogue
         /// </summary>
         /// <returns>A catalogue of comics.</returns>
         public Catalogue GetCatalogue()
         {        
             return catalogue;
-        }
-        /// <summary>
-        /// Import all comics from a json file.
-        /// </summary>
-        public void ImportComics(string path)
-        {
-           uow.Comics.AddComics(Parser.DeSerializeComics(path));
-           uow.SaveChanges();
-        }
-        /// <summary>
-        /// Export all comics in the catalogue to a json file.
-        /// </summary>
-        public void ExportComics( string path )
-        {       
-            Parser.SerializeComics(catalogue.Comics.ToList(), path);
-            uow.SaveChanges();
         }
         #endregion
 
