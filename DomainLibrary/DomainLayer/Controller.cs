@@ -41,6 +41,15 @@ namespace DomainLibrary.DomainLayer
             uow.Comics.AddComic(comic);
             uow.SaveChanges();
         }
+        public void AddComics(IList<Comic> comics) 
+        {
+            foreach (Comic comic in comics)
+            {
+                catalogue.AddComic(comic);
+                uow.Comics.AddComic(comic);
+            }
+            uow.SaveChanges();
+        }
         /// <summary>
         /// Returns the catalogue
         /// </summary>
@@ -48,22 +57,6 @@ namespace DomainLibrary.DomainLayer
         public Catalogue GetCatalogue()
         {        
             return catalogue;
-        }
-        /// <summary>
-        /// Import all comics from a json file.
-        /// </summary>
-        public void ImportComics(string path)
-        {
-           uow.Comics.AddComics(Parser.DeSerializeComics(path));
-           uow.SaveChanges();
-        }
-        /// <summary>
-        /// Export all comics in the catalogue to a json file.
-        /// </summary>
-        public void ExportComics( string path )
-        {       
-            Parser.SerializeComics(catalogue.Comics.ToList(), path);
-            uow.SaveChanges();
         }
         #endregion
 

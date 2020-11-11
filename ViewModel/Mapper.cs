@@ -54,7 +54,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="authors"></param>
         /// <returns></returns>
-        private static List<ViewAuthor> AuthorMapper(List<Author> authors) 
+        private static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
         {
             List<ViewAuthor> viewAuthors = new List<ViewAuthor>();
             foreach (Author author in authors)

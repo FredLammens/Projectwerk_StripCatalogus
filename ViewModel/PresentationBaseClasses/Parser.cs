@@ -1,26 +1,25 @@
 ﻿using Newtonsoft.Json;
-using Syroot.Windows.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace DomainLibrary.DomainLayer
+namespace ViewModel.PresentationBaseClasses
 {
-   public class Parser
+    public class Parser
     {
-        public static IEnumerable<Comic> DeSerializeComics(string path)
+        public static IEnumerable<ViewComic> DeSerializeComics(string path)
         {
             using (StreamReader file = File.OpenText(path))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                return (List<Comic>)serializer.Deserialize(file, typeof(List<Comic>));
+                return (List<ViewComic>)serializer.Deserialize(file, typeof(List<ViewComic>));
             }
         }
 
-        public static void SerializeComics(List<Comic> comics, string path)
+        public static void SerializeComics(List<ViewComic> comics, string path)
         {
-  
+
             path += @"/Strips.json";
             using (StreamWriter file = File.CreateText(path))
             {

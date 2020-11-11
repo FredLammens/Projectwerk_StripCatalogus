@@ -145,7 +145,14 @@ namespace ViewModel
         /// <param name="comicsFilePath"> path of the comicsFile</param>
         public void ImportComic(string comicsFilePath) 
         {
-            controller.ImportComics(comicsFilePath);
+            //controller.AddComic();
+            List<ViewComic> comics = Parser.DeSerializeComics(comicsFilePath).ToList();
+            List<Comic> comicsToImport = new List<Comic>();
+            foreach (ViewComic comic in comics)
+            {
+                comicsToImport.Add(Mapper.ViewComicMapper(comic));
+            }
+            controller.AddComics(comicsToImport);
         }
         /// <summary>
         /// Exports the comics to a json file in the designated path
@@ -153,8 +160,7 @@ namespace ViewModel
         /// <param name="path">path where JSONfile needs to be exported to</param>
         public void ExportComic(string path) 
         {
-            controller.ExportComics(path);
+            Parser.SerializeComics(allComics, path);
         }
-
     }
 }
