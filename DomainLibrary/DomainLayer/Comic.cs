@@ -13,16 +13,19 @@ namespace DomainLibrary.DomainLayer
     public class Comic
     {
         #region Properties
+        private string _title;
         /// <summary>
         /// The title of the comic
         /// </summary>
         [JsonProperty("Titel")]
-        public string Title { get; set; }
+        public string Title { get => _title; set { if (string.IsNullOrEmpty(value)) throw new DomainException("Titel mag niet leeg zijn."); _title = value; } }
+
+        private Series _series;
         /// <summary>
         /// The series the comic belongs to.
         /// </summary>
         [JsonProperty("Reeks")]
-        public Series Series { get; set; }
+        public Series Series { get => _series; set { if (value.Equals(null)) throw new DomainException("Series mag niet leeg zijn."); _series = value; } }
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
@@ -32,23 +35,23 @@ namespace DomainLibrary.DomainLayer
         /// The autor(s) that wrote this comic
         /// </summary>
         [JsonProperty("Auteurs")]
-        public List<Author> Authors { get; set; }
+        private List<Author> _authors = new List<Author>();
+
+        public IReadOnlyList<Author> Authors { get => _authors.AsReadOnly();}
+
+        private Publisher _publisher;
         /// <summary>
         /// The publisher that published the comic.
         /// </summary>
         [JsonProperty("Uitgeverij")]
-        public Publisher Publisher { get; set; }
+        public Publisher Publisher { get => _publisher; set { if (value.Equals(null)) throw new DomainException("Publisher mag niet leeg zijn."); _publisher = value; } }
         #endregion
 
         #region Constructors
         /// <summary>
         /// An empty constructor.
         /// </summary>
-        public Comic()
-        {
-
-        }
-
+        public Comic() { }
         /// <summary>
         /// A constuctor that makes a Comic object.
         /// </summary>
@@ -63,14 +66,9 @@ namespace DomainLibrary.DomainLayer
             Title = title;
             Series = series;
             SeriesNumber = seriesNumber;
-            if (DuplicateAuthors(authors))
-                throw new DomainException("Een strip kan niet twee keer dezelfde autheur hebben.");
-            Authors = authors;
+            SetAuthors(authors);
             Publisher = publisher;
-
-
         }
-
         #endregion
 
         #region Functionality
@@ -87,23 +85,40 @@ namespace DomainLibrary.DomainLayer
             else
                 return false;
         }
-        #endregion
 
-        #region Comparing
+        public void AddAuthor(Author author) 
+        {
+            _authors.Add(author);
+        }
+        public void RemoveAuthor(Author author) 
+        {
+            _authors.Remove(author);
+        }
+        public void SetAuthors(List<Author> authors) 
+        {
+            if (DuplicateAuthors(authors))
+                throw new DomainException("Een strip kan niet twee keer dezelfde autheur hebben.");
+            _authors = authors;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Comic comic &&
-                   Title == comic.Title &&
-                   EqualityComparer<Series>.Default.Equals(Series, comic.Series) &&
-                   SeriesNumber == comic.SeriesNumber &&
-                   EqualityComparer<List<Author>>.Default.Equals(Authors, comic.Authors) &&
-                   EqualityComparer<Publisher>.Default.Equals(Publisher, comic.Publisher);
+                   _title == comic._title &&
+                   EqualityComparer<Series>.Default.Equals(_series, comic._series) &&
+                   SeriesNumber == comic.SeriesNumber;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Title, Series, SeriesNumber, Authors, Publisher);
+            return HashCode.Combine(_title, _series, SeriesNumber);
         }
+
+
+        #endregion
+
+        #region Comparing
+
         #endregion
     }
 }
