@@ -37,7 +37,7 @@ namespace DomainLibrary.DomainLayer
         [JsonProperty("Auteurs")]
         private List<Author> _authors = new List<Author>();
 
-        public IReadOnlyList<Author> Authors { get => _authors.AsReadOnly();}
+        public IReadOnlyList<Author> Authors { get => _authors.AsReadOnly(); }
 
         private Publisher _publisher;
         /// <summary>
@@ -61,7 +61,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
         [JsonConstructor]
-        public Comic(string title, Series series, int? seriesNumber, List<Author> authors,Publisher publisher)
+        public Comic(string title, Series series, int? seriesNumber, List<Author> authors, Publisher publisher)
         {
             Title = title;
             Series = series;
@@ -85,22 +85,50 @@ namespace DomainLibrary.DomainLayer
             else
                 return false;
         }
-
-        public void AddAuthor(Author author) 
+        /// <summary>
+        /// Add author object 
+        /// </summary>
+        /// <param name="author">auhtor object to add</param>
+        public void AddAuthor(Author author)
         {
             _authors.Add(author);
         }
-        public void RemoveAuthor(Author author) 
+        /// <summary>
+        /// removes author object
+        /// </summary>
+        /// <param name="author">author object to remove</param>
+        public void RemoveAuthor(Author author)
         {
+            if (!_authors.Contains(author))
+                throw new DomainException("Author bestaat niet.");
             _authors.Remove(author);
         }
+        /// <summary>
+        /// updates the author in authors
+        /// </summary>
+        /// <param name="index">index of author in authors</param>
+        /// <param name="author">author object to update</param>
+        public void UpdateAuthor(int index, Author author) 
+        {
+            if (index >= _authors.Count)
+                throw new DomainException("Index is te groot.");
+            if (index < 0)
+                throw new DomainException("Index is te klein.");
+            _authors[index] = author;
+        } 
+        /// <summary>
+        /// sets the author list to the list given.
+        /// </summary>
+        /// <param name="authors">list of authors to set</param>
         public void SetAuthors(List<Author> authors) 
         {
             if (DuplicateAuthors(authors))
                 throw new DomainException("Een strip kan niet twee keer dezelfde autheur hebben.");
             _authors = authors;
         }
+        #endregion
 
+        #region Comparing
         public override bool Equals(object obj)
         {
             return obj is Comic comic &&
@@ -113,12 +141,6 @@ namespace DomainLibrary.DomainLayer
         {
             return HashCode.Combine(_title, _series, SeriesNumber);
         }
-
-
-        #endregion
-
-        #region Comparing
-
         #endregion
     }
 }
