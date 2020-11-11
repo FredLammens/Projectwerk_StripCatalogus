@@ -17,6 +17,21 @@ namespace DomainLibrary.Repositories
         /// <param name="comic">Comic to add.</param>
         public void AddComic(Comic comic);
         /// <summary>
+        /// Adds a author to the database.
+        /// </summary>
+        /// <param name="author">Author to add.</param>
+        public void AddAuthor(Author author);
+        /// <summary>
+        /// Adds a publisher to the database.
+        /// </summary>
+        /// <param name="publisher">Publisher to add.</param>
+        public void AddPublisher(Publisher publisher);
+        /// <summary>
+        /// Adds a series to the database.
+        /// </summary>
+        /// <param name="series">Series to add.</param>
+        public void AddSeries(Series series);
+        /// <summary>
         /// Adds a collection of comics to the database.
         /// </summary>
         /// <param name="comics">Comics to add.</param>

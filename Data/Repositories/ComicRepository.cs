@@ -6,6 +6,7 @@ using DomainLibrary.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Data.Repositories
@@ -131,6 +132,52 @@ namespace Data.Repositories
 
         }
 
+        public void AddAuthor(Author author)
+        {
+            var dAuthor = Mapper.ToDAuthor(author);
+
+            AddDAuthor(dAuthor);
+
+        }
+
+        public void AddSeries(Series series)
+        {
+            var dSeries = Mapper.ToDSeries(series);
+            AddDSeries(dSeries);
+        }
+
+        public void AddPublisher(Publisher publisher)
+        {
+            var dPunlisher = Mapper.ToDPublisher(publisher);
+            AddDPublisher(dPunlisher);
+        }
+
+        /// <summary>
+        ///  Adds a DAuthor to the database.
+        /// </summary>
+        /// <param name="dAuthor">author to add</param>
+        private void AddDAuthor(DAuthor dAuthor)
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = @$"Select * From Authors Where Authors.name = @name";
+                command.AddParameter($"name", dAuthor.Name);
+                int? id = (int?)command.ExecuteScalar();
+
+                if (id != null)
+                {
+                    dAuthor.Id = (int)id;
+                }
+                else
+                {
+                    command.CommandText = @"Insert into Authors (Name) " +
+                                           $"values (@name)" +
+                                           "SELECT CAST(scope_identity() AS int);";
+                    dAuthor.Id = (int)command.ExecuteScalar();
+                }
+            }
+        }
+
         /// <summary>
         /// Adds a DComic to the database
         /// </summary>
@@ -168,17 +215,17 @@ namespace Data.Repositories
         /// Adds a DPublisher to the database.
         /// </summary>
         /// <param name="dComic">DComic with publisher to add.</param>
-        private void AddDPublisher(DComic dComic)
+        private void AddDPublisher(DPublisher dPublisher)
         {
             using (var command = context.CreateCommand())
             {
                 command.CommandText = @"Select * From Publishers Where Publishers.name = @name";
-                command.AddParameter("name", dComic.Publisher.Name);
+                command.AddParameter("name", dPublisher.Name);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
                 {
-                    dComic.Publisher.Id = (int)id;
+                    dPublisher.Id = (int)id;
 
                 }
                 else
@@ -186,28 +233,27 @@ namespace Data.Repositories
                     command.CommandText = @"Insert into Publishers (Name) " +
                                            "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
-                    dComic.Publisher.Id = (int)command.ExecuteScalar();
+                    dPublisher.Id = (int)command.ExecuteScalar();
                 }
 
             }
         }
 
-
         /// <summary>
         /// Adds a DSeries to the database.
         /// </summary>
         /// <param name="dComic">DComic with series to add.</param>
-        private void AddDSeries(DComic dComic)
+        private void AddDSeries(DSeries dSeries)
         {
             using (var command = context.CreateCommand())
             {
                 command.CommandText = @"Select * From Series Where Series.name = @name";
-                command.AddParameter("name", dComic.Series.Name);
+                command.AddParameter("name", dSeries.Name);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
                 {
-                    dComic.Series.Id = (int)id;
+                    dSeries.Id = (int)id;
 
                 }
                 else
@@ -215,7 +261,7 @@ namespace Data.Repositories
                     command.CommandText = @"Insert into Series (Name) " +
                                            "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
-                    dComic.Series.Id = (int)command.ExecuteScalar();
+                    dSeries.Id = (int)command.ExecuteScalar();
                 }
 
             }
