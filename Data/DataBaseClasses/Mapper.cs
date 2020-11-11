@@ -18,7 +18,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A DComic object.</returns>
         public static DComic ToDComic(Comic comic)
         {
-            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series.Name), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
+            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
             return toReturn;
         }
 
@@ -27,9 +27,9 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="series">Name of the sereis</param>
         /// <returns>A new DSereis object</returns>
-        private static DSeries ToDSeries(string series)
+        public static DSeries ToDSeries(Series series)
         {
-            return new DSeries(series);
+            return new DSeries(series.Name);
         }
 
         /// <summary>
@@ -37,9 +37,19 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="publisher">Publisher to transform.</param>
         /// <returns>A list of of DPublisher objects.</returns>
-        private static DPublisher ToDPublisher(Publisher publisher)
+        public static DPublisher ToDPublisher(Publisher publisher)
         {
             return new DPublisher(publisher.Name);
+        }
+
+        /// <summary>
+        /// Transforms Author object into a DAuthor object.
+        /// </summary>
+        /// <param name="author">Author to transform.</param>
+        /// <returns>An Author object.</returns>
+        public static DAuthor ToDAuthor(Author author)
+        {
+            return new DAuthor(author.Name);
         }
 
         /// <summary>
@@ -47,7 +57,7 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="authors">Authors to transform.</param>
         /// <returns>A list of of DAuthor objects.</returns>
-        private static List<DAuthor> ToDAuthors(IReadOnlyList<Author> authors) //if conflict keep other and change later
+        private static List<DAuthor> ToDAuthors(IReadOnlyList<Author> authors)
         {
             List<DAuthor> toReturn = new List<DAuthor>();
 
@@ -69,15 +79,16 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Comic object.</returns>
         public static Comic ToComic(DComic dComic)
         {
-            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series.Name), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
+            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
             return toReturn;
         }
+
         /// <summary>
         /// Transforms a list of DPublisher objects into a list of Publisher objects.
         /// </summary>
-        /// <param name="dPublishers">DPublishers to transform.</param>
+        /// <param name="dPublisher">DPublishers to transform.</param>
         /// <returns>A list of of Publisher objects.</returns>
-        private static Publisher ToPublisher(DPublisher dPublisher)
+        public static Publisher ToPublisher(DPublisher dPublisher)
         {
             return new Publisher(dPublisher.Name);
         }
@@ -86,7 +97,7 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="dAuthors">DAuthors to transform.</param>
         /// <returns>A list of of Author objects.</returns>
-        private static List<Author> ToAuthors(List<DAuthor> dAuthors)
+        public static List<Author> ToAuthors(List<DAuthor> dAuthors)
         {
             List<Author> toReturn = new List<Author>();
 
@@ -103,9 +114,19 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="dSeries">Name of the sereis</param>
         /// <returns>A new DSereis object</returns>
-        private static Series ToSeries(string dSeries)
+        public static Series ToSeries(DSeries dSeries)
         {
-            return new Series(dSeries);
+            return new Series(dSeries.Name);
+        }
+
+        /// <summary>
+        /// Transforms DAuthor objects into a Author object.
+        /// </summary>
+        /// <param name="dAuthor">Author to transform.</param>
+        /// <returns>A Author object.</returns>
+        public static Author ToAuthor(DAuthor dAuthor)
+        {
+            return new Author(dAuthor.Name);
         }
 
         #endregion

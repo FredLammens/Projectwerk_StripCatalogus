@@ -15,11 +15,14 @@ namespace Data.Repositories
     /// </summary>
     public class ComicRepository : IComicRepository
     {
+        #region Properties
         /// <summary>
         /// Connection with the datebase.
         /// </summary>
         private AdoNetContext context;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Constructor to make a ComicRepository.
         /// </summary>
@@ -28,13 +31,68 @@ namespace Data.Repositories
         {
             this.context = context;
         }
+        #endregion
+
+        #region Mappers
+        /// <summary>
+        /// Maps a record to a DComic object.
+        /// </summary>
+        /// <param name="record">Record to bind.</param>
+        /// <param name="dComic">Comic to bind to.</param>
+        private void Map(IDataRecord record, DComic dComic)
+        {
+            dComic.Id = (int)record["Comic_Id"];
+            dComic.Title = (string)record["Title"];
+            dComic.SeriesNumber = (int?)record["SeriesNr"];
+            dComic.Publisher = new DPublisher();
+            dComic.Publisher.Id = (int)record["Publisher_Id"];
+            dComic.Publisher.Name = (string)record["Publisher_Name"];
+            dComic.Series = new DSeries();
+            dComic.Series.Id = (int)record["Series_ID"];
+            dComic.Series.Name = (string)record["Series_Name"];
+        }
 
         /// <summary>
-        /// Gets all comic objects from the database.
+        /// Maps a record to a DSeries object.
         /// </summary>
-        /// <param name="command">Command containing the gett all query.</param>
-        /// <returns></returns>
-        private IEnumerable<Comic> ToComicList(IDbCommand command)
+        /// <param name="record">Record to bind.</param>
+        /// <param name="dSeries">Comic to bind to.</param>
+        private void Map(IDataRecord record, DSeries dSeries)
+        {
+            dSeries.Id = (int)record["ID"];
+            dSeries.Name = (string)record["Name"];
+        }
+
+        /// <summary>
+        /// Maps a record to a DPublisher object.
+        /// </summary>
+        /// <param name="record">Record to bind.</param>
+        /// <param name="dPublisher">DPublisher to bind to.</param>
+        private void Map(IDataRecord record, DPublisher dPublisher)
+        {
+            dPublisher.Id = (int)record["ID"];
+            dPublisher.Name = (string)record["Name"];
+        }
+
+        /// <summary>
+        /// Maps a record to a DAuthor object.
+        /// </summary>
+        /// <param name="record">Record to bind.</param>
+        /// <param name="dAuthor">Author to bind to.</param>
+        private void Map(IDataRecord record, DAuthor dAuthor)
+        {
+            dAuthor.Id = (int)record["ID"];
+            dAuthor.Name = (string)record["Name"];
+        }
+        #endregion
+
+        #region GetDataObject
+        /// <summary>
+        /// Gets all DComic objects from the database.
+        /// </summary>
+        /// <param name="command">Command containing the get all query.</param>
+        /// <returns>All dcomics from the database.</returns>
+        private IEnumerable<DComic> ToDComicList(IDbCommand command)
         {
             List<DComic> items = new List<DComic>();
             //gets all comic objects without 
@@ -59,36 +117,56 @@ namespace Data.Repositories
                 items[i].Authors = ToDAuthorList(command).ToList();
             }
 
-            List<Comic> toReturn = new List<Comic>();
-            foreach (var item in items)
-            {
-                toReturn.Add(Mapper.ToComic(item));
-            }
-            return toReturn;
-        }
-        /// <summary>
-        /// Maps a record to a DComic object.
-        /// </summary>
-        /// <param name="record">Record to bind.</param>
-        /// <param name="dComic">Comic to bind to.</param>
-        private void Map(IDataRecord record, DComic dComic)
-        {
-            dComic.Id = (int)record["Comic_Id"];
-            dComic.Title = (string)record["Title"];
-            dComic.SeriesNumber = (int?)record["SeriesNr"];
-            dComic.Publisher = new DPublisher();
-            dComic.Publisher.Id = (int)record["Publisher_Id"];
-            dComic.Publisher.Name = (string)record["Publisher_Name"];
-            dComic.Series = new DSeries();
-            dComic.Series.Id = (int)record["Series_ID"];
-            dComic.Series.Name = (string)record["Series_Name"];
+            return items;
         }
 
         /// <summary>
-        /// Gets all comic objects from the database.
+        /// Gets all DSeries objects from the database.
+        /// </summary>
+        /// <param name="command">Command containing the get all query.</param>
+        /// <returns>All dseries from the database.</returns>
+        private IEnumerable<DSeries> ToDSeriesList(IDbCommand command)
+        {
+            using (var reader = command.ExecuteReader())
+            {
+                List<DSeries> items = new List<DSeries>();
+                while (reader.Read())
+                {
+                    var item = new DSeries();
+                    Map(reader, item);
+                    items.Add(item);
+                }
+
+                return items;
+            }
+        }
+
+        /// <summary>
+        /// Gets all DPublisher objects from the database.
+        /// </summary>
+        /// <param name="command">Command containing the get all query.</param>
+        /// <returns>All dpublishers from the database.</returns>
+        private IEnumerable<DPublisher> ToDPublisherList(IDbCommand command)
+        {
+            using (var reader = command.ExecuteReader())
+            {
+                List<DPublisher> items = new List<DPublisher>();
+                while (reader.Read())
+                {
+                    var item = new DPublisher();
+                    Map(reader, item);
+                    items.Add(item);
+                }
+
+                return items;
+            }
+        }
+
+        /// <summary>
+        /// Gets all DAuthors objects from the database.
         /// </summary>
         /// <param name="command">Command containing the gett all query.</param>
-        /// <returns></returns>
+        /// <returns>All dauthors from the database.</returns>
         private IEnumerable<DAuthor> ToDAuthorList(IDbCommand command)
         {
             using (var reader = command.ExecuteReader())
@@ -104,23 +182,15 @@ namespace Data.Repositories
                 return items;
             }
         }
-        /// <summary>
-        /// Maps a record to a DAuthor object.
-        /// </summary>
-        /// <param name="record">Record to bind.</param>
-        /// <param name="dAuthor">Author to bind to.</param>
-        private void Map(IDataRecord record, DAuthor dAuthor)
-        {
-            dAuthor.Id = (int)record["ID"];
-            dAuthor.Name = (string)record["Name"];
-        }
+        #endregion
 
+        #region AddDomainObject
         public void AddComic(Comic comic)
         {
             DComic toAdd = Mapper.ToDComic(comic);
-            AddDPublisher(toAdd);
+            AddDPublisher(toAdd.Publisher);
+            AddDSeries(toAdd.Series);
             AddDComic(toAdd);
-            AddDSeries(toAdd);
             AddDAuthors(toAdd);
             foreach (var auth in toAdd.Authors)
             {
@@ -131,6 +201,64 @@ namespace Data.Repositories
 
         }
 
+        public void AddAuthor(Author author)
+        {
+            var dAuthor = Mapper.ToDAuthor(author);
+
+            AddDAuthor(dAuthor);
+
+        }
+
+        public void AddSeries(Series series)
+        {
+            var dSeries = Mapper.ToDSeries(series);
+            AddDSeries(dSeries);
+        }
+
+        public void AddPublisher(Publisher publisher)
+        {
+            var dPunlisher = Mapper.ToDPublisher(publisher);
+            AddDPublisher(dPunlisher);
+        }
+
+        public void AddComics(IEnumerable<Comic> comics)
+        {
+            var comicsList = comics.ToList();
+            for (int i = 0; i < comicsList.Count; i++)
+            {
+                this.AddComic(comicsList[i]);
+            }
+        }
+
+        #endregion
+
+        #region AddDataObject
+        /// <summary>
+        ///  Adds a DAuthor to the database.
+        /// </summary>
+        /// <param name="dAuthor">author to add</param>
+        private void AddDAuthor(DAuthor dAuthor)
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = @$"Select * From Authors Where Authors.name = @name";
+                command.AddParameter($"name", dAuthor.Name);
+                int? id = (int?)command.ExecuteScalar();
+
+                if (id != null)
+                {
+                    dAuthor.Id = (int)id;
+                }
+                else
+                {
+                    command.CommandText = @"Insert into Authors (Name) " +
+                                           $"values (@name)" +
+                                           "SELECT CAST(scope_identity() AS int);";
+                    dAuthor.Id = (int)command.ExecuteScalar();
+                }
+            }
+        }
+
         /// <summary>
         /// Adds a DComic to the database
         /// </summary>
@@ -139,10 +267,10 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @seriesNR AND Comics.Publisher_ID = @publiserId AND Comics.Series_Id = @series_Id;";
+                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @series_Nr AND Comics.Publisher_ID = @publiser_Id AND Comics.Series_ID = @series_Id;";
                 command.AddParameter("title", dComic.Title);
-                command.AddParameter("seriesNR", dComic.SeriesNumber);
-                command.AddParameter("publiserId", dComic.Publisher.Id);
+                command.AddParameter("series_Nr", dComic.SeriesNumber);
+                command.AddParameter("publiser_Id", dComic.Publisher.Id);
                 command.AddParameter("series_Id", dComic.Series.Id);
                 int? id = (int?)command.ExecuteScalar();
 
@@ -156,8 +284,8 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    command.CommandText = @"Insert into Comics (Title, SeriesNr, Publisher_ID) " +
-                                           "values (@title, @seriesNR, @publiserId) " +
+                    command.CommandText = @"Insert into Comics (Title, SeriesNr, Publisher_ID, Series_ID) " +
+                                           "values (@title, @series_Nr, @publiser_Id, @series_Id) " +
                                            "SELECT CAST(scope_identity() AS int);";
                     dComic.Id = (int)command.ExecuteScalar();
                 }
@@ -168,17 +296,17 @@ namespace Data.Repositories
         /// Adds a DPublisher to the database.
         /// </summary>
         /// <param name="dComic">DComic with publisher to add.</param>
-        private void AddDPublisher(DComic dComic)
+        private void AddDPublisher(DPublisher dPublisher)
         {
             using (var command = context.CreateCommand())
             {
                 command.CommandText = @"Select * From Publishers Where Publishers.name = @name";
-                command.AddParameter("name", dComic.Publisher.Name);
+                command.AddParameter("name", dPublisher.Name);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
                 {
-                    dComic.Publisher.Id = (int)id;
+                    dPublisher.Id = (int)id;
 
                 }
                 else
@@ -186,28 +314,27 @@ namespace Data.Repositories
                     command.CommandText = @"Insert into Publishers (Name) " +
                                            "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
-                    dComic.Publisher.Id = (int)command.ExecuteScalar();
+                    dPublisher.Id = (int)command.ExecuteScalar();
                 }
 
             }
         }
 
-
         /// <summary>
         /// Adds a DSeries to the database.
         /// </summary>
         /// <param name="dComic">DComic with series to add.</param>
-        private void AddDSeries(DComic dComic)
+        private void AddDSeries(DSeries dSeries)
         {
             using (var command = context.CreateCommand())
             {
                 command.CommandText = @"Select * From Series Where Series.name = @name";
-                command.AddParameter("name", dComic.Series.Name);
+                command.AddParameter("name", dSeries.Name);
                 int? id = (int?)command.ExecuteScalar();
 
                 if (id != null)
                 {
-                    dComic.Series.Id = (int)id;
+                    dSeries.Id = (int)id;
 
                 }
                 else
@@ -215,7 +342,7 @@ namespace Data.Repositories
                     command.CommandText = @"Insert into Series (Name) " +
                                            "values (@name)" +
                                            "SELECT CAST(scope_identity() AS int);";
-                    dComic.Series.Id = (int)command.ExecuteScalar();
+                    dSeries.Id = (int)command.ExecuteScalar();
                 }
 
             }
@@ -277,16 +404,9 @@ namespace Data.Repositories
             }
         }
 
+        #endregion
 
-        public void AddComics(IEnumerable<Comic> comics)
-        {
-            var comicsList = comics.ToList();
-            for (int i = 0; i < comicsList.Count; i++)
-            {
-                this.AddComic(comicsList[i]);
-            }
-        }
-
+        #region GetDomainObject
 
         public IEnumerable<Comic> GetComics()
         {
@@ -297,15 +417,73 @@ namespace Data.Repositories
                                       "Series.ID as Series_ID, Series.Name as Series_Name " +
                                       "FROM Comics " +
                                       "INNER Join Publishers ON Publishers.ID = Comics.Publisher_ID " +
-                                      "INNER Join Series ON Series.Comic_ID = Comics.ID " +
+                                      "INNER Join Series ON Series.ID = Comics.Series_ID " +
                                       "Where Comics.IsInCatalogue = 1;";
 
-                return ToComicList(command);
+
+
+                List<Comic> toReturn = new List<Comic>();
+                foreach (var item in ToDComicList(command))
+                {
+                    toReturn.Add(Mapper.ToComic(item));
+                }
+                return toReturn;
             }
 
         }
 
+        public IEnumerable<Series> GetAllSeries()
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "Series.ID, Series.Name" +
+                                      "FROM Series;";
 
+                var toReturn = new List<Series>();
+                foreach (var item in ToDSeriesList(command))
+                {
+                    toReturn.Add(Mapper.ToSeries(item));
+                }
+                return toReturn;
+            }
+
+        }
+
+        public IEnumerable<Author> GetAllAuthors()
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "Authors.ID, Authors.Name" +
+                                      "FROM Authors;";
+
+                var toReturn = new List<Author>();
+                foreach (var item in ToDAuthorList(command))
+                {
+                    toReturn.Add(Mapper.ToAuthor(item));
+                }
+                return toReturn;
+            }
+        }
+
+        public IEnumerable<Publisher> GetAllPublishers()
+        {
+
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "Publishers.ID, Publishers.Name" +
+                                      "FROM Publishers;";
+
+                var toReturn = new List<Publisher>();
+                foreach (var item in ToDPublisherList(command))
+                {
+                    toReturn.Add(Mapper.ToPublisher(item));
+                }
+                return toReturn;
+            }
+        }
+        #endregion
+
+        #region RemoveDomainObject
         public void RemoveComic(Comic comic)
         {
             var dComic = Mapper.ToDComic(comic);
@@ -322,5 +500,79 @@ namespace Data.Repositories
             }
 
         }
+        #endregion
+
+        #region UpdateDomainObject
+        public void UpdateComic(Comic toUpdate, Comic updated)
+        {
+            var oldComic = Mapper.ToDComic(toUpdate);
+            var newComic = Mapper.ToDComic(updated);
+            AddDSeries(newComic.Series);
+            AddDSeries(oldComic.Series);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Title =  @newTitle, SeriesNr = newSeriesNr, Series_ID = newSeriesId" +
+                                      "WHERE Title = @title AND SeriesNr = @seriesNr And Series_ID = @seriesId;";
+                command.AddParameter("title", oldComic.Title);
+                command.AddParameter("seriesNr", oldComic.SeriesNumber);
+                command.AddParameter("seriesId", oldComic.Series.Id);
+
+                command.AddParameter("newTitle", newComic.Title);
+                command.AddParameter("newSeriesNr", newComic.SeriesNumber);
+                command.AddParameter("newSeriesId", newComic.Series.Id);
+                command.ExecuteNonQuery();
+
+            }
+        }
+
+        public void UpdateSeries(Series toUpdate, Series updated)
+        {
+            var oldSeries = Mapper.ToDSeries(toUpdate);
+            var newSeries = Mapper.ToDSeries(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldSeries.Name);
+                command.AddParameter("newName", newSeries.Name);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void UpdatePublisher(Publisher toUpdate, Publisher updated)
+        {
+            var oldPublisher = Mapper.ToDPublisher(toUpdate);
+            var newPublisher = Mapper.ToDPublisher(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldPublisher.Name);
+                command.AddParameter("newName", newPublisher.Name);
+                command.ExecuteNonQuery();
+            }
+
+        }
+        public void UpdateAuthor(Author toUpdate, Author updated)
+        {
+            var oldComic = Mapper.ToDAuthor(toUpdate);
+            var newComic = Mapper.ToDAuthor(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Authors " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldComic.Name);
+                command.AddParameter("newName", newComic.Name);
+                command.ExecuteNonQuery();
+            }
+
+        }
+        #endregion
     }
 }
