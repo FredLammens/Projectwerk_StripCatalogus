@@ -69,5 +69,12 @@ namespace DomainLibrary.Repositories
         /// <param name="comic">Comic to remove.</param>
         public void RemoveComic(Comic comic);
         #endregion
+
+        #region UpdateObject
+        public void UpdateComic(Comic toUpdate, Comic updated);
+        public void UpdatePublisher(Publisher toUpdate, Publisher updated);
+        public void UpdateSeries(Series toUpdate, Series updated);
+        public void UpdateAuthor(Author toUpdate, Author updated);
+        #endregion
     }
 }

@@ -6,7 +6,6 @@ using DomainLibrary.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Data.Repositories
@@ -190,8 +189,8 @@ namespace Data.Repositories
         {
             DComic toAdd = Mapper.ToDComic(comic);
             AddDPublisher(toAdd.Publisher);
-            AddDComic(toAdd);
             AddDSeries(toAdd.Series);
+            AddDComic(toAdd);
             AddDAuthors(toAdd);
             foreach (var auth in toAdd.Authors)
             {
@@ -268,10 +267,10 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @seriesNR AND Comics.Publisher_ID = @publiserId AND Comics.Series_Id = @series_Id;";
+                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @series_Nr AND Comics.Publisher_ID = @publiser_Id AND Comics.Series_ID = @series_Id;";
                 command.AddParameter("title", dComic.Title);
-                command.AddParameter("seriesNR", dComic.SeriesNumber);
-                command.AddParameter("publiserId", dComic.Publisher.Id);
+                command.AddParameter("series_Nr", dComic.SeriesNumber);
+                command.AddParameter("publiser_Id", dComic.Publisher.Id);
                 command.AddParameter("series_Id", dComic.Series.Id);
                 int? id = (int?)command.ExecuteScalar();
 
@@ -285,8 +284,8 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    command.CommandText = @"Insert into Comics (Title, SeriesNr, Publisher_ID) " +
-                                           "values (@title, @seriesNR, @publiserId) " +
+                    command.CommandText = @"Insert into Comics (Title, SeriesNr, Publisher_ID, Series_ID) " +
+                                           "values (@title, @series_Nr, @publiser_Id, @series_Id) " +
                                            "SELECT CAST(scope_identity() AS int);";
                     dComic.Id = (int)command.ExecuteScalar();
                 }
@@ -418,7 +417,7 @@ namespace Data.Repositories
                                       "Series.ID as Series_ID, Series.Name as Series_Name " +
                                       "FROM Comics " +
                                       "INNER Join Publishers ON Publishers.ID = Comics.Publisher_ID " +
-                                      "INNER Join Series ON Series.Comic_ID = Comics.ID " +
+                                      "INNER Join Series ON Series.ID = Comics.Series_ID " +
                                       "Where Comics.IsInCatalogue = 1;";
 
 
@@ -497,6 +496,79 @@ namespace Data.Repositories
                                       "WHERE Comics.Title = @Title AND Comics.SeriesNr = @SeriesNr; ";
                 command.AddParameter("Title", dComic.Title);
                 command.AddParameter("SeriesNr", dComic.SeriesNumber);
+                command.ExecuteNonQuery();
+            }
+
+        }
+        #endregion
+
+        #region UpdateDomainObject
+        public void UpdateComic(Comic toUpdate, Comic updated)
+        {
+            var oldComic = Mapper.ToDComic(toUpdate);
+            var newComic = Mapper.ToDComic(updated);
+            AddDSeries(newComic.Series);
+            AddDSeries(oldComic.Series);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Title =  @newTitle, SeriesNr = newSeriesNr, Series_ID = newSeriesId" +
+                                      "WHERE Title = @title AND SeriesNr = @seriesNr And Series_ID = @seriesId;";
+                command.AddParameter("title", oldComic.Title);
+                command.AddParameter("seriesNr", oldComic.SeriesNumber);
+                command.AddParameter("seriesId", oldComic.Series.Id);
+
+                command.AddParameter("newTitle", newComic.Title);
+                command.AddParameter("newSeriesNr", newComic.SeriesNumber);
+                command.AddParameter("newSeriesId", newComic.Series.Id);
+                command.ExecuteNonQuery();
+
+            }
+        }
+
+        public void UpdateSeries(Series toUpdate, Series updated)
+        {
+            var oldSeries = Mapper.ToDSeries(toUpdate);
+            var newSeries = Mapper.ToDSeries(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldSeries.Name);
+                command.AddParameter("newName", newSeries.Name);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void UpdatePublisher(Publisher toUpdate, Publisher updated)
+        {
+            var oldPublisher = Mapper.ToDPublisher(toUpdate);
+            var newPublisher = Mapper.ToDPublisher(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Publishers " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldPublisher.Name);
+                command.AddParameter("newName", newPublisher.Name);
+                command.ExecuteNonQuery();
+            }
+
+        }
+        public void UpdateAuthor(Author toUpdate, Author updated)
+        {
+            var oldComic = Mapper.ToDAuthor(toUpdate);
+            var newComic = Mapper.ToDAuthor(updated);
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = "UPDATE Authors " +
+                                      "SET Name =  @newName " +
+                                      "WHERE Name = @name;";
+
+                command.AddParameter("name", oldComic.Name);
+                command.AddParameter("newName", newComic.Name);
                 command.ExecuteNonQuery();
             }
 
