@@ -43,10 +43,10 @@ namespace DataLayer.DataBaseClasses
         }
 
         /// <summary>
-        /// Transforms a list of Author objects into a list of DAuthor objects.
+        /// Transforms Author object into a DAuthor object.
         /// </summary>
-        /// <param name="author">Authors to transform.</param>
-        /// <returns>A list of of DAuthor objects.</returns>
+        /// <param name="author">Author to transform.</param>
+        /// <returns>An Author object.</returns>
         public static DAuthor ToDAuthor(Author author)
         {
             return new DAuthor(author.Name);
@@ -79,7 +79,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Comic object.</returns>
         public static Comic ToComic(DComic dComic)
         {
-            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series.Name), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
+            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
             return toReturn;
         }
 
@@ -114,9 +114,19 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="dSeries">Name of the sereis</param>
         /// <returns>A new DSereis object</returns>
-        public static Series ToSeries(string dSeries)
+        public static Series ToSeries(DSeries dSeries)
         {
-            return new Series(dSeries);
+            return new Series(dSeries.Name);
+        }
+
+        /// <summary>
+        /// Transforms DAuthor objects into a Author object.
+        /// </summary>
+        /// <param name="dAuthor">Author to transform.</param>
+        /// <returns>A Author object.</returns>
+        public static Author ToAuthor(DAuthor dAuthor)
+        {
+            return new Author(dAuthor.Name);
         }
 
         #endregion

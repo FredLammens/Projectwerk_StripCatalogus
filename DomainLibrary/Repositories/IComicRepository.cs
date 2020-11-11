@@ -10,7 +10,7 @@ namespace DomainLibrary.Repositories
     /// </summary>
     public interface IComicRepository
     {
-        #region Operations
+        #region AddObject
         /// <summary>
         /// Adds a comic to the database.
         /// </summary>
@@ -36,11 +36,33 @@ namespace DomainLibrary.Repositories
         /// </summary>
         /// <param name="comics">Comics to add.</param>
         public void AddComics(IEnumerable<Comic> comics);
+        #endregion
+
+        #region GetObject
+        /// <summary>
+        /// Retrieve all Series objects from the database
+        /// </summary>
+        /// <returns>All series in the database</returns>
+        public IEnumerable<Series> GetAllSeries();
+        /// <summary>
+        /// Retrieve all Publishers objects from the database
+        /// </summary>
+        /// <returns>All publishers in the database</returns>
+        public IEnumerable<Publisher> GetAllPublishers();
+        /// <summary>
+        /// Retrieve all Authors objects from the database
+        /// </summary>
+        /// <returns>All Author in the database</returns>
+        public IEnumerable<Author> GetAllAuthors();
         /// <summary>
         /// Retrieves all comics from the database.
         /// </summary>
         /// <returns>A collection of comics.</returns>
         public IEnumerable<Comic> GetComics();
+        #endregion
+
+        #region RemoveObject
+
         /// <summary>
         /// Deletes a comic from the database.
         /// </summary>
