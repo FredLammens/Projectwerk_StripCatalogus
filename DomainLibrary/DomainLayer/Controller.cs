@@ -26,7 +26,7 @@ namespace DomainLibrary.DomainLayer
         {
             this.uow = uow;
             //laden van catalogue
-            catalogue = new Catalogue(uow.Comics.GetComics().ToHashSet());
+            catalogue = new Catalogue(uow.Comics.GetComics().ToList());
         }
         #endregion
 

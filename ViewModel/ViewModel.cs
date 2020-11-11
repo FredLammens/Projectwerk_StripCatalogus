@@ -155,5 +155,6 @@ namespace ViewModel
         {
             controller.ExportComics(path);
         }
+
     }
 }
