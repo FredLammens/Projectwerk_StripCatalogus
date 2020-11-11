@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +17,20 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// The title of the comic
         /// </summary>
-        [JsonProperty("Titel")]
         public string Title { get => _title; set { if (string.IsNullOrEmpty(value)) throw new DomainException("Titel mag niet leeg zijn."); _title = value; } }
 
         private Series _series;
         /// <summary>
         /// The series the comic belongs to.
         /// </summary>
-        [JsonProperty("Reeks")]
         public Series Series { get => _series; set { if (value.Equals(null)) throw new DomainException("Series mag niet leeg zijn."); _series = value; } }
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
-        [JsonProperty("Nr")]
         public int? SeriesNumber { get; set; }
         /// <summary>
         /// The autor(s) that wrote this comic
         /// </summary>
-        [JsonProperty("Auteurs")]
         private List<Author> _authors = new List<Author>();
 
         public IReadOnlyList<Author> Authors { get => _authors.AsReadOnly(); }
@@ -43,7 +39,6 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// The publisher that published the comic.
         /// </summary>
-        [JsonProperty("Uitgeverij")]
         public Publisher Publisher { get => _publisher; set { if (value.Equals(null)) throw new DomainException("Publisher mag niet leeg zijn."); _publisher = value; } }
         #endregion
 
@@ -60,7 +55,6 @@ namespace DomainLibrary.DomainLayer
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
-        [JsonConstructor]
         public Comic(string title, Series series, int? seriesNumber, List<Author> authors, Publisher publisher)
         {
             Title = title;

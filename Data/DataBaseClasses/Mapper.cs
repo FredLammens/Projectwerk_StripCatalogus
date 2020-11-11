@@ -47,7 +47,7 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="authors">Authors to transform.</param>
         /// <returns>A list of of DAuthor objects.</returns>
-        private static List<DAuthor> ToDAuthors(List<Author> authors)
+        private static List<DAuthor> ToDAuthors(IReadOnlyList<Author> authors) //if conflict keep other and change later
         {
             List<DAuthor> toReturn = new List<DAuthor>();
 
