@@ -85,7 +85,14 @@ namespace DomainLibrary.DomainLayer
         /// <param name="author">auhtor object to add</param>
         public void AddAuthor(Author author)
         {
-            _authors.Add(author);
+            if (!_authors.Any(a => a.Name == author.Name))
+            {
+                _authors.Add(author);
+            }
+            else
+            {
+                throw new DomainException("Auteur zit al in de strip.");
+            }
         }
         /// <summary>
         /// removes author object
