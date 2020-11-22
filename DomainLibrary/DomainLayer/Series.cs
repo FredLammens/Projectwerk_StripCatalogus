@@ -11,10 +11,26 @@ namespace DomainLibrary.DomainLayer
     public class Series
     {
         #region Properties
+        private string _name;
         /// <summary>
         /// The name of the series.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new DomainException("Naam mag niet leeg zijn.");
+                else
+                {
+                    _name = value;
+                }
+            }
+        }
         #endregion
 
         #region Constructors

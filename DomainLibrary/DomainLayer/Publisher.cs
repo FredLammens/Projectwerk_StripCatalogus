@@ -11,11 +11,25 @@ namespace DomainLibrary.DomainLayer
     public class Publisher
     {
         #region Properties
+        private string _name;
         /// <summary>
         /// The name of the publisher.
         /// </summary>
-       // [JsonProperty("Naam")]
-        public string Name { get; set; }
+        public string Name { 
+            get 
+            {
+                return _name;
+            }
+            set 
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new DomainException("Naam mag niet leeg zijn.");
+                else 
+                {
+                    _name = value;
+                }
+            }
+        }
 
         #endregion
 
