@@ -47,7 +47,23 @@ namespace Tests
             catalogue.Comics.Count.Should().Be(2);
         }
         [TestMethod]
-        public void AddComicDE()
+        public void ComicsNoDuplicateShouldNotThrowException()
+        {
+            Catalogue catalogue = new Catalogue();
+            String title = "title";
+            Series series = new Series("Series");
+            List<Author> authors = new List<Author>() { new Author("Author1"), new Author("Author2") };
+            Publisher publisher = new Publisher("Uitgevrij");
+            Comic comic = new Comic(title, series, 1, authors, publisher);
+            catalogue.AddComic(comic);
+            comic.Title = "title2";
+            Comic comic2 = new Comic(title, series, 1, authors, publisher);            
+            Action act = () => catalogue.AddComic(comic2);
+            act.Should().NotThrow<DomainException>();
+            catalogue.Comics.Count.Should().Be(2);
+        }
+        [TestMethod]
+        public void AddComicExistsShouldThrowException()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
@@ -61,7 +77,7 @@ namespace Tests
             act3.Should().Throw<DomainException>().WithMessage($"De strip {comic3.Title} zit al in de catalogus.");
         }
         [TestMethod]
-        public void RemoveComicDE()
+        public void RemoveComicDoestExistShouldThrowException()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
@@ -74,7 +90,7 @@ namespace Tests
 
         }
         [TestMethod]
-        public void UpdateComicCheckIndexDE()
+        public void UpdateComicCheckIndexShouldThrowException()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
@@ -88,7 +104,7 @@ namespace Tests
             act3.Should().Throw<DomainException>().WithMessage("Index is te klein.");
         }
         [TestMethod]
-        public void SetComicDE()
+        public void SetComicDupliacteShouldThrowException()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));

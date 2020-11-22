@@ -47,7 +47,7 @@ namespace Tests
             comic.AddAuthor(author2);
         }
         [TestMethod]
-        public void TitleNotNullDE()
+        public void TitleNullShouldThrowException()
         {            
           Action act = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             act.Should().NotThrow<DomainException>();
@@ -55,7 +55,7 @@ namespace Tests
             act2.Should().Throw<DomainException>().WithMessage("Titel mag niet leeg zijn.");
         }
         [TestMethod]
-        public void SeriesNotNullDE()
+        public void SeriesNullShouldThrowException()
         {
             Action act = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             act.Should().NotThrow<DomainException>();
@@ -63,7 +63,7 @@ namespace Tests
             act2.Should().Throw<DomainException>().WithMessage("Series mag niet leeg zijn.");
         }
         [TestMethod]
-        public void PublisherNotNullDE()
+        public void PublisherNullShouldThrowException()
         {
             Action act = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             act.Should().NotThrow<DomainException>();
@@ -71,7 +71,7 @@ namespace Tests
             act2.Should().Throw<DomainException>().WithMessage("Publisher mag niet leeg zijn.");
         }
         [TestMethod]
-        public void RemoveAuthorDE()
+        public void RemoveAuthorDoestExistShouldThrowException()
         {
             Comic comic = new Comic();
             Author author1 = new Author("author1");
@@ -83,7 +83,7 @@ namespace Tests
             act2.Should().Throw<DomainException>().WithMessage("Author bestaat niet.");
         }
         [TestMethod]
-        public void UpdateAuthorIndexDE()
+        public void UpdateAuthorIndexShouldThrowException()
         {
             Comic comic = new Comic();
             Author author1 = new Author("author1");
@@ -98,7 +98,7 @@ namespace Tests
         }
     
         [TestMethod]
-        public void SetAuthorDE()
+        public void SetAuthorDupliacteShouldThrowException()
         {
             Comic comic = new Comic();
             Author author1 = new Author("author1");

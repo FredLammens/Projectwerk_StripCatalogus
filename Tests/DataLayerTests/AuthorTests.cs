@@ -70,6 +70,22 @@ namespace Tests.DataLayerTests
             result1.ElementAt(1).Name.Should().Be("author2");
             result1.ElementAt(2).Name.Should().Be("author3");
         }
+        [TestMethod]
+        public void CheckDuplicateAuthor()
+        {
+            ComicRepository cr = new ComicRepository(context);
+            Author author1 = new Author("author1");
+            Author author2 = new Author("author1");
+            cr.AddAuthor(author1);
+            cr.AddAuthor(author2);
+            var result1 = cr.GetAllAuthors();
+            result1.Should().HaveCount(1);
+            result1.First().Name.Should().Be("author1");
 
+            Author author3 = new Author("author3");
+            cr.AddAuthor(author3);
+            var result2 = cr.GetAllAuthors();
+            result2.Should().HaveCount(2);
+        }
     }
 }
