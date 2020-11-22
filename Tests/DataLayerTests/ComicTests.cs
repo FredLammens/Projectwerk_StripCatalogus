@@ -6,14 +6,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Tests
+namespace Tests.DataLayerTests
 {
     [TestClass]
-    public class DataBaseTests
+    public class ComicTests
     {
-        AdoNetContext context = new AdoNetContext(true);
+        AdoNetContext context = new AdoNetContext(true, "Test");
         [TestMethod]
         public void TestAddComic()
         {
@@ -107,6 +108,8 @@ namespace Tests
             cr.AddComic(comic3);
             result = cr.GetComics();
             result.Should().HaveCount(2);
+            result.First().Title.Should().Be("De legende van het Westen");
+            result.ElementAt(1).Title.Should().Be("De legende van het Westen Part 2");
         }
         [TestMethod]
         public void TestGetComics()
@@ -147,5 +150,34 @@ namespace Tests
             result1.First().Title.Should().Be("Oklahoma Jim");
             result1.First().SeriesNumber.Should().Be(69);
         }
+        [TestMethod]
+        public void TestUpdateComic()
+        {
+            ComicRepository cr = new ComicRepository(context);
+            Comic comictoUpdate = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
+            Comic updated = new Comic("De legende van het Westen part2", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
+            cr.AddComic(comictoUpdate);
+            var result1 =  cr.GetComics();
+            result1.Should().HaveCount(1);
+            result1.First().Title.Should().Be("De legende van het Westen");
+            result1.First().Series.Name.Should().Be("Lucky Luke");
+            result1.First().SeriesNumber.Should().Be(73);
+            result1.First().Publisher.Name.Should().Be("Dupuis");
+            result1.First().Authors.Should().HaveCount(2);
+            result1.First().Authors.First().Name.Should().Be("Morris");
+            result1.First().Authors.ElementAt(1).Name.Should().Be("Nordmann Patrick");
+
+            cr.UpdateComic(comictoUpdate, updated);
+            result1 = cr.GetComics();
+            result1.Should().HaveCount(1);
+            result1.First().Title.Should().Be("De legende van het Westen part2");
+            result1.First().Series.Name.Should().Be("Lucky Luke");
+            result1.First().SeriesNumber.Should().Be(73);
+            result1.First().Publisher.Name.Should().Be("Dupuis");
+            result1.First().Authors.Should().HaveCount(2);
+            result1.First().Authors.First().Name.Should().Be("Morris");
+            result1.First().Authors.ElementAt(1).Name.Should().Be("Nordmann Patrick");
+        }
+        
     }
 }

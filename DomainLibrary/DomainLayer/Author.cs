@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// The authors name.
         /// </summary>\
-        [JsonProperty("Naam")]
+       // [JsonProperty("Naam")]
         public string Name { get; set; }
         #endregion
 
@@ -30,7 +30,7 @@ namespace DomainLibrary.DomainLayer
         /// A constuctor that makes an Author object.
         /// </summary>
         /// <param name="name">The name of the author.</param>
-        [JsonConstructor]
+       // [JsonConstructor]
         public Author(string name)
         {
            Name = name;
