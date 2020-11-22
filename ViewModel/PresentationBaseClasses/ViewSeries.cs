@@ -5,43 +5,31 @@ using System.Text;
 
 namespace ViewModel.PresentationBaseClasses
 {
-    public class ViewPublisher
+    public class ViewSeries
     {
         #region Properties
-        /// <summary>
-        /// The name of the publisher.
-        /// </summary>
         [JsonProperty("Naam")]
         public string Name { get; set; }
-
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// An empty constructor.
-        /// </summary>
-        public ViewPublisher()
+        public ViewSeries()
         {
 
         }
 
-        /// <summary>
-        /// A constuctor that makes a Publisher object..
-        /// </summary>
-        /// <param name="name">The name of the publisher.</param>
         [JsonConstructor]
-        public ViewPublisher(string name)
+        public ViewSeries(string name)
         {
             Name = name;
         }
-
         #endregion
 
         #region Comparing
         public override bool Equals(object obj)
         {
-            return obj is ViewPublisher publisher &&
-                   Name == publisher.Name;
+            return obj is ViewSeries series &&
+                   Name == series.Name;
         }
 
         public override int GetHashCode()
@@ -50,11 +38,13 @@ namespace ViewModel.PresentationBaseClasses
         }
         #endregion
 
-        #region ToString
+        #region toString
         public override string ToString()
         {
             return Name;
         }
         #endregion
+
+
     }
 }

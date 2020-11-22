@@ -54,7 +54,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="authors"></param>
         /// <returns></returns>
-        private static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
+        public static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
         {
             List<ViewAuthor> viewAuthors = new List<ViewAuthor>();
             foreach (Author author in authors)
@@ -62,6 +62,20 @@ namespace ViewModel
                 viewAuthors.Add(new ViewAuthor(author.Name));
             }
             return viewAuthors;
+        }
+        /// <summary>
+        /// Maps a list of Publisher objects to ViewPublisher objects.
+        /// </summary>
+        /// <param name="publishers"></param>
+        /// <returns></returns>
+        public static List<ViewPublisher> PublisherMapper(IReadOnlyList<Publisher> publishers)
+        {
+            List<ViewPublisher> viewPublishers = new List<ViewPublisher>();
+            foreach (Publisher publisher in publishers)
+            {
+                viewPublishers.Add(new ViewPublisher(publisher.Name));
+            }
+            return viewPublishers;
         }
     }
 }

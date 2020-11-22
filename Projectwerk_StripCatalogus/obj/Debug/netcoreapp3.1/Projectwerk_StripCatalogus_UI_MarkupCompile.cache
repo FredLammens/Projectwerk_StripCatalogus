@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Biebem\Desktop\Projectwerk_Strips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\
+D:\School\projectWerk\UiLaag Repo\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\
 Projectwerk_StripCatalogus_UI
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\Biebem\Desktop\Projectwerk_Strips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\App.xaml
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+D:\School\projectWerk\UiLaag Repo\Projectwerk_StripCatalogus\App.xaml
 3-1449740164
 
 51727106006
-1932082959699
+2111821831959
 AddComicPage.xaml;CataloguePage.xaml;MainWindow.xaml;
 
 False

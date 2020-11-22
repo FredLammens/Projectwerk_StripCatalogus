@@ -43,7 +43,7 @@ namespace Data.Repositories
         {
             dComic.Id = (int)record["Comic_Id"];
             dComic.Title = (string)record["Title"];
-            dComic.SeriesNumber = (int?)record["SeriesNr"];
+            dComic.SeriesNumber = !Convert.IsDBNull(record["SeriesNr"]) ? (int?)record["SeriesNr"] : null;
             dComic.Publisher = new DPublisher();
             dComic.Publisher.Id = (int)record["Publisher_Id"];
             dComic.Publisher.Name = (string)record["Publisher_Name"];
@@ -436,8 +436,8 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Series.ID, Series.Name" +
-                                      "FROM Series;";
+                command.CommandText = "SELECT Series.ID, Series.Name" +
+                                      " FROM Series;";
 
                 var toReturn = new List<Series>();
                 foreach (var item in ToDSeriesList(command))
@@ -453,8 +453,8 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Authors.ID, Authors.Name" +
-                                      "FROM Authors;";
+                command.CommandText = "SELECT Authors.ID, Authors.Name" +
+                                      " FROM Authors;";
 
                 var toReturn = new List<Author>();
                 foreach (var item in ToDAuthorList(command))
@@ -470,8 +470,8 @@ namespace Data.Repositories
 
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Publishers.ID, Publishers.Name" +
-                                      "FROM Publishers;";
+                command.CommandText = "SELECT Publishers.ID, Publishers.Name" +
+                                      " FROM Publishers;";
 
                 var toReturn = new List<Publisher>();
                 foreach (var item in ToDPublisherList(command))
