@@ -533,7 +533,7 @@ namespace Data.Repositories
             var newSeries = Mapper.ToDSeries(updated);
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "UPDATE Publishers " +
+                command.CommandText = "UPDATE Series " +
                                       "SET Name =  @newName " +
                                       "WHERE Name = @name;";
 

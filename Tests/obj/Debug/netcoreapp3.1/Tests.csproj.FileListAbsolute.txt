@@ -553,5 +553,3 @@ C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\obj\Deb
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\obj\Debug\netcoreapp3.1\Tests.dll
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\obj\Debug\netcoreapp3.1\Tests.pdb
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\obj\Debug\netcoreapp3.1\Tests.genruntimeconfig.cache
-C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\bin\Debug\netcoreapp3.1\ViewModel.dll
-C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Tests\bin\Debug\netcoreapp3.1\ViewModel.pdb

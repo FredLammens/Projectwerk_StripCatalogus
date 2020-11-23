@@ -29,8 +29,8 @@ namespace Tests.DataLayerTests
             cr.AddAuthor(author2);
             result1 = cr.GetAllAuthors();
             result1.Should().HaveCount(2);
-            result1.ElementAt(2).Name.Should().Be("author2");
-
+            result1.First().Name.Should().Be("author1");
+            result1.ElementAt(1).Name.Should().Be("author2");
         }
         [TestMethod]
         public void TestUpdateAuthor()
