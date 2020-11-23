@@ -22,7 +22,7 @@ namespace ViewModel
         /// The series the comic belongs to.
         /// </summary>
         [JsonProperty("Reeks")]
-        public string Series { get; set; }
+        public ViewSeries Series { get; set; }
         /// <summary>
         /// The number the comic is in the series.
         /// </summary>
@@ -58,7 +58,7 @@ namespace ViewModel
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publishers">The publisher(s) that published the comic.</param>
         [JsonConstructor]
-        public ViewComic(string title, string series, int? seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
+        public ViewComic(string title, ViewSeries series, int? seriesNumber, List<ViewAuthor> authors, ViewPublisher publisher)
         {
             Title = title;
             Series = series;
@@ -67,7 +67,6 @@ namespace ViewModel
                 throw new PresentationException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
             Publisher = publisher;
-
         }
 
         #endregion

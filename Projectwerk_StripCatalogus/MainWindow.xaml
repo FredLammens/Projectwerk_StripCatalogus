@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projectwerk_StripCatalogus"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="1000">
     <Grid>
         <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top">
-            <Button x:Name="btnCatalogue" Content="Catalogue" MinWidth="100" Click="BtnCatalogue_Click"/>
+            <Button x:Name="btnCatalogue" Content="Catalogue" MinWidth="100"/>
             <Button x:Name="btnAddComic" Content="Add Comic" MinWidth="100" Margin="10,0,0,0" Click="BtnAddComic_Click"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>

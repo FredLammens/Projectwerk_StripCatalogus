@@ -1,5 +1,4 @@
-﻿using Projectwerk_StripCatalogus_UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Projectwerk_StripCatalogus
+namespace ImportExport_UI
 {
     /// <summary>
-    /// This is the main window for the application where we choose the different pages.
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            Main.Content = new CataloguePage();
-        }
-
-
-        /// <summary>
-        /// The button to open the page where we add new comics
-        /// </summary>
-        private void BtnAddComic_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new AddComicPage();
         }
     }
 }
