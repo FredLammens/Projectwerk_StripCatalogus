@@ -75,7 +75,7 @@ namespace DataLayer
         /// <summary>
         /// Saves all changes to the database.
         /// </summary>
-        public void SaveChanges()
+        public void Commit()
         {
             if(transaction == null)
             {

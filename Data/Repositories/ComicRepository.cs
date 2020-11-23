@@ -436,7 +436,7 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Series.ID, Series.Name" +
+                command.CommandText = "SELECT Series.ID, Series.Name " +
                                       "FROM Series;";
 
                 var toReturn = new List<Series>();
@@ -453,7 +453,7 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Authors.ID, Authors.Name" +
+                command.CommandText = "SELECT Authors.ID, Authors.Name " +
                                       "FROM Authors;";
 
                 var toReturn = new List<Author>();
@@ -470,7 +470,7 @@ namespace Data.Repositories
 
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "Publishers.ID, Publishers.Name" +
+                command.CommandText = "SELECT Publishers.ID, Publishers.Name " +
                                       "FROM Publishers;";
 
                 var toReturn = new List<Publisher>();
@@ -511,9 +511,10 @@ namespace Data.Repositories
             AddDSeries(oldComic.Series);
             using (var command = context.CreateCommand())
             {
-                command.CommandText = "UPDATE Publishers " +
-                                      "SET Title =  @newTitle, SeriesNr = newSeriesNr, Series_ID = newSeriesId" +
+                command.CommandText = "UPDATE Comics " +
+                                      "SET Title =  @newTitle, SeriesNr = @newSeriesNr, Series_ID = @newSeriesId " +
                                       "WHERE Title = @title AND SeriesNr = @seriesNr And Series_ID = @seriesId;";
+
                 command.AddParameter("title", oldComic.Title);
                 command.AddParameter("seriesNr", oldComic.SeriesNumber);
                 command.AddParameter("seriesId", oldComic.Series.Id);
