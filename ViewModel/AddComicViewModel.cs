@@ -1,10 +1,10 @@
 ﻿
 using DataLayer;
 using DomainLibrary.DomainLayer;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -28,11 +28,12 @@ namespace ViewModel
         {
             controller = new Controller(new UnitOfWork());
             _comic = new ViewComic();
+            _series = new ViewSeries();
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>();
             _allAuthorsList = new List<ViewAuthor>(Mapper.AuthorMapper(controller.GetAuthors()));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>(_allAuthorsList);
             _selectedAuthorsList = new ObservableCollection<ViewAuthor>();
-            _publisherList = new ObservableCollection<ViewPublisher>(Mapper.PublisherMapper(controller.GetPublishers()));
+            _publisherList = new ObservableCollection<ViewPublisher>(Mapper.PublisherMapper(controller.GetPublishers()).OrderBy(name => name));
             _titelList = new ObservableCollection<string>();
 
             CreateCommand();
@@ -50,10 +51,11 @@ namespace ViewModel
         /// <summary>
         /// DataBindinded variable for Comic-Series
         /// </summary>
+        private ViewSeries _series;
         public string InputSeries
         {
-            get { return _comic.Series; }
-            set { _comic.Series = value; }
+            get { return _series.Name; }
+            set { _series.Name = value; }
         }
         /// <summary>
         /// DataBindinded variable for Comic-Series-Nr
@@ -223,7 +225,7 @@ namespace ViewModel
             if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(InputSeries)))
                 throw new PresentationException("Pls fill everything in.");
 
-            ViewComic comic = new ViewComic(InputTitle, InputSeries, _comic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
+            ViewComic comic = new ViewComic(InputTitle,_series, _comic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
             controller.AddComic(Mapper.ViewComicMapper(comic));
         }
         /// <summary>

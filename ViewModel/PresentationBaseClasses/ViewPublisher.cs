@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace ViewModel.PresentationBaseClasses
 {
-    public class ViewPublisher
+    public class ViewPublisher : IComparable<ViewPublisher>
     {
         #region Properties
         /// <summary>
@@ -47,6 +48,11 @@ namespace ViewModel.PresentationBaseClasses
         public override int GetHashCode()
         {
             return HashCode.Combine(Name);
+        }
+
+        public int CompareTo([AllowNull] ViewPublisher other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
         #endregion
 

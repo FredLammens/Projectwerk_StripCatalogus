@@ -15,7 +15,7 @@ namespace ViewModel
         /// <returns></returns>
         public static Comic ViewComicMapper(ViewComic viewcomic) 
         {
-            return new Comic(viewcomic.Title, new Series(viewcomic.Series), viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
+            return new Comic(viewcomic.Title, new Series(viewcomic.Series.Name), viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
         }
         /// <summary>
         /// Maps a comic object to a viewcomic object.
@@ -24,7 +24,7 @@ namespace ViewModel
         /// <returns></returns>
         private static ViewComic ComicMapper(Comic comic) 
         {
-            return new ViewComic(comic.Title, comic.Series.Name, comic.SeriesNumber, AuthorMapper(comic.Authors), new ViewPublisher(comic.Publisher.Name));
+            return new ViewComic(comic.Title, new ViewSeries(comic.Series.Name), comic.SeriesNumber, AuthorMapper(comic.Authors), new ViewPublisher(comic.Publisher.Name));
         }
         public static List<ViewComic> ComicsMapper(IEnumerable<Comic> comics) 
         {

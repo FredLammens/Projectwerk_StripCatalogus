@@ -1,8 +1,8 @@
 ﻿using DataLayer;
 using DomainLibrary.DomainLayer;
-using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -42,6 +42,11 @@ namespace ViewModel
 
         public void ImportExecute()
         {
+             var openFileDialog = new OpenFileDialog();
+            (openFileDialog.ShowDialog() == true);
+             txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+
+
             string comicsFilePath = @"C:\Users\niels\Downloads\dump.json";
 
             List<ViewComic> comics = Parser.DeSerializeComics(comicsFilePath).ToList();
@@ -51,7 +56,7 @@ namespace ViewModel
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
             }
 
-            controller.AddComics(comicsToImport);
+            //controller.AddComics(comicsToImport);
         }
 
         public void ExportExecute()

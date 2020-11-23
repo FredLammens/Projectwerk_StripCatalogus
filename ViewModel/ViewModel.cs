@@ -101,7 +101,7 @@ namespace ViewModel
         /// <param name="series">series to match</param>
         public void SearchSeries(string series)
         {
-            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Series.Contains(series)));
+            Comics = new ObservableCollection<ViewComic>(allComics.Where(c => c.Series.Name.Contains(series)));
         }
         /// <summary>
         ///  DataBindinded method for changing the comicslist to a comicslist where the author matches. 
@@ -130,7 +130,7 @@ namespace ViewModel
             if (String.IsNullOrEmpty(InputAuthor) || String.IsNullOrEmpty(InputTitle) || String.IsNullOrEmpty(InputPublisher) || String.IsNullOrEmpty(InputSeries) ||
                  int.TryParse(InputSeriesNr, out seriesNr))
                 throw new PresentationException("Pls fill everything in.");
-            ViewComic comic = new ViewComic(InputTitle, InputSeries, seriesNr, AuthorSplitter(InputAuthor), new ViewPublisher(InputPublisher));
+            ViewComic comic = new ViewComic(InputTitle, new ViewSeries(InputSeries), seriesNr, AuthorSplitter(InputAuthor), new ViewPublisher(InputPublisher));
             await Task.Run(() => controller.AddComic(Mapper.ViewComicMapper(comic)));
         }
         /// <summary>

@@ -6,13 +6,12 @@
       xmlns:local="clr-namespace:Projectwerk_StripCatalogus_UI"
       xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="Projectwerk_StripCatalogus_UI.AddComicPage"
       mc:Ignorable="d" 
-      d:DesignHeight="350" d:DesignWidth="1000"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="AddComicPage">
 
     <Grid>
-        <Grid.DataContext>
-            <ViewModel:AddComicViewModel/>
-        </Grid.DataContext>
+        
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="100*" />
