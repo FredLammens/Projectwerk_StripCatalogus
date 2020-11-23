@@ -82,9 +82,11 @@ namespace Tests.DataLayerTests
             var result1 = cr.GetAllPublishers();
             result1.Should().HaveCount(1);
             result1.First().Name.Should().Be("publisher1");
+
             
+
             Publisher publisher3 = new Publisher("publisher2");
-            cr.AddPublisher(publisher1);
+            cr.AddPublisher(publisher3);
             var result2 = cr.GetAllPublishers();
             result2.Should().HaveCount(1);
             result2.First().Name.Should().Be("publisher1");

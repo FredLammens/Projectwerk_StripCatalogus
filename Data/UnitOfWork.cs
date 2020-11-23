@@ -34,9 +34,9 @@ namespace DataLayer
         }
         #endregion
 
-        public void SaveChanges()
+        public void Commit()
         {
-            context.SaveChanges();
+            context.Commit();
         }
     }
 }

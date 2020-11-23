@@ -39,7 +39,7 @@ namespace DomainLibrary.DomainLayer
         {
             catalogue.AddComic(comic);
             uow.Comics.AddComic(comic);
-            uow.SaveChanges();
+            uow.Commit();
         }
         /// <summary>
         /// Adds comics to database and catalogue.
@@ -52,7 +52,7 @@ namespace DomainLibrary.DomainLayer
                 catalogue.AddComic(comic);
                 uow.Comics.AddComic(comic);
             }
-            uow.SaveChanges();
+            uow.Commit();
         }
         /// <summary>
         /// Returns the catalogue

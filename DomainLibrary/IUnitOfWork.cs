@@ -20,7 +20,7 @@ namespace DomainLibrary
         /// <summary>
         /// Saves the changes made to the database.
         /// </summary>
-        public void SaveChanges();
+        public void Commit();
         #endregion
     }
 }

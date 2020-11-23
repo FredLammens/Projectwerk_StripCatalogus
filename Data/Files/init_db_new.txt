@@ -8,6 +8,16 @@ CREATE TABLE [Publishers]
 );
 GO
 
+CREATE TABLE [Series]
+(
+ [ID]   int IDENTITY (1, 1) NOT NULL ,
+ [Name] varchar(100) NOT NULL ,
+
+
+ CONSTRAINT [PK_series] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+GO
+
 CREATE TABLE [Comics]
 (
  [ID]            int IDENTITY (1, 1) NOT NULL ,
@@ -15,12 +25,12 @@ CREATE TABLE [Comics]
  [SeriesNr]      int NULL ,
  [IsInCatalogue] bit NOT NULL CONSTRAINT [DF_Comics_IsInCatalogue] DEFAULT 1 ,
  [Publisher_ID]  int NOT NULL ,
- [Comic_ID]      int NOT NULL ,
+ [Series_ID]      int NOT NULL ,
 
 
  CONSTRAINT [PK_comic] PRIMARY KEY CLUSTERED ([ID] ASC),
  CONSTRAINT [FK_85] FOREIGN KEY ([Publisher_ID])  REFERENCES [Publishers]([ID]),
- CONSTRAINT [FK_91] FOREIGN KEY ([Comic_ID])  REFERENCES [Series]([ID])
+ CONSTRAINT [FK_91] FOREIGN KEY ([Series_ID])  REFERENCES [Series]([ID])
 );
 GO
 
@@ -34,22 +44,14 @@ GO
 
 CREATE NONCLUSTERED INDEX [fkIdx_91] ON [Comics] 
  (
-  [Comic_ID] ASC
+  [Series_Id] ASC
  )
 
 GO
 
 
 
-CREATE TABLE [Series]
-(
- [ID]   int IDENTITY (1, 1) NOT NULL ,
- [Name] varchar(100) NOT NULL ,
 
-
- CONSTRAINT [PK_series] PRIMARY KEY CLUSTERED ([ID] ASC)
-);
-GO
 
 
 CREATE TABLE [Authors]
