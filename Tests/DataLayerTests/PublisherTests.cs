@@ -30,7 +30,7 @@ namespace Tests.DataLayerTests
             cr.AddPublisher(publisher2);
             result1 = cr.GetAllPublishers();
             result1.Should().HaveCount(2);
-            result1.ElementAt(1).Should().Be("publisher2");
+            result1.ElementAt(1).Name.Should().Be("publisher2");
         }
         [TestMethod]
         public void TestUpdatePubliher()
@@ -81,14 +81,11 @@ namespace Tests.DataLayerTests
             cr.AddPublisher(publisher2);
             var result1 = cr.GetAllPublishers();
             result1.Should().HaveCount(1);
-            result1.First().Name.Should().Be("publisher1");
-
-            
-
+            result1.First().Name.Should().Be("publisher1");            
             Publisher publisher3 = new Publisher("publisher2");
             cr.AddPublisher(publisher3);
             var result2 = cr.GetAllPublishers();
-            result2.Should().HaveCount(1);
+            result2.Should().HaveCount(2);
             result2.First().Name.Should().Be("publisher1");
             result2.ElementAt(1).Name.Should().Be("publisher2");
         }

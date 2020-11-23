@@ -39,12 +39,10 @@ namespace Tests
             Comic comic = new Comic();
             Author author1 = new Author("author1");
             Author author2 = new Author("author1");
-            // Action act1 = () => comic.AddAuthor(author1);
-            // act1.Should().NotThrow<Exception>();
-            // Action act2 = () => comic.AddAuthor(author2);
-            // act2.Should().Throw<Exception>();
-            comic.AddAuthor(author1);
-            comic.AddAuthor(author2);
+            Action act1 = () => comic.AddAuthor(author1);
+            act1.Should().NotThrow<DomainException>();
+            Action act2 = () => comic.AddAuthor(author2);
+            act2.Should().Throw<DomainException>("Auteur zit al in de strip.");
         }
         [TestMethod]
         public void TitleNullShouldThrowException()
@@ -60,7 +58,7 @@ namespace Tests
             Action act = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             act.Should().NotThrow<DomainException>();
             Action act2 = () => new Comic("De legende van het Westen", new Series(""), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
-            act2.Should().Throw<DomainException>().WithMessage("Series mag niet leeg zijn.");
+            act2.Should().Throw<DomainException>().WithMessage("Naam mag niet leeg zijn.");
         }
         [TestMethod]
         public void PublisherNullShouldThrowException()
@@ -68,7 +66,7 @@ namespace Tests
             Action act = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             act.Should().NotThrow<DomainException>();
             Action act2 = () => new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher(""));
-            act2.Should().Throw<DomainException>().WithMessage("Publisher mag niet leeg zijn.");
+            act2.Should().Throw<DomainException>().WithMessage("Naam mag niet leeg zijn.");
         }
         [TestMethod]
         public void RemoveAuthorDoestExistShouldThrowException()
