@@ -15,7 +15,7 @@ namespace ViewModel
         /// <returns></returns>
         public static Comic ViewComicMapper(ViewComic viewcomic) 
         {
-            return new Comic(viewcomic.Title, new Series(viewcomic.Series), viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
+            return new Comic(viewcomic.Title, new Series(viewcomic.Series.Name), viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
         }
         /// <summary>
         /// Maps a comic object to a viewcomic object.
@@ -24,7 +24,7 @@ namespace ViewModel
         /// <returns></returns>
         private static ViewComic ComicMapper(Comic comic) 
         {
-            return new ViewComic(comic.Title, comic.Series.Name, comic.SeriesNumber, AuthorMapper(comic.Authors), new ViewPublisher(comic.Publisher.Name));
+            return new ViewComic(comic.Title, new ViewSeries(comic.Series.Name), comic.SeriesNumber, AuthorMapper(comic.Authors), new ViewPublisher(comic.Publisher.Name));
         }
         public static List<ViewComic> ComicsMapper(IEnumerable<Comic> comics) 
         {
@@ -54,7 +54,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="authors"></param>
         /// <returns></returns>
-        private static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
+        public static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
         {
             List<ViewAuthor> viewAuthors = new List<ViewAuthor>();
             foreach (Author author in authors)
@@ -62,6 +62,20 @@ namespace ViewModel
                 viewAuthors.Add(new ViewAuthor(author.Name));
             }
             return viewAuthors;
+        }
+        /// <summary>
+        /// Maps a list of Publisher objects to ViewPublisher objects.
+        /// </summary>
+        /// <param name="publishers"></param>
+        /// <returns></returns>
+        public static List<ViewPublisher> PublisherMapper(IReadOnlyList<Publisher> publishers)
+        {
+            List<ViewPublisher> viewPublishers = new List<ViewPublisher>();
+            foreach (Publisher publisher in publishers)
+            {
+                viewPublishers.Add(new ViewPublisher(publisher.Name));
+            }
+            return viewPublishers;
         }
     }
 }

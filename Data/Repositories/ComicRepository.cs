@@ -43,7 +43,7 @@ namespace Data.Repositories
         {
             dComic.Id = (int)record["Comic_Id"];
             dComic.Title = (string)record["Title"];
-            dComic.SeriesNumber = (int?)record["SeriesNr"];
+            dComic.SeriesNumber = !Convert.IsDBNull(record["SeriesNr"]) ? (int?)record["SeriesNr"] : null;
             dComic.Publisher = new DPublisher();
             dComic.Publisher.Id = (int)record["Publisher_Id"];
             dComic.Publisher.Name = (string)record["Publisher_Name"];
