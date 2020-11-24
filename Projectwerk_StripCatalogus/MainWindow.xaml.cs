@@ -27,6 +27,13 @@ namespace Projectwerk_StripCatalogus
             Main.Content = new CataloguePage();
         }
 
+        /// <summary>
+        /// The button to open the catalogue page 
+        /// </summary>
+        private void BtnCatalogue_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new CataloguePage();
+        }
 
         /// <summary>
         /// The button to open the page where we add new comics

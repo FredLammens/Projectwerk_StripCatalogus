@@ -1,4 +1,15 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Projectwerk_StripCatalogus_UI
 {
@@ -10,6 +21,14 @@ namespace Projectwerk_StripCatalogus_UI
         public AddComicPage()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// In this method we will add a new comic
+        /// </summary>
+        private void btnAddComic_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -62,22 +62,6 @@ namespace DomainLibrary.DomainLayer
         {        
             return catalogue;
         }
-        /// <summary>
-        /// Returns a list of all the autors in the database
-        /// </summary>
-        /// <returns>A list of authors.</returns>
-        public List<Author> GetAuthors()
-        {
-            return uow.Comics.GetAllAuthors().ToList();
-        }
-        /// <summary>
-        /// Returns a list of all the publishers in the database
-        /// </summary>
-        /// <returns>A list of publishers.</returns>
-        public List<Publisher> GetPublishers()
-        {
-            return uow.Comics.GetAllPublishers().ToList();
-        }
         #endregion
 
     }
