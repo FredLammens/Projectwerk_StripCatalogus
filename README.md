@@ -44,3 +44,27 @@
 
 #### ViewModelOntwerp :    
 ![ViewModel](https://user-images.githubusercontent.com/23512215/98315265-22ab9800-1fd8-11eb-92c3-a96681bfc68d.jpg)
+
+## Deel 2: Bundels toevoegen
+
+### Schatting refactoring:
+
+- Analyse : 5u
+  - use cases
+- Ontwerp : 3u
+  - uml's aanpassen.
+- Datank: 30u
+  - model aanpassen: 2u
+  - db klassen en methodes updaten: 28u
+- DomeinLaag: 20u
+- UI: 30u
+  - Datagrid aanpassen: 5u
+  - Pagina info strips aanpassen: 8u
+  - Toevoegen catalogus aanpassen
+- Tests: nader te bepalen
+- Powerpoint: 5u
+=> Eventuele extra githubProblemen + 2u
+
+Totaal : 85u
+
+  
