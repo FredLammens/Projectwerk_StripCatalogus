@@ -56,7 +56,12 @@
 - Datank: 30u
   - model aanpassen: 2u
   - db klassen en methodes updaten: 28u
-- DomeinLaag: 20u
+- DomeinLaag: 14u
+  - Bundel class toevoegen : 4u
+  - Catalogue aanpassen: 10u
+    - AddBundel: checkt of comics in lijst van comics staan
+    - removeBundel moet toegevoegd worden.
+    - remove comic moet aangepast worden : als in bundel enkel uit lijst van comics halen.
 - UI: 30u
   - Datagrid aanpassen: 5u
   - Pagina info strips aanpassen: 8u
