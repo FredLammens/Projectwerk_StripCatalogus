@@ -73,6 +73,6 @@
 - Powerpoint: 5u
 => Eventuele extra githubProblemen + 2u
 
-Totaal : 91u
+Totaal : 75u
 
   
