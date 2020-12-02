@@ -55,7 +55,10 @@
   - uml's aanpassen.
 - Datank: 30u
   - model aanpassen: 2u
-  - db klassen en methodes updaten: 28u
+  - db model updaten: 5u
+  - database queries schrijven en implementeren: 13u
+  - tijd voor testen : 10u
+  - tijd voor eventuele probelemen die opdruiken 6u
 - DomeinLaag: 14u
   - Bundel class toevoegen : 4u
   - Catalogue aanpassen: 10u
@@ -70,6 +73,6 @@
 - Powerpoint: 5u
 => Eventuele extra githubProblemen + 2u
 
-Totaal : 85u
+Totaal : 91u
 
   
