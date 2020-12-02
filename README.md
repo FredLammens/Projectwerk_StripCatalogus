@@ -65,10 +65,10 @@
     - AddBundel: checkt of comics in lijst van comics staan
     - removeBundel moet toegevoegd worden.
     - remove comic moet aangepast worden : als in bundel enkel uit lijst van comics halen.
-- UI: 30u
+- UI: 16u
   - Datagrid aanpassen: 5u
   - Pagina info strips aanpassen: 8u
-  - Toevoegen catalogus aanpassen
+  - Toevoegen catalogus aanpassen: 3u
 - Tests: nader te bepalen
 - Powerpoint: 5u
 => Eventuele extra githubProblemen + 2u
