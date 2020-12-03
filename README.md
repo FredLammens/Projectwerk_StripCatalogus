@@ -50,7 +50,12 @@
 ### Schatting refactoring:
 
 - Analyse : 5u
-  - use cases
+  - analyse van nieuwe opdracht + eventuele vragen: 1,30u
+  - use cases: 2,30u
+    - strip corrigeren
+    - strip toevoegen 
+    - strip verwijderen
+  - domainregels: 1u
 - Ontwerp : 3u
   - uml's aanpassen.
 - Datank: 30u
@@ -69,10 +74,18 @@
   - Datagrid aanpassen: 5u
   - Pagina info strips aanpassen: 8u
   - Toevoegen catalogus aanpassen: 3u
-- Tests: nader te bepalen
+- Tests: 10u
+  - test AddBundel: 2u
+  - test RemoveBundel: 2u
+  - test Exceptions: 3u
+  - aanpassing andere testen: 2u
+  - documentatie: 1u
 - Powerpoint: 5u
-=> Eventuele extra githubProblemen + 2u
+  - veranderingen op bijna elke pagina van PP (in totaal 63 p.)
+    => Analyse, Ontwerp, Domainlayer, Datalayer,ViewModelayer, Testlayer
+- Andere: 2u
+  - Eventuele extra githubProblemen + 2u
 
-Totaal : 75u
+Totaal : 85u
 
   
