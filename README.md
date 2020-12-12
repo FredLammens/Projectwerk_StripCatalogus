@@ -89,14 +89,15 @@
 Totaal : 85u
 ### Deel 3: Inventaris toevoegen 
 ### Ontwerp:    
-![ontwerp](https://user-images.githubusercontent.com/23512215/101981246-b887b200-3c6b-11eb-9fdf-369a9d5d0998.jpg)
+![ontwerp](https://user-images.githubusercontent.com/23512215/101981294-174d2b80-3c6c-11eb-8ff6-52005e33fe3a.jpg)
 
 #### DomeinOntwerp:    
-![Domain](https://user-images.githubusercontent.com/23512215/101981243-b6bdee80-3c6b-11eb-969c-b9574bdf69e6.jpg)
+![Domain](https://user-images.githubusercontent.com/23512215/101981293-174d2b80-3c6c-11eb-90d0-33acabd422b2.jpg)
 
 #### DataLayerOntwerp:    
-![DataLayer](https://user-images.githubusercontent.com/23512215/101981245-b7ef1b80-3c6b-11eb-94e4-579b455451bd.jpg)
+![DataLayer](https://user-images.githubusercontent.com/23512215/101981291-161bfe80-3c6c-11eb-8377-1557bbb4d04c.jpg)
+
 
 #### ViewModelOntwerp :    
-![UI](https://user-images.githubusercontent.com/23512215/101981244-b7ef1b80-3c6b-11eb-8fd3-9e893f2844f9.jpg)
+![UI](https://user-images.githubusercontent.com/23512215/101981295-17e5c200-3c6c-11eb-83fd-1eaacb445bb9.jpg)
   
