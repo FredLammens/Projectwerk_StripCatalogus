@@ -100,4 +100,7 @@ Totaal : 85u
 
 #### ViewModelOntwerp :    
 ![UI](https://user-images.githubusercontent.com/23512215/101981295-17e5c200-3c6c-11eb-83fd-1eaacb445bb9.jpg)
-  
+
+### Database ontwerp:
+
+![unknown](https://user-images.githubusercontent.com/23512215/102594519-992ed000-4116-11eb-9def-b42ed4086bdb.png)
