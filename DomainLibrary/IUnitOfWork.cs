@@ -15,6 +15,14 @@ namespace DomainLibrary
         /// A collection of comics in the database.
         /// </summary>
         public IComicRepository Comics { get;}
+        /// <summary>
+        /// A collection of orders in the database.
+        /// </summary>
+        public IOrderRepository Orders { get; }
+        /// <summary>
+        /// A collection of deliveries in the database.
+        /// </summary>
+        public IDeliveryRepository Deliveries { get; }
         #endregion
         #region Operations
         /// <summary>
