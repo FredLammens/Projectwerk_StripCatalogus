@@ -12,8 +12,8 @@ namespace DomainLibrary.DomainLayer
     public class Controller
     {
         #region Properties
-        private IUnitOfWork uow;
-        private Catalogue catalogue;
+        private readonly IUnitOfWork uow;
+        private readonly Catalogue catalogue;
 
         #endregion
 
@@ -77,6 +77,27 @@ namespace DomainLibrary.DomainLayer
         public List<Publisher> GetPublishers()
         {
             return uow.Comics.GetAllPublishers().ToList();
+        }
+        /// <summary>
+        /// Adds order to inventory
+        /// </summary>
+        /// <param name="id">id of order</param>
+        /// <param name="date">date of order</param>
+        /// <param name="orderComics">list of comics to order with amounts</param>
+        public void AddOrder(int id, DateTime date, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
+        {
+            Inventory.AddOrder(id, date, orderComics);
+        }
+        /// <summary>
+        /// Adds delivery to inventory
+        /// </summary>
+        /// <param name="id">id of delivery</param>
+        /// <param name="date">date delivery was made</param>
+        /// <param name="deliveryDate">date for delivery</param>
+        /// <param name="orderComics">list of comics to deliver with amounts</param>
+        public void AddDelivery(int id, DateTime date, DateTime deliveryDate, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
+        {
+            Inventory.AddDelivery(id, date, deliveryDate, orderComics);
         }
         #endregion
 

@@ -18,6 +18,10 @@ namespace DomainLibrary.DomainLayer
         /// The title of the comic
         /// </summary>
         public string Title { get => _title; set { if (string.IsNullOrEmpty(value)) throw new DomainException("Titel mag niet leeg zijn."); _title = value; } }
+        /// <summary>
+        /// amount of this comic available
+        /// </summary>
+        public int AmountAvailable { get; set; }
 
         private Series _series;
         /// <summary>
@@ -55,13 +59,15 @@ namespace DomainLibrary.DomainLayer
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
-        public Comic(string title, Series series, int? seriesNumber, List<Author> authors, Publisher publisher)
+        /// <param name="amountAvailable">amount of the comic available</param>
+        public Comic(string title, Series series, int? seriesNumber, List<Author> authors, Publisher publisher, int amountAvailable = 1)
         {
             Title = title;
             Series = series;
             SeriesNumber = seriesNumber;
             SetAuthors(authors);
             Publisher = publisher;
+            AmountAvailable = amountAvailable;
         }
         #endregion
 
