@@ -18,7 +18,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A DComic object.</returns>
         public static DComic ToDComic(Comic comic)
         {
-            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher));
+            DComic toReturn = new DComic(comic.Title, ToDSeries(comic.Series), comic.SeriesNumber, ToDAuthors(comic.Authors), ToDPublisher(comic.Publisher), comic.AmountAvailable);
             return toReturn;
         }
 
@@ -70,7 +70,6 @@ namespace DataLayer.DataBaseClasses
         }
         #endregion
 
-
         #region toComic
         /// <summary>
         /// Transforms a DComic object into a Comic object.
@@ -79,7 +78,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Comic object.</returns>
         public static Comic ToComic(DComic dComic)
         {
-            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher));
+            Comic toReturn = new Comic(dComic.Title, ToSeries(dComic.Series), dComic.SeriesNumber, ToAuthors(dComic.Authors), ToPublisher(dComic.Publisher), dComic.AmountAvailable);
             return toReturn;
         }
 
@@ -130,5 +129,96 @@ namespace DataLayer.DataBaseClasses
         }
 
         #endregion
+
+        #region toDOrder
+        /// <summary>
+        /// Transforms a Order object into a DOrder object.
+        /// </summary>
+        /// <param name="order">Order to transform.</param>
+        /// <returns>A DOrder object.</returns>
+        static public DOrder ToDOrder(Order order)
+        {
+            DOrder toReturn = new DOrder(order.Id, order.Date, ToDOrderComics(order.OrderComics));
+
+            return toReturn;
+        }
+
+        /// <summary>
+        /// Transforms a Dictionary of DComics and ints to a Dictionary of Comics and ints.
+        /// </summary>
+        /// <param name="orderComics">OrderComics to transform.</param>
+        /// <returns>The transformed dictionary.</returns>
+        private static Dictionary<DComic, int> ToDOrderComics(Dictionary<Comic, int> orderComics)
+        {
+            Dictionary<DComic, int> toReturn = new Dictionary<DComic, int>();
+            foreach (var item in orderComics)
+            {
+                toReturn.Add(ToDComic(item.Key), item.Value);
+            }
+
+            return toReturn;
+        }
+        #endregion
+
+        #region toOrder
+        /// <summary>
+        /// Transforms a DOrder object into a Order object.
+        /// </summary>
+        /// <param name="dOrder">DOrder to transform.</param>
+        /// <returns>A Order object.</returns>
+        static public Order ToOrder(DOrder dOrder)
+        {
+            Order toReturn = new Order(dOrder.Id, dOrder.Date, ToDOrderComics(dOrder.OrderComics));
+
+            return toReturn;
+        }
+
+        /// <summary>
+        /// Transforms a Dictionary of DComics and ints to a Dictionary of Comics and ints.
+        /// </summary>
+        /// <param name="orderComics">OrderComics to transform.</param>
+        /// <returns>The transformed dictionary.</returns>
+        private static Dictionary<Comic, int> ToDOrderComics(Dictionary<DComic, int> orderComics)
+        {
+            Dictionary<Comic, int> toReturn = new Dictionary<Comic, int>();
+            foreach (var item in orderComics)
+            {
+                toReturn.Add(ToComic(item.Key), item.Value);
+            }
+
+            return toReturn;
+        }
+        #endregion
+
+        #region toDDelivery
+        /// <summary>
+        /// Transforms a Delivery object into a DDelivery object.
+        /// </summary>
+        /// <param name="delivery">Delivery to transform.</param>
+        /// <returns>A DDelivery object.</returns>
+        static public DDelivery toDDelivery(Delivery delivery)
+        {
+            DDelivery toReturn = new DDelivery(delivery.Id, delivery.Date, delivery.DeliveryDate, ToDOrderComics(delivery.OrderComics));
+
+            return toReturn; 
+        }
+
+        #endregion
+
+        #region toDDelivery
+        /// <summary>
+        /// Transforms a Delivery object into a DDelivery object.
+        /// </summary>
+        /// <param name="delivery">Delivery to transform.</param>
+        /// <returns>A DDelivery object.</returns>
+        static public Delivery toDelivery(DDelivery dDelivery)
+        {
+            Delivery toReturn = new Delivery(dDelivery.Id, dDelivery.Date, dDelivery.DeliveryDate, ToDOrderComics(dDelivery.OrderComics));
+
+            return toReturn;
+        }
+
+        #endregion
+
     }
 }

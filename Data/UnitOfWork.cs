@@ -18,6 +18,9 @@ namespace DataLayer
         /// </summary>
         private AdoNetContext context;
         public IComicRepository Comics { get; }
+        public IOrderRepository Orders { get; }
+        public IDeliveryRepository Deliveries { get; }
+
         #endregion
 
         #region Constructor
@@ -28,6 +31,16 @@ namespace DataLayer
         {
             context = new AdoNetContext(true);
             if (Comics == null)
+            {
+                Comics = new ComicRepository(context);
+            }
+
+            if (Orders == null)
+            {
+                Comics = new ComicRepository(context);
+            }
+
+            if (Deliveries == null)
             {
                 Comics = new ComicRepository(context);
             }

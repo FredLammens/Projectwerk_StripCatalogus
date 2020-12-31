@@ -37,18 +37,5 @@ namespace DataLayer.DataBaseClasses
             Name = name;
         }
         #endregion
-
-        #region Comparing
-        public override bool Equals(object obj)
-        {
-            return obj is DSeries series &&
-                   Name == series.Name;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Name);
-        }
-        #endregion
     }
 }

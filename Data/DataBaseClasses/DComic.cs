@@ -35,6 +35,10 @@ namespace DataLayer.DataBaseClasses
         /// The publisher that published the comic.
         /// </summary>
         public DPublisher Publisher { get; set; }
+        /// <summary>
+        /// amount of this comic available
+        /// </summary>
+        public int AmountAvailable { get; set; }
         #endregion
 
         #region Constructors
@@ -54,32 +58,15 @@ namespace DataLayer.DataBaseClasses
         /// <param name="seriesNumber">The number the comic is in the series.</param>
         /// <param name="authors">The autor(s) that wrote this comic</param>
         /// <param name="publisher">The publisher that published the comic.</param>
-        public DComic(string title, DSeries series, int? seriesNumber, List<DAuthor> authors, DPublisher publisher)
+        public DComic(string title, DSeries series, int? seriesNumber, List<DAuthor> authors, DPublisher publisher, int amountAvailable)
         {
             Title = title;
             Series = series;
             SeriesNumber = seriesNumber;
-            if (DuplicateAuthors(authors))
-                throw new DataException("Een strip kan niet twee keer dezelfde autheur hebben.");
             Authors = authors;
             Publisher = publisher;
         }
 
-        #endregion
-
-        #region Functionality
-        /// <summary>
-        /// Check whether a given list of authors has a duplicate.
-        /// </summary>
-        /// <param name="authors">List of authors to check</param>
-        /// <returns></returns>
-        private bool DuplicateAuthors(List<DAuthor> authors)
-        {
-            if (authors.GroupBy(a => a.GetHashCode()).Any(g => g.Count() > 1))
-                return true;
-            else
-                return false;
-        }
         #endregion
     }
 }
