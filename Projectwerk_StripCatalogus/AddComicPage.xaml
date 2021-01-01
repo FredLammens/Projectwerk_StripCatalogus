@@ -10,6 +10,9 @@
       Title="AddComicPage">
 
     <Grid>
+        <Grid.DataContext>
+            <ViewModel:AddComicViewModel/>
+        </Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="100*" />
@@ -21,12 +24,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
-        <Grid.DataContext>
-            <ViewModel:AddComicViewModel/>
-        </Grid.DataContext>
-
 
         <!--In this textbox we enter the title of the comic-->
         <StackPanel Grid.ColumnSpan="2">

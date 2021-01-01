@@ -81,8 +81,6 @@ namespace ViewModel
         /// <summary>
         /// The list of comics added to the order/delivery
         /// </summary>
-        /// 
-        //Hie reeen dictionary van maken <viewcomic, int>
         public ObservableCollection<KeyValuePair<ViewComic, int>> ComicList
         {
             get { return _comicList; }
@@ -95,6 +93,10 @@ namespace ViewModel
         #endregion
 
         #region Methods
+        /// <summary>
+        /// The list we use to fill the combobox with possible comics
+        /// </summary>
+        /// <returns></returns>
         public List<ViewComic> GetComics()
         {
             List<String> comicList = new List<string>();
@@ -132,6 +134,9 @@ namespace ViewModel
             AddOrderDelivery = new RelayCommand(AddOrderDeliveryExecute);
         }
 
+        /// <summary>
+        /// Databinded Command to add comic to list of comics
+        /// </summary>
         public void AddComicExecute()
         {
             ViewComic comic = SelectedComic;
@@ -139,11 +144,18 @@ namespace ViewModel
 
             ComicList.Add(new KeyValuePair<ViewComic, int>(comic, amount));
         }
+
+        /// <summary>
+        /// Databinded Command to remove comic from list of comics
+        /// </summary>
         public void RemoveComicExecute()
         {
             ComicList.Remove(SelectedGridComic);
         }
 
+        /// <summary>
+        /// Databinded Command to make an order or delivery
+        /// </summary>
         public void AddOrderDeliveryExecute()
         {
             Dictionary<Comic, int> comicDict = Mapper.ComicDictMapper(ComicList);
