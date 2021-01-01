@@ -106,5 +106,12 @@ namespace ViewModel
         }
 
         #endregion
+
+        #region ToString
+        public override string ToString()
+        {
+            return Title;
+        }
+        #endregion
     }
 }
