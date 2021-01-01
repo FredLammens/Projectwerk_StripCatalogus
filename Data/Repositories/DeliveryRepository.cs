@@ -39,6 +39,10 @@ namespace DataLayer.Repositories
         #endregion
 
         #region AddDataObject
+        /// <summary>
+        /// Add the info of a DDelivery to the databse.
+        /// </summary>
+        /// <param name="dDelivery">DDelivery to add.</param>
         private void AddDDelivery(DDelivery dDelivery)
         {
             using (var command = context.CreateCommand())
@@ -53,6 +57,10 @@ namespace DataLayer.Repositories
             }
         }
 
+        /// <summary>
+        /// Link the Delivery and the stock and update the stock. Also add the ComicDelivery for the amounds.
+        /// </summary>
+        /// <param name="dDelivery">DDelivery to use.</param>
         private void LinkStockToDelivery(DDelivery dDelivery)
         {
             using (var command = context.CreateCommand())
@@ -86,6 +94,10 @@ namespace DataLayer.Repositories
         #endregion
 
         #region GetIds
+        /// <summary>
+        /// Sets the id for each comic ordered.
+        /// </summary>
+        /// <param name="toAdd">Delivery contraining no id.</param>
         private void SetComicIds(DDelivery toAdd)
         {
             using (var command = context.CreateCommand())
