@@ -50,6 +50,7 @@ namespace Data.Repositories
             dComic.Series = new DSeries();
             dComic.Series.Id = (int)record["Series_ID"];
             dComic.Series.Name = (string)record["Series_Name"];
+            dComic.AmountAvailable = (int)record["Amount_Available"];
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Data.Repositories
         private IEnumerable<DComic> ToDComicList(IDbCommand command)
         {
             List<DComic> items = new List<DComic>();
-            //gets all comic objects without 
+            //gets all comic objects without authors
             using (var reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -192,12 +193,8 @@ namespace Data.Repositories
             AddDSeries(toAdd.Series);
             AddDComic(toAdd);
             AddDAuthors(toAdd);
-            foreach (var auth in toAdd.Authors)
-            {
-
-                Console.WriteLine(auth.Id);
-            }
             LinkAuthorComic(toAdd);
+            AddStock(toAdd);
 
         }
 
@@ -404,6 +401,27 @@ namespace Data.Repositories
             }
         }
 
+        private void AddStock(DComic toAdd)
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.CommandText = @"Select * From Stock Where Stock.ComicID = @comic_Id";
+                command.AddParameter("comic_Id", toAdd.Id);
+                int? id = (int?)command.ExecuteScalar();
+
+                if (id == null)
+                {
+                    command.CommandText = @"Insert into Stock (ComicID, Stock) " +
+                       "values (@comic_Id, @stock)" +
+                       "SELECT CAST(scope_identity() AS int);";
+                    command.AddParameter("stock", toAdd.AmountAvailable);
+
+                    command.ExecuteNonQuery();
+
+                }
+
+            }
+        }
         #endregion
 
         #region GetDomainObject
@@ -414,10 +432,12 @@ namespace Data.Repositories
             {
                 command.CommandText = "SELECT Comics.ID as Comic_Id, Title, SeriesNr, " +
                                       "Publishers.ID as Publisher_Id, Publishers.Name as Publisher_Name, " +
-                                      "Series.ID as Series_ID, Series.Name as Series_Name " +
+                                      "Series.ID as Series_ID, Series.Name as Series_Name, " +
+                                      "Stock.Stock as Amount_Available " +
                                       "FROM Comics " +
                                       "INNER Join Publishers ON Publishers.ID = Comics.Publisher_ID " +
                                       "INNER Join Series ON Series.ID = Comics.Series_ID " +
+                                      "INNER JOIN Stock ON Comics.ID = Stock.ComicID " +
                                       "Where Comics.IsInCatalogue = 1;";
 
 

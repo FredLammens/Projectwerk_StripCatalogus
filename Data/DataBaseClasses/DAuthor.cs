@@ -37,17 +37,5 @@ namespace DataLayer.DataBaseClasses
             Name = name;
         }
         #endregion
-
-        #region Comparing
-        public override bool Equals(object obj)
-        {
-            return obj is DAuthor author &&
-                   Name == author.Name;
-        }
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Name);
-        }
-        #endregion
     }
 }

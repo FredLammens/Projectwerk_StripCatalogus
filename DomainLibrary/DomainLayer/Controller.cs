@@ -14,7 +14,7 @@ namespace DomainLibrary.DomainLayer
         #region Properties
         private readonly IUnitOfWork uow;
         private readonly Catalogue catalogue;
-
+        private readonly Inventory inventory;
         #endregion
 
         #region Constuctors
@@ -27,6 +27,7 @@ namespace DomainLibrary.DomainLayer
             this.uow = uow;
             //laden van catalogue
             catalogue = new Catalogue(uow.Comics.GetComics().ToList());
+            inventory = new Inventory();
         }
         #endregion
 
@@ -86,7 +87,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="orderComics">list of comics to order with amounts</param>
         public void AddOrder(int id, DateTime date, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
         {
-            Inventory.AddOrder(id, date, orderComics);
+            inventory.AddOrder(id, date, orderComics);
         }
         /// <summary>
         /// Adds delivery to inventory
@@ -97,7 +98,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="orderComics">list of comics to deliver with amounts</param>
         public void AddDelivery(int id, DateTime date, DateTime deliveryDate, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
         {
-            Inventory.AddDelivery(id, date, deliveryDate, orderComics);
+            inventory.AddDelivery(id, date, deliveryDate, orderComics);
         }
         #endregion
 

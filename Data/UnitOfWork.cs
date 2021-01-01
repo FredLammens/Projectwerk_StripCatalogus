@@ -1,4 +1,5 @@
 ﻿using Data.Repositories;
+using DataLayer.Repositories;
 using DomainLibrary;
 using DomainLibrary.Repositories;
 using System;
@@ -18,6 +19,9 @@ namespace DataLayer
         /// </summary>
         private AdoNetContext context;
         public IComicRepository Comics { get; }
+        public IOrderRepository Orders { get; }
+        public IDeliveryRepository Deliveries { get; }
+
         #endregion
 
         #region Constructor
@@ -27,6 +31,16 @@ namespace DataLayer
         public UnitOfWork()
         {
             context = new AdoNetContext(true);
+            if (Comics == null)
+            {
+                Comics = new ComicRepository(context);
+            }
+
+            if (Orders == null)
+            {
+                Orders = new OrderRepository(context);
+            }
+
             if (Comics == null)
             {
                 Comics = new ComicRepository(context);
