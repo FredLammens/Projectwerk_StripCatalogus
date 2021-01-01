@@ -9,11 +9,11 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// List of orders made
         /// </summary>
-        public static List<Order> Orders { get; private set; }
+        public List<Order> Orders { get; private set; }
         /// <summary>
         /// List of deliveries made
         /// </summary>
-        public static List<Delivery> Deliveries { get; private set; }
+        public List<Delivery> Deliveries { get; private set; }
         /// <summary>
         /// Add order to orders
         /// </summary>
@@ -21,7 +21,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="date">date of order</param>
         /// <param name="orderComics">list of comics to order with amounts</param>
         /// <returns>Order made</returns>
-        public static Order AddOrder(int id, DateTime date, Dictionary<Comic, int> orderComics) 
+        public Order AddOrder(int id, DateTime date, Dictionary<Comic, int> orderComics) 
         {
             Order order = new Order(id, date, orderComics);
             Orders.Add(order);
@@ -35,7 +35,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="deliveryDate">date for delivery</param>
         /// <param name="orderComics">list of comics to deliver with amounts</param>
         /// <returns>Delivery made</returns>
-        public static Delivery AddDelivery(int id, DateTime date,DateTime deliveryDate ,Dictionary<Comic, int> orderComics)
+        public Delivery AddDelivery(int id, DateTime date,DateTime deliveryDate ,Dictionary<Comic, int> orderComics)
         {
             Delivery delivery = new Delivery(id, date, deliveryDate, orderComics);
             Deliveries.Add(delivery);

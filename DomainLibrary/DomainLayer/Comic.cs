@@ -21,7 +21,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// amount of this comic available
         /// </summary>
-        public int AmountAvailable { get; set; }
+        public int AmountAvailable { get; set; } //todo: setter not below 0
 
         private Series _series;
         /// <summary>

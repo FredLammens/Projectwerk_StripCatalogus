@@ -24,7 +24,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// List of comics from delivery combined with amounts
         /// </summary>
-        public Dictionary<Comic, int> OrderComics
+        public Dictionary<Comic, int> OrderComics //deliverycomics and int => <0
         {
             get => _orderComics;
             private set

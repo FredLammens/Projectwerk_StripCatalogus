@@ -124,7 +124,7 @@ GO
 
 CREATE TABLE [Deliveries]
 (
- [ID]           int NOT NULL ,
+ [ID]           int  IDENTITY (1, 1) NOT NULL ,
  [Date]         datetime NOT NULL ,
  [DeliveryDate] datetime NOT NULL ,
 
@@ -136,7 +136,7 @@ GO
 CREATE TABLE [DeliveriesComics]
 (
  [AmountDelivered] int NOT NULL ,
- [DeliverieID]     int NOT NULL ,
+ [DeliveryID]     int NOT NULL ,
  [StockID]         int NOT NULL ,
 
 
@@ -164,7 +164,7 @@ GO
 
 CREATE TABLE [Orders]
 (
- [ID]        int NOT NULL ,
+ [ID]        int  IDENTITY (1, 1) NOT NULL ,
  [OrderDate] datetime NOT NULL ,
 
 

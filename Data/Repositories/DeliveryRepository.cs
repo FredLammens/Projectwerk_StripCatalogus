@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataLayer.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    class DeliveryRepository : IDeliveryRepository
     {
         #region Properties
         /// <summary>
@@ -22,42 +22,44 @@ namespace DataLayer.Repositories
         /// Constructor to make a ComicRepository.
         /// </summary>
         /// <param name="context">Context to use.</param>
-        public OrderRepository(AdoNetContext context)
+        public DeliveryRepository(AdoNetContext context)
         {
             this.context = context;
         }
         #endregion
 
         #region AddDomainObject
-        public void AddOrder(Order order)
+        public void AddDelivery(Delivery delivery)
         {
-            DOrder toAdd = Mapper.ToDOrder(order);
+            DDelivery toAdd = Mapper.toDDelivery(delivery);
             SetComicIds(toAdd);
-            AddDOrder(toAdd);
-            LinkStockToOrder(toAdd);
+            AddDDelivery(toAdd);
+            LinkStockToDelivery(toAdd);
         }
-
         #endregion
 
         #region AddDataObject
-        private void AddDOrder(DOrder dOrder)
+        private void AddDDelivery(DDelivery dDelivery)
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = $@"Insert into Orders (OrderDate) " +
-                                        "values (@date);";
-                command.AddParameter("date", dOrder.Date);
-                dOrder.Id = (int)command.ExecuteScalar();
+                command.CommandText = $@"Insert into Deliveries (DeliveryDate, Date) " +
+                                        "values (@deliveryDate ,@date);";
+
+                command.AddParameter("date", dDelivery.Date);
+                command.AddParameter("deliveryDate", dDelivery.DeliveryDate);
+
+                dDelivery.Id = (int)command.ExecuteScalar();
             }
         }
 
-        private void LinkStockToOrder(DOrder dOrder)
+        private void LinkStockToDelivery(DDelivery dDelivery)
         {
             using (var command = context.CreateCommand())
             {
-                command.AddParameter("order_Id", dOrder.Id);
+                command.AddParameter("delivery_Id", dDelivery.Id);
                 int i = 0;
-                foreach (var comicPair in dOrder.OrderComics)
+                foreach (var comicPair in dDelivery.OrderComics)
                 {
                     command.CommandText = @"Select Stock.ID From Stock " +
                                           $"where Stock.ComicID = @comic_Id{i};";
@@ -66,14 +68,14 @@ namespace DataLayer.Repositories
 
                     int StockID = (int)command.ExecuteScalar();
 
-                    command.CommandText = @"insert into OrdersComics (OrderID, StockID, AmountOrdered) " +
-                                          $"values (@order_Id, @stock_Id{i}, @amount{i});";
+                    command.CommandText = @"insert into DeliveriesComics (DeliveryID, StockID, AmountDelivered) " +
+                                          $"values (@delivery_Id, @stock_Id{i}, @amount{i});";
 
                     command.AddParameter($"stock_Id{i}", StockID);
                     command.AddParameter($"amount{i}", comicPair.Value);
 
                     command.CommandText = @"UPDATE Stock " +
-                                          $"SET Stock.Stock += @amount{i}" +
+                                          $"SET Stock.Stock -= @amount{i}" +
                                           $"WHERE Stock.ID = @stock_Id{i};";
 
                     i++;
@@ -81,11 +83,10 @@ namespace DataLayer.Repositories
 
             }
         }
-
         #endregion
 
         #region GetIds
-        private void SetComicIds(DOrder toAdd)
+        private void SetComicIds(DDelivery toAdd)
         {
             using (var command = context.CreateCommand())
             {
@@ -116,10 +117,6 @@ namespace DataLayer.Repositories
                 }
             }
         }
-
         #endregion
-
-
-
     }
 }

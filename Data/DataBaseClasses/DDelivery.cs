@@ -10,12 +10,12 @@ namespace DataLayer.DataBaseClasses
         /// <summary>
         /// Id of delivery
         /// </summary>
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Date of delivery made
         /// </summary>
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Date delivery planned

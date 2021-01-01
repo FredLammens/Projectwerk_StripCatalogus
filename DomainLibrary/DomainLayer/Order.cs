@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomainLibrary.DomainLayer
 {
-    public class Order
+    public class Order //todo: add to amount available
     {
         #region Properties
         /// <summary>
@@ -40,7 +40,7 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="id">name of order</param>
         /// <param name="date">date order was made</param>
-        /// <param name="orderComics">comics and amounts of order</param>
+        /// <param name="orderComics">comics and amounts of order</param> //TODO: int => >0
         public Order(int id, DateTime date, Dictionary<Comic, int> orderComics)
         {
             Id = id;
@@ -49,22 +49,12 @@ namespace DomainLibrary.DomainLayer
         }
         #endregion
         #region Methods
-        ///// <summary>
-        ///// Adds order to list of orders after checking if possible
-        ///// </summary>
-        ///// <param name="comic">comic to add</param>
-        ///// <param name="amount">amount to add</param>
-        //public void AddOrder(Comic comic, int amount)
-        //{
-        //    if (amount > comic.AmountAvailable)
-        //        throw new ArgumentException($"amount: {amount} exceeds amount of {comic.Title}: {comic.AmountAvailable}.");
-        //    _orderComics.Add(comic, amount);
-        //}
+
         /// <summary>
         /// Checks if amounts are possible with amounts available in comic
         /// </summary>
         /// <param name="orderComics">list of orders , comics and amount comined</param>
-        private void CheckAmount(Dictionary<Comic, int> orderComics) 
+        private void CheckAmount(Dictionary<Comic, int> orderComics) //TODO: update to add to available
         {
             foreach (var orderComic in orderComics)
             {

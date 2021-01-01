@@ -1,4 +1,5 @@
 ﻿using Data.Repositories;
+using DataLayer.Repositories;
 using DomainLibrary;
 using DomainLibrary.Repositories;
 using System;
@@ -37,10 +38,10 @@ namespace DataLayer
 
             if (Orders == null)
             {
-                Comics = new ComicRepository(context);
+                Orders = new OrderRepository(context);
             }
 
-            if (Deliveries == null)
+            if (Comics == null)
             {
                 Comics = new ComicRepository(context);
             }

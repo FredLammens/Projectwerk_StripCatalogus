@@ -168,7 +168,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A Order object.</returns>
         static public Order ToOrder(DOrder dOrder)
         {
-            Order toReturn = new Order(dOrder.Id, dOrder.Date, ToDOrderComics(dOrder.OrderComics));
+            Order toReturn = new Order(dOrder.Id, dOrder.Date, ToOrderComics(dOrder.OrderComics));
 
             return toReturn;
         }
@@ -178,7 +178,7 @@ namespace DataLayer.DataBaseClasses
         /// </summary>
         /// <param name="orderComics">OrderComics to transform.</param>
         /// <returns>The transformed dictionary.</returns>
-        private static Dictionary<Comic, int> ToDOrderComics(Dictionary<DComic, int> orderComics)
+        private static Dictionary<Comic, int> ToOrderComics(Dictionary<DComic, int> orderComics)
         {
             Dictionary<Comic, int> toReturn = new Dictionary<Comic, int>();
             foreach (var item in orderComics)
@@ -213,7 +213,7 @@ namespace DataLayer.DataBaseClasses
         /// <returns>A DDelivery object.</returns>
         static public Delivery toDelivery(DDelivery dDelivery)
         {
-            Delivery toReturn = new Delivery(dDelivery.Id, dDelivery.Date, dDelivery.DeliveryDate, ToDOrderComics(dDelivery.OrderComics));
+            Delivery toReturn = new Delivery(dDelivery.Id, dDelivery.Date, dDelivery.DeliveryDate, ToOrderComics(dDelivery.OrderComics));
 
             return toReturn;
         }
