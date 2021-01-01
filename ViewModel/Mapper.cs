@@ -1,6 +1,7 @@
 ﻿using DomainLibrary.DomainLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using ViewModel.PresentationBaseClasses;
 
@@ -76,6 +77,25 @@ namespace ViewModel
                 viewPublishers.Add(new ViewPublisher(publisher.Name));
             }
             return viewPublishers;
+        }
+
+        /// <summary>
+        /// Maps a KeyValuePair of <ViewComic, int> to a dictionary of <Comic, int>
+        /// </summary>
+        /// <param name="viewcomicDict"></param>
+        /// <returns></returns>
+        public static Dictionary<Comic, int> ComicDictMapper(ObservableCollection<KeyValuePair<ViewComic, int>> viewcomicDict)
+        {
+            Dictionary<Comic, int> comicDict = new Dictionary<Comic, int>();
+
+            for (int i = 0; i < viewcomicDict.Count ; i++)
+            {
+                Comic comic = ViewComicMapper(viewcomicDict[i].Key);
+
+                comicDict.Add(comic, viewcomicDict[i].Value);
+            }
+
+            return comicDict;
         }
     }
 }
