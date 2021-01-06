@@ -171,3 +171,7 @@ C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_S
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\ViewModel.pdb
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\DataLayer.pdb
 C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\DomainLibrary.pdb
+C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.Extras.dll
+C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.Platform.dll
+C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.dll
+C:\Users\User\Desktop\ProjectwerkStrips\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll

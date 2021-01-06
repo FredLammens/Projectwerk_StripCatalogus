@@ -31,6 +31,7 @@ namespace Tests.DataLayerTests
             result1.Should().HaveCount(2);
             result1.First().Name.Should().Be("author1");
             result1.ElementAt(1).Name.Should().Be("author2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestUpdateAuthor()
@@ -47,6 +48,7 @@ namespace Tests.DataLayerTests
             result1 = cr.GetAllAuthors();
             result1.Should().HaveCount(1);
             result1.First().Name.Should().Be("author2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestGetAllAuthors()
@@ -69,6 +71,7 @@ namespace Tests.DataLayerTests
             result1.First().Name.Should().Be("author1");
             result1.ElementAt(1).Name.Should().Be("author2");
             result1.ElementAt(2).Name.Should().Be("author3");
+            context.Dispose();
         }
         [TestMethod]
         public void CheckDuplicateAuthor()
@@ -86,6 +89,7 @@ namespace Tests.DataLayerTests
             cr.AddAuthor(author3);
             var result2 = cr.GetAllAuthors();
             result2.Should().HaveCount(2);
+            context.Dispose();
         }
     }
 }

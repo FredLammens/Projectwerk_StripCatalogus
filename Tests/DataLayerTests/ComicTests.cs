@@ -41,6 +41,7 @@ namespace Tests.DataLayerTests
             result.ElementAt(1).Authors.Should().HaveCount(4);
             result.ElementAt(1).Authors.First().Name.Should().Be("Léturgie Jean");
             result.ElementAt(1).Authors.ElementAt(3).Name.Should().Be("Pearce");
+            context.Dispose();
         }
         [TestMethod]
         public void TestAddComics()
@@ -84,6 +85,7 @@ namespace Tests.DataLayerTests
             result.ElementAt(2).Authors.Should().HaveCount(2);
             result.ElementAt(2).Authors.First().Name.Should().Be("Morris");
             result.ElementAt(2).Authors.ElementAt(1).Name.Should().Be("Lo Hartog Van Banda");
+            context.Dispose();
         }
         [TestMethod]
         public void CheckDuplicateComic()
@@ -110,6 +112,7 @@ namespace Tests.DataLayerTests
             result.Should().HaveCount(2);
             result.First().Title.Should().Be("De legende van het Westen");
             result.ElementAt(1).Title.Should().Be("De legende van het Westen Part 2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestGetComics()
@@ -129,6 +132,7 @@ namespace Tests.DataLayerTests
             result.Should().HaveCount(2);
             result.First().Title.Should().Be("De legende van het Westen");
             result.ElementAt(1).Title.Should().Be("Oklahoma Jim");
+            context.Dispose();
         }
 
         [TestMethod]
@@ -149,6 +153,7 @@ namespace Tests.DataLayerTests
             result1.Should().HaveCount(1);
             result1.First().Title.Should().Be("Oklahoma Jim");
             result1.First().SeriesNumber.Should().Be(69);
+            context.Dispose();
         }
         [TestMethod]
         public void TestUpdateComic()
@@ -177,6 +182,7 @@ namespace Tests.DataLayerTests
             result1.First().Authors.Should().HaveCount(2);
             result1.First().Authors.First().Name.Should().Be("Morris");
             result1.First().Authors.ElementAt(1).Name.Should().Be("Nordmann Patrick");
+            context.Dispose();
         }
         
     }
