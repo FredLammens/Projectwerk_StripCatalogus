@@ -90,19 +90,18 @@ namespace ViewModel
         #endregion
 
         #region Comparing
+
         public override bool Equals(object obj)
         {
             return obj is ViewComic comic &&
                    Title == comic.Title &&
-                   Series == comic.Series &&
-                   SeriesNumber == comic.SeriesNumber &&
-                   EqualityComparer<List<ViewAuthor>>.Default.Equals(Authors, comic.Authors) &&
-                   EqualityComparer<ViewPublisher>.Default.Equals(Publisher, comic.Publisher);
+                   EqualityComparer<ViewSeries>.Default.Equals(Series, comic.Series) &&
+                   SeriesNumber == comic.SeriesNumber;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Title, Series, SeriesNumber, Authors, Publisher);
+            return HashCode.Combine(Title, Series, SeriesNumber);
         }
 
         #endregion
@@ -111,7 +110,7 @@ namespace ViewModel
         public override string ToString()
         {
             return Title;
-        }
+        } 
         #endregion
     }
 }

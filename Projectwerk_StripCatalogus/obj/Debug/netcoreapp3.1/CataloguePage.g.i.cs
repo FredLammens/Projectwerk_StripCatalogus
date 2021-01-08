@@ -31,7 +31,6 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
-using ViewModel;
 
 
 namespace Projectwerk_StripCatalogus_UI {

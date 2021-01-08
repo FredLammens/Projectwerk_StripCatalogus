@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DomainLibrary.DomainLayer;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -10,54 +11,44 @@ namespace ViewModel
 {
     public class ImportExportViewModel : ViewModelBase
     {
-
+        private Controller controller;
+        private List<ViewComic> comics;
+        private List<ViewComic> doubles;
+        private List<Comic> comicsToImport;
         public ImportExportViewModel()
         {
-            CreateCommand();
+            controller = new Controller(new UnitOfWork());
         }
 
-        Controller controller = new Controller(new UnitOfWork());
-
-
-
-
-        public ICommand ImportCommand
+        public bool Import(string comicsFilePath)
         {
-            get;
-            internal set;
-        }
-        public ICommand ExportCommand
-        {
-            get;
-            internal set;
+
+            comics = Parser.DeSerializeComics(comicsFilePath).ToList();
+            comicsToImport = new List<Comic>();
+            doubles = comics.GroupBy(c => c)
+                                .Where(g => g.Count() > 1)
+                                .Select(y => y.Key)
+                                .ToList();
+            if (doubles.Count > 0)
+                throw new PresentationException($"Er zijn {doubles.Count} dubbele strips gevonden. wilt u dit overslaan?");
+            return ContinueImport();
         }
 
-        private void CreateCommand()
+        public bool ContinueImport()
         {
-            ImportCommand = new RelayCommand(ImportExecute);
-            ExportCommand = new RelayCommand(ExportExecute);
-        }
-
-        public void ImportExecute()
-        {
-            // var openFileDialog = new OpenFileDialog();
-            //(openFileDialog.ShowDialog() == true);
-            // txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
-
-
-            string comicsFilePath = @"C:\Users\niels\Downloads\dump.json";
-
-            List<ViewComic> comics = Parser.DeSerializeComics(comicsFilePath).ToList();
-            List<Comic> comicsToImport = new List<Comic>();
+            foreach (var item in doubles)
+            {
+                comics.Remove(item);
+            }
             foreach (ViewComic comic in comics)
             {
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
             }
-
-            //controller.AddComics(comicsToImport);
+            controller.AddComics(comicsToImport);
+            return true;
         }
 
-        public void ExportExecute()
+        public void Export()
         {
 
         }
