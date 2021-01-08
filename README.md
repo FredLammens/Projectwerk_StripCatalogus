@@ -104,4 +104,5 @@ Totaal : 85u
 ### Database ontwerp:
 
 ![db](https://user-images.githubusercontent.com/23512215/102594722-da26e480-4116-11eb-9ace-2d2f0518be40.jpg)
+![DB_Scheme_Proj](https://user-images.githubusercontent.com/23512215/104032690-cd098c80-51ce-11eb-8b0a-f2db2679ef2a.PNG)
 
