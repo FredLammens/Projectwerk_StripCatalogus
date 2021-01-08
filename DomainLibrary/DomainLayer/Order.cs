@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DomainLibrary.DomainLayer
 {
-    public class Order //todo: add to amount available
+    public class Order
     {
         #region Properties
         /// <summary>
@@ -26,6 +27,7 @@ namespace DomainLibrary.DomainLayer
             private set 
             {
                 CheckAmount(value);
+                AddToAmounts(value);
                 _orderComics = value;
             } 
         }
@@ -40,7 +42,7 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="id">name of order</param>
         /// <param name="date">date order was made</param>
-        /// <param name="orderComics">comics and amounts of order</param> //TODO: int => >0
+        /// <param name="orderComics">comics and amounts of order</param>
         public Order(int id, DateTime date, Dictionary<Comic, int> orderComics)
         {
             Id = id;
@@ -49,30 +51,54 @@ namespace DomainLibrary.DomainLayer
         }
         #endregion
         #region Methods
-
+        /// <summary>
+        /// Adds an order to the list of orders
+        /// </summary>
+        /// <param name="comic">comic to add to order</param>
+        /// <param name="amount">amount of comic to add to order</param>
+        public void AddOrderCommic(Comic comic, int amount) 
+        {
+            if(amount < 0)
+                throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
+            comic.AmountAvailable += amount;
+            _orderComics.Add(comic, amount);
+        }
         /// <summary>
         /// Checks if amounts are possible with amounts available in comic
         /// </summary>
         /// <param name="orderComics">list of orders , comics and amount comined</param>
-        private void CheckAmount(Dictionary<Comic, int> orderComics) //TODO: update to add to available
+        private void CheckAmount(Dictionary<Comic, int> orderComics)
         {
+            if (orderComics.Values.Any(amount => amount < 0))
+                throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
             foreach (var orderComic in orderComics)
             {
                 if (orderComic.Value > orderComic.Key.AmountAvailable)
-                    throw new ArgumentException($"amount: {orderComic.Value} exceeds amount of {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
+                    throw new ArgumentException($"hoeveelheid: {orderComic.Value} overschrijdt hoeveelheid van {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
+            }
+        }
+        /// <summary>
+        /// Adds the amount of order to the comic
+        /// </summary>
+        /// <param name="orderComics">list of orders , comics and amount comined</param>
+        private void AddToAmounts(Dictionary<Comic, int> orderComics) 
+        {
+            foreach (var orderComic in orderComics)
+            {
+                orderComic.Key.AmountAvailable += orderComic.Value;
             }
         }
         #endregion
         #region Overriden Methods
         public override string ToString()
         {
-            String toReturn = $"Order: {Id}\n" +
-                  $"Made on: {Date}\n" +
-                  $"With Products:\n";
+            String toReturn = $"Bestelling: {Id}\n" +
+                  $"Gemaakt op: {Date}\n" +
+                  $"Met producten :\n";
             string toAdd = "";
             foreach (var orderComic in OrderComics)
             {
-                toAdd += "Comic Name: " + orderComic.Key.Title + "Amount: " + orderComic.Value + " \n";
+                toAdd += "Strip naam: " + orderComic.Key.Title + "hoeveelheid: " + orderComic.Value + " \n";
             }
             return toReturn + toAdd;
         }
