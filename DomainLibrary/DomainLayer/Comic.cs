@@ -18,10 +18,19 @@ namespace DomainLibrary.DomainLayer
         /// The title of the comic
         /// </summary>
         public string Title { get => _title; set { if (string.IsNullOrEmpty(value)) throw new DomainException("Titel mag niet leeg zijn."); _title = value; } }
+
+        private int _amountAvailable;
         /// <summary>
         /// amount of this comic available
         /// </summary>
-        public int AmountAvailable { get; set; } //todo: setter not below 0
+        public int AmountAvailable {
+            get => _amountAvailable;
+            set {
+                if (value < 0)
+                    throw new DomainException("hoeveelheid mag niet negatief zijn.");
+                _amountAvailable = value;
+            } 
+        }
 
         private Series _series;
         /// <summary>
