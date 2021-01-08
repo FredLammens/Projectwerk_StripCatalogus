@@ -74,7 +74,7 @@ namespace DomainLibrary.DomainLayer
             foreach (var orderComic in orderComics)
             {
                 if (orderComic.Value > orderComic.Key.AmountAvailable)
-                    throw new ArgumentException($"amount: {orderComic.Value} exceeds amount of {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
+                    throw new ArgumentException($"hoeveelheid: {orderComic.Value} overschrijdt hoeveelheid van {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
             }
         }
         /// <summary>
@@ -92,13 +92,13 @@ namespace DomainLibrary.DomainLayer
         #region Overriden Methods
         public override string ToString()
         {
-            String toReturn = $"Order: {Id}\n" +
-                  $"Made on: {Date}\n" +
-                  $"With Products:\n";
+            String toReturn = $"Bestelling: {Id}\n" +
+                  $"Gemaakt op: {Date}\n" +
+                  $"Met producten :\n";
             string toAdd = "";
             foreach (var orderComic in OrderComics)
             {
-                toAdd += "Comic Name: " + orderComic.Key.Title + "Amount: " + orderComic.Value + " \n";
+                toAdd += "Strip naam: " + orderComic.Key.Title + "hoeveelheid: " + orderComic.Value + " \n";
             }
             return toReturn + toAdd;
         }

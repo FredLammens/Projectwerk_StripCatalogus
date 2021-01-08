@@ -24,7 +24,7 @@ namespace DomainLibrary.DomainLayer
             get => _deliveryDate;
             set {
                 if (value < DateTime.Now)
-                    throw new ArgumentException("deliverydate kan niet in het verleden zijn.");
+                    throw new ArgumentException("levering kan niet voor in het verleden zijn.");
                 _deliveryDate = value;
             } 
         }
@@ -88,7 +88,7 @@ namespace DomainLibrary.DomainLayer
             foreach (var orderComic in orderComics)
             {
                 if (orderComic.Value > orderComic.Key.AmountAvailable)
-                    throw new ArgumentException($"amount: {orderComic.Value} exceeds amount of {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
+                    throw new ArgumentException($"hoeveelheid: {orderComic.Value} overschrijdt de hoeveelheid van {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
                 orderComic.Key.AmountAvailable -= orderComic.Value;
             }
         }
@@ -96,14 +96,14 @@ namespace DomainLibrary.DomainLayer
         #region overriden methods
         public override string ToString()
         {
-            String toReturn = $"Delivery: {Id}\n" +
-                              $"Made on: {Date}\n" +
-                              $"To be delivered on: {DeliveryDate}" +
-                              $"With Products:\n";
+            String toReturn = $"Levering: {Id}\n" +
+                              $"Gemaakt op: {Date}\n" +
+                              $"Te leveren op: {DeliveryDate}" +
+                              $"Met producten: \n";
             string toAdd = "";
             foreach (var orderComic in OrderComics)
             {
-                toAdd += "Comic Name: " + orderComic.Key.Title + "Amount: " + orderComic.Value + " \n"; 
+                toAdd += "Strip naam: " + orderComic.Key.Title + "hoeveelheid: " + orderComic.Value + " \n"; 
             }
             return toReturn + toAdd;
         }
