@@ -10,17 +10,33 @@ namespace ViewModel
     public class ImportExportViewModel : ViewModelBase
     {
         #region private members
+        /// <summary>
+        /// DomainController
+        /// </summary>
         private readonly Controller controller;
+        /// <summary>
+        /// holds deserialized Comics
+        /// </summary>
         private List<ViewComic> comics;
+        /// <summary>
+        /// holds a list of double viewcomics
+        /// </summary>
         private List<ViewComic> doubles;
+        /// <summary>
+        /// Mapped comics
+        /// </summary>
         private List<Comic> comicsToImport;
+
         private double _percentage;
         private bool _showLoadingPanel = false;
         private bool _showButtonPanel = true;
-        private bool _showLoadingBar = true; //Todo:
+        private bool _showLoadingBar = true;
         private string _loadingText;
         #endregion
         #region Properties
+        /// <summary>
+        /// Databinded percentage for loadingbar
+        /// </summary>
         public double Percentage
         {
             get { return _percentage; }
@@ -30,6 +46,9 @@ namespace ViewModel
                 OnPropertyChanged("Percentage");
             }
         }
+        /// <summary>
+        /// Databinded bool for visibility of loadingPanel
+        /// </summary>
         public bool ShowLoadingPanel
         {
             get { return _showLoadingPanel; }
@@ -39,6 +58,9 @@ namespace ViewModel
                 OnPropertyChanged("ShowLoadingPanel");
             }
         }
+        /// <summary>
+        /// Databinded bool for visibility of buttonPanel
+        /// </summary>
         public bool ShowButtonPanel
         {
             get { return _showButtonPanel; }
@@ -48,6 +70,9 @@ namespace ViewModel
                 OnPropertyChanged("ShowButtonPanel");
             }
         }
+        /// <summary>
+        /// Databinded text for loadingPanel
+        /// </summary>
         public string LoadingText 
         {
             get => _loadingText;
@@ -57,6 +82,9 @@ namespace ViewModel
                 OnPropertyChanged();
             }
         }
+        /// <summary>
+        /// Databinded bool for visibility of loadingPanel loadingbar
+        /// </summary>
         public bool ShowLoadingBar 
         {
             get => _showLoadingBar;
@@ -67,12 +95,21 @@ namespace ViewModel
             }
         }
         #endregion
+        #region Constructor
+        /// <summary>
+        /// Controller that adds the domainController
+        /// </summary>
         public ImportExportViewModel()
         {
             controller = new Controller(new UnitOfWork());
         }
-
-        public bool Import(string comicsFilePath)
+        #endregion
+        #region Methods
+        /// <summary>
+        /// imports comics from file.
+        /// </summary>
+        /// <param name="comicsFilePath"></param>
+        public void Import(string comicsFilePath)
         {
             LoadingText = "Checken op dubbele strips.";
             Percentage = 0;
@@ -86,15 +123,20 @@ namespace ViewModel
                                 .ToList();
             if (doubles.Count > 0)
                 throw new PresentationException($"Er zijn {doubles.Count} dubbele strips gevonden. wilt u dit overslaan?");
-            return ContinueImport();
+            ContinueImport();
         }
+        /// <summary>
+        /// Resetpannels to show buttonpanel only
+        /// </summary>
         public void ResetPanels() 
         {
             ShowLoadingPanel = false;
             ShowButtonPanel = true;
         }
-
-        public bool ContinueImport()
+        /// <summary>
+        /// continues import after removing any doubles
+        /// </summary>
+        public void ContinueImport()
         {
             if (doubles.Count > 0)
             {
@@ -116,9 +158,11 @@ namespace ViewModel
             controller.AddComics(comicsToImport);
             ShowLoadingPanel = false;
             ShowButtonPanel = true; 
-            return true;
         }
-
+        /// <summary>
+        /// Exports comics from catalogue to exportpath
+        /// </summary>
+        /// <param name="exportPath">path to export.</param>
         public void Export(string exportPath)
         {
             ShowLoadingBar = false;
@@ -130,5 +174,6 @@ namespace ViewModel
             ShowButtonPanel = true;
             ShowLoadingBar = true;
         }
+        #endregion
     }
 }
