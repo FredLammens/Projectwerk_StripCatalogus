@@ -118,7 +118,7 @@ namespace Projectwerk_StripCatalogus_UI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Projectwerk_StripCatalogus_UI;V1.0.0.0;component/addcomicpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Projectwerk_StripCatalogus_UI;component/addcomicpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\AddComicPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

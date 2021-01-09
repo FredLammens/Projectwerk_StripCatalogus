@@ -22,13 +22,17 @@ namespace ImportExport_UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ImportExportViewModel vm;
+        private ImportExportViewModel vm = new ImportExportViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            vm = new ImportExportViewModel();
+            this.DataContext = vm;
         }
-        private void ImportComicsBtn_Click(object sender, RoutedEventArgs e) //async maken
+        private async void ImportComicsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(() => Importcomics());
+        }
+        private void Importcomics()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             string path = "";
@@ -39,21 +43,37 @@ namespace ImportExport_UI
                 if (vm.Import(path) == true)
                     MessageBox.Show("finished importing");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                if (MessageBox.Show(ex.Message , "Error parsing file", MessageBoxButton.YesNo) == MessageBoxResult.Yes) 
+                if (MessageBox.Show(ex.Message, "Error parsing file", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     try
                     {
                         if (vm.ContinueImport() == true)
                             MessageBox.Show("finished importing");
                     }
-                    catch (Exception exception) 
+                    catch (Exception exception)
                     {
                         MessageBox.Show(exception.Message);
                     }
                 }
             }
+        }
+        private void export() 
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            try
+            {
+                vm.Export(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private async void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(() => export());
         }
     }
 }

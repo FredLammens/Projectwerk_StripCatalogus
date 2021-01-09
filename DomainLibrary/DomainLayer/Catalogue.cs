@@ -41,17 +41,16 @@ namespace DomainLibrary.DomainLayer
         /// Adds a comic to the Catalogue
         /// </summary>
         /// <param name="comic">comic object to add</param>
-        public void AddComic(Comic comic) 
+        public void AddComic(Comic comic)
         {
-            if (_comics.Contains(comic)) 
-                throw new DomainException($"De strip {comic.Title} zit al in de catalogus.");
-            _comics.Add(comic);
+            if (!_comics.Contains(comic)) //Todo: check if database works
+                _comics.Add(comic);
         }
         /// <summary>
         /// Removes a comic of the catalogue
         /// </summary>
         /// <param name="comic">comic object to remove</param>
-        public void RemoveComic(Comic comic) 
+        public void RemoveComic(Comic comic)
         {
             if (!_comics.Contains(comic))
                 throw new DomainException("Comic bestaat niet.");
@@ -62,7 +61,7 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="index">index of comic to update</param>
         /// <param name="comic">comic object to update</param>
-        public void UpdateComic(int index, Comic comic) 
+        public void UpdateComic(int index, Comic comic)
         {
             if (index >= _comics.Count)
                 throw new DomainException("Index is te groot.");

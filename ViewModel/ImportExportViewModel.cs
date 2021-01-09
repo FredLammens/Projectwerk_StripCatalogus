@@ -1,20 +1,52 @@
 ﻿using DataLayer;
 using DomainLibrary.DomainLayer;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
 using ViewModel.PresentationBaseClasses;
 
 namespace ViewModel
 {
     public class ImportExportViewModel : ViewModelBase
     {
-        private Controller controller;
+        private readonly Controller controller;
         private List<ViewComic> comics;
         private List<ViewComic> doubles;
         private List<Comic> comicsToImport;
+
+        private double _percentage;
+        private bool _showLoadingPanel = false;
+        private bool _showButtonPanel = true;
+        public double Percentage
+        {
+            get { return _percentage; }
+            private set
+            {
+                _percentage = value;
+                OnPropertyChanged("Percentage");
+            }
+        }
+        public bool ShowLoadingPanel
+        {
+            get { return _showLoadingPanel; }
+            private set
+            {
+                _showLoadingPanel = value;
+                OnPropertyChanged("ShowLoadingPanel");
+            }
+        }
+        public bool ShowButtonPanel
+        {
+            get { return _showButtonPanel; }
+            private set
+            {
+                _showButtonPanel = value;
+                OnPropertyChanged("ShowButtonPanel");
+            }
+        }
+
         public ImportExportViewModel()
         {
             controller = new Controller(new UnitOfWork());
@@ -22,7 +54,9 @@ namespace ViewModel
 
         public bool Import(string comicsFilePath)
         {
-
+            Percentage = 0;
+            ShowButtonPanel = false;
+            ShowLoadingPanel = true;
             comics = Parser.DeSerializeComics(comicsFilePath).ToList();
             comicsToImport = new List<Comic>();
             doubles = comics.GroupBy(c => c)
@@ -36,21 +70,31 @@ namespace ViewModel
 
         public bool ContinueImport()
         {
-            foreach (var item in doubles)
+            if (doubles.Count > 0)
             {
-                comics.Remove(item);
+                foreach (var item in doubles)
+                {
+                    comics.Remove(item);
+                }
             }
+            Percentage += 1;
+            double oneLoopPercentage = 1.0 / comics.Count;
             foreach (ViewComic comic in comics)
             {
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
+                Percentage += oneLoopPercentage;
             }
+            //Todo: uncommenten voor commit
             controller.AddComics(comicsToImport);
+            Percentage += 1;
+            ShowLoadingPanel = false;
+            ShowButtonPanel = true; 
             return true;
         }
 
-        public void Export()
+        public void Export(string exportPath)
         {
-
+            Parser.SerializeComics(Mapper.ComicsMapper(controller.GetCatalogue().Comics), exportPath);
         }
     }
 }

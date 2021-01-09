@@ -6,14 +6,21 @@
         xmlns:local="clr-namespace:ImportExport_UI"
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="ImportExport_UI.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="100" Width="250">
+        Title="MainWindow" Height="210" Width="420" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:ImportExportViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="PanelSwitcher"/>
+    </Window.Resources>
     <Grid>
-        <Grid.DataContext>
-            <ViewModel:ImportExportViewModel/>
-        </Grid.DataContext>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="btnImport" Content="Import" MinWidth="100" Click="ImportComicsBtn_Click" />
-            <Button x:Name="btnExport" Content="Export" MinWidth="100" Margin="10,0,0,0" Command="{Binding ExportCommand}"/>
+        <StackPanel x:Name="buttonPanel" Visibility="{Binding ShowButtonPanel,NotifyOnSourceUpdated=True,Converter={StaticResource PanelSwitcher}}" Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="btnImport" Content="Import" MinWidth="100" Click="ImportComicsBtn_Click"  />
+            <Button x:Name="btnExport" Content="Export" MinWidth="100" Margin="10,0,0,0" Click="btnExport_Click"/>
+        </StackPanel>
+        <StackPanel Visibility="{Binding ShowLoadingPanel,NotifyOnSourceUpdated=True, Converter={StaticResource PanelSwitcher}}" Orientation="Vertical" Height="65" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="loadingPanel">
+            <TextBlock Text="Placeholder" FontSize="25" />
+            <ProgressBar Minimum="0" Maximum="102" Name="loadingBar" Value="{Binding Percentage,Mode=OneWay}" Width="364" Height="31"/>
         </StackPanel>
     </Grid>
 </Window>
