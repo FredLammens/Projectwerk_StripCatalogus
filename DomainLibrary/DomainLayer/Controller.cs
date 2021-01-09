@@ -50,7 +50,7 @@ namespace DomainLibrary.DomainLayer
         {
             foreach (Comic comic in comics)
             {
-                catalogue.AddComic(comic);
+                if(catalogue.AddComic(comic))
                 uow.Comics.AddComic(comic);
             }
             uow.Commit();

@@ -31,7 +31,6 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
-using ViewModel;
 
 
 namespace Projectwerk_StripCatalogus_UI {
@@ -70,7 +69,7 @@ namespace Projectwerk_StripCatalogus_UI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Projectwerk_StripCatalogus_UI;V1.0.0.0;component/cataloguepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Projectwerk_StripCatalogus_UI;component/cataloguepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CataloguePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
