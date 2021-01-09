@@ -33,6 +33,7 @@ namespace Tests.DataLayerTests
             result1.Should().HaveCount(2);
             result1.First().Name.Should().Be("series1");
             result1.ElementAt(1).Name.Should().Be("series2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestUpdateSeries()
@@ -48,6 +49,7 @@ namespace Tests.DataLayerTests
             result1 = cr.GetAllSeries();
             result1.Should().HaveCount(1);
             result1.First().Name.Should().Be("series2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestGetAllSeries()
@@ -67,6 +69,7 @@ namespace Tests.DataLayerTests
             result1.Should().HaveCount(3);
             result1.ElementAt(1).Name.Should().Be("series2");
             result1.ElementAt(2).Name.Should().Be("series3");
+            context.Dispose();
         }
         [TestMethod]
         public void CheckDuplicateSeries()
@@ -85,6 +88,7 @@ namespace Tests.DataLayerTests
             result2.Should().HaveCount(2);
             result2.First().Name.Should().Be("series1");
             result2.ElementAt(1).Name.Should().Be("series2");
+            context.Dispose();
         }
     }
 }
