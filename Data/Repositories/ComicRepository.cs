@@ -264,7 +264,7 @@ namespace Data.Repositories
         {
             using (var command = context.CreateCommand())
             {
-                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @series_Nr AND Comics.Publisher_ID = @publiser_Id AND Comics.Series_ID = @series_Id;";
+                command.CommandText = @"Select * From Comics Where Comics.Title = @title AND Comics.SeriesNr = @series_Nr OR @series_Nr IS NULL AND Comics.Publisher_ID = @publiser_Id AND Comics.Series_ID = @series_Id;";
                 command.AddParameter("title", dComic.Title);
                 command.AddParameter("series_Nr", dComic.SeriesNumber);
                 command.AddParameter("publiser_Id", dComic.Publisher.Id);

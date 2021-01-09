@@ -78,7 +78,7 @@ namespace ViewModel
                 }
             }
             Percentage += 1;
-            double oneLoopPercentage = 1.0 / comics.Count;
+            double oneLoopPercentage = 1.0 / comics.Count * 100; //Todo: check *100
             foreach (ViewComic comic in comics)
             {
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
