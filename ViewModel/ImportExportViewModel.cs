@@ -2,8 +2,6 @@
 using DomainLibrary.DomainLayer;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using ViewModel.PresentationBaseClasses;
 
@@ -11,14 +9,18 @@ namespace ViewModel
 {
     public class ImportExportViewModel : ViewModelBase
     {
+        #region private members
         private readonly Controller controller;
         private List<ViewComic> comics;
         private List<ViewComic> doubles;
         private List<Comic> comicsToImport;
-
         private double _percentage;
         private bool _showLoadingPanel = false;
         private bool _showButtonPanel = true;
+        private bool _showLoadingBar = true; //Todo:
+        private string _loadingText;
+        #endregion
+        #region Properties
         public double Percentage
         {
             get { return _percentage; }
@@ -46,7 +48,25 @@ namespace ViewModel
                 OnPropertyChanged("ShowButtonPanel");
             }
         }
-
+        public string LoadingText 
+        {
+            get => _loadingText;
+            private set 
+            {
+                _loadingText = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool ShowLoadingBar 
+        {
+            get => _showLoadingBar;
+            set 
+            {
+                _showLoadingBar = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         public ImportExportViewModel()
         {
             controller = new Controller(new UnitOfWork());
@@ -54,6 +74,7 @@ namespace ViewModel
 
         public bool Import(string comicsFilePath)
         {
+            LoadingText = "Checken op dubbele strips.";
             Percentage = 0;
             ShowButtonPanel = false;
             ShowLoadingPanel = true;
@@ -67,6 +88,11 @@ namespace ViewModel
                 throw new PresentationException($"Er zijn {doubles.Count} dubbele strips gevonden. wilt u dit overslaan?");
             return ContinueImport();
         }
+        public void ResetPanels() 
+        {
+            ShowLoadingPanel = false;
+            ShowButtonPanel = true;
+        }
 
         public bool ContinueImport()
         {
@@ -78,13 +104,15 @@ namespace ViewModel
                 }
             }
             Percentage += 1;
-            double oneLoopPercentage = 1.0 / comics.Count * 100; //Todo: check *100
+            LoadingText = "Strips converteren.";
+            double oneLoopPercentage = 1.0 / comics.Count * 100;
             foreach (ViewComic comic in comics)
             {
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
                 Percentage += oneLoopPercentage;
             }
             Math.Ceiling(Percentage);
+            LoadingText = "Strips opslaan.";
             controller.AddComics(comicsToImport);
             ShowLoadingPanel = false;
             ShowButtonPanel = true; 
@@ -93,7 +121,14 @@ namespace ViewModel
 
         public void Export(string exportPath)
         {
+            ShowLoadingBar = false;
+            ShowButtonPanel = false;
+            LoadingText = "Bezig met exporteren.";
+            ShowLoadingPanel = true;
             Parser.SerializeComics(Mapper.ComicsMapper(controller.GetCatalogue().Comics), exportPath);
+            ShowLoadingPanel = false;
+            ShowButtonPanel = true;
+            ShowLoadingBar = true;
         }
     }
 }

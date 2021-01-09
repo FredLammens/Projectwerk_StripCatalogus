@@ -40,11 +40,14 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Adds a comic to the Catalogue
         /// </summary>
-        /// <param name="comic">comic object to add</param>
-        public void AddComic(Comic comic)
+        /// <param name="comic">comic to add</param>
+        /// <returns>false if already in catalogue </returns>
+        public bool AddComic(Comic comic)
         {
-            if (!_comics.Contains(comic)) //Todo: check if database works
-                _comics.Add(comic);
+            if (_comics.Contains(comic)) 
+                return false;
+             _comics.Add(comic);
+            return true;
         }
         /// <summary>
         /// Removes a comic of the catalogue

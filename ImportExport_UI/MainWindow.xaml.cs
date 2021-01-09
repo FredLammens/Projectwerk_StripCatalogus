@@ -1,20 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ViewModel;
-
 namespace ImportExport_UI
 {
     /// <summary>
@@ -57,11 +45,13 @@ namespace ImportExport_UI
                         MessageBox.Show(exception.Message);
                     }
                 }
+                else
+                    vm.ResetPanels();
             }
         }
-        private void export() 
+        private void export(string path) 
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
             try
             {
                 vm.Export(path);
@@ -73,7 +63,13 @@ namespace ImportExport_UI
         }
         private async void btnExport_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() => export());
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            if (dialog.ShowDialog(this).GetValueOrDefault())
+            {
+                path = dialog.SelectedPath;
+            }
+            await Task.Run(() => export(path));
         }
     }
 }
