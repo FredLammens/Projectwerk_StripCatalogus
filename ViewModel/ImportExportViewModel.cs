@@ -84,9 +84,8 @@ namespace ViewModel
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
                 Percentage += oneLoopPercentage;
             }
-            //Todo: uncommenten voor commit
+            Math.Ceiling(Percentage);
             controller.AddComics(comicsToImport);
-            Percentage += 1;
             ShowLoadingPanel = false;
             ShowButtonPanel = true; 
             return true;

@@ -20,7 +20,7 @@
         </StackPanel>
         <StackPanel Visibility="{Binding ShowLoadingPanel,NotifyOnSourceUpdated=True, Converter={StaticResource PanelSwitcher}}" Orientation="Vertical" Height="65" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="loadingPanel">
             <TextBlock Text="Placeholder" FontSize="25" />
-            <ProgressBar Minimum="0" Maximum="102" Name="loadingBar" Value="{Binding Percentage,Mode=OneWay}" Width="364" Height="31"/>
+            <ProgressBar Minimum="0" Maximum="101" Name="loadingBar" Value="{Binding Percentage,Mode=OneWay}" Width="364" Height="31"/>
         </StackPanel>
     </Grid>
 </Window>
