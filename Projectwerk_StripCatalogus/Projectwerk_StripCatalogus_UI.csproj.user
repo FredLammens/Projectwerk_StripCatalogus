@@ -12,15 +12,24 @@
     <Compile Update="AddComicPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AddOthers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CataloguePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="EditComicPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UpdateOthers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddComicPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AddOthers.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CataloguePage.xaml">
@@ -30,6 +39,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UpdateOthers.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

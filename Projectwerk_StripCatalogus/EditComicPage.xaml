@@ -71,7 +71,7 @@
         <!--In this textbox we enter the Publisher(s) of the comic-->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="Uitgeverij:"/>
-            <ComboBox x:Name="cmbEditPublisher" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
+            <ComboBox x:Name="cmbEditPublishers" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
         </StackPanel>
         <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Update" Command="{Binding UpdateCommand}" Height="20" Width="70"/>
 

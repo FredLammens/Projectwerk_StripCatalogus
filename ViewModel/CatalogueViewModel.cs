@@ -32,12 +32,13 @@ namespace ViewModel
         public string FilterQuery { get; set; }
 
         private GridRow _selectedGridRow;
-        public GridRow SelectedGridRow {
+        public GridRow SelectedGridRow
+        {
             get { return _selectedGridRow; }
-            set 
-            { 
-                _selectedGridRow = value; 
-                
+            set
+            {
+                _selectedGridRow = value;
+
             }
         }
 
@@ -75,12 +76,17 @@ namespace ViewModel
             FilterCommand = new RelayCommand(FilterExecute);
             DeleteCommand = new RelayCommand(DeleteExecute);
         }
-        public void DeleteExecute() 
+        public void DeleteExecute()
         {
-            Comic toDelete = Mapper.ViewComicMapper(_selectedGridRow.Comic);
-            controller.RemoveComic(toDelete);
-            _comicList = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
-            FilterExecute();
+            if (_selectedGridRow != null)
+            {
+                Comic toDelete = Mapper.ViewComicMapper(_selectedGridRow.Comic);
+                controller.RemoveComic(toDelete);
+                _comicList = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
+                FilterExecute();
+            }
+            else
+                throw new PresentationException("Gelieve iets te selecteren a.u.b.");
         }
 
         public void FilterExecute()

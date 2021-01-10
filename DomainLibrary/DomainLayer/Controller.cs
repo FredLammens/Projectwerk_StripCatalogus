@@ -89,6 +89,17 @@ namespace DomainLibrary.DomainLayer
             return uow.Comics.GetAllAuthors().ToList();
         }
         /// <summary>
+        /// Adds author to database
+        /// </summary>
+        /// <param name="author">author to add</param>
+        public void AddAuthor(Author author)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddAuthor(author);
+            uow.Commit();
+        }
+
+        /// <summary>
         /// Returns a list of all the publishers in the database
         /// </summary>
         /// <returns>A list of publishers.</returns>
@@ -97,12 +108,32 @@ namespace DomainLibrary.DomainLayer
             return uow.Comics.GetAllPublishers().ToList();
         }
         /// <summary>
+        /// Adds publisher to database
+        /// </summary>
+        /// <param name="publisher">publisher to add</param>
+        public void AddPublisher(Publisher publisher)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddPublisher(publisher);
+            uow.Commit();
+        }
+        /// <summary>
         /// Gets series of catalogue
         /// </summary>
         /// <returns>list of series</returns>
         public List<Series> GetSeries()
         {
             return uow.Comics.GetAllSeries().ToList();
+        }
+        /// <summary>
+        /// Adds serie to database
+        /// </summary>
+        /// <param name="series">serie to add</param>
+        public void AddSeries(Series series)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddSeries(series);
+            uow.Commit();
         }
         /// <summary>
         /// Adds order to inventory

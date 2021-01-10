@@ -61,11 +61,11 @@ namespace Tests.DomainLayerTests
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"));
             catalogue.AddComic(comic1);
-            Action act1 = () => catalogue.UpdateComic(0, comic2);
+            Action act1 = () => catalogue.UpdateComic(comic1, comic2);
             act1.Should().NotThrow<DomainException>();
-            Action act2 = () => catalogue.UpdateComic(5, comic2);
+            Action act2 = () => catalogue.UpdateComic(comic1, comic2);
             act2.Should().Throw<DomainException>().WithMessage("Index is te groot.");
-            Action act3 = () => catalogue.UpdateComic(-1, comic2);
+            Action act3 = () => catalogue.UpdateComic(comic1, comic2);
             act3.Should().Throw<DomainException>().WithMessage("Index is te klein.");
         }
         [TestMethod]

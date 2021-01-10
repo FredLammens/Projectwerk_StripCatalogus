@@ -52,3 +52,7 @@ C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwer
 C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.dll
 C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.pdb
 C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\Projectwerk_StripCatalogus_UI.genruntimeconfig.cache
+C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\AddOthers.g.cs
+C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\UpdateOthers.g.cs
+C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\AddOthers.baml
+C:\Users\Biebem\Desktop\euhm lets find out\Projectwerk_StripCatalogus\Projectwerk_StripCatalogus\obj\Debug\netcoreapp3.1\UpdateOthers.baml
