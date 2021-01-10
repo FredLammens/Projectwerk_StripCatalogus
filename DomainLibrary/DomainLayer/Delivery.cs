@@ -51,13 +51,11 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Constructor for delivery
         /// </summary>
-        /// <param name="id">delivery id</param>
         /// <param name="date">date delivery was registered</param>
         /// <param name="deliveryDate">date for delivery</param>
         /// <param name="orderComics">comics and amounts to be delivered</param>
-        public Delivery(int id, DateTime deliveryDate, Dictionary<Comic, int> orderComics)
+        public Delivery(DateTime deliveryDate, Dictionary<Comic, int> orderComics)
         {
-            Id = id;
             DeliveryDate = deliveryDate;
             OrderComics = orderComics;
         }

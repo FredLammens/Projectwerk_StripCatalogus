@@ -22,7 +22,7 @@ namespace Tests.DataLayerTests
             Controller controller = new Controller(new UnitOfWork());
             controller.AddComic(comic1);
             controller.AddComic(comic2);
-            Delivery delivery = new Delivery(1,DateTime.Now.AddDays(10), orderComics);
+            Delivery delivery = new Delivery(DateTime.Now.AddDays(10), orderComics);
             controller.AddDelivery(delivery);
             context.Dispose();
         }

@@ -39,12 +39,10 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Constructor for making an order
         /// </summary>
-        /// <param name="id">name of order</param>
         /// <param name="date">date order was made</param>
         /// <param name="orderComics">comics and amounts of order</param>
-        public Order(int id, Dictionary<Comic, int> orderComics)
+        public Order(Dictionary<Comic, int> orderComics)
         {
-            Id = id;
             OrderComics = orderComics;
         }
         #endregion

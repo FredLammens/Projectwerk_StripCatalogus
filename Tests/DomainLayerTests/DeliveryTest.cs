@@ -24,9 +24,9 @@ namespace Tests.DomainLayerTests
             Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"), 1);
             orderComics1.Add(comic1, 1);
             orderComics2.Add(comic2, -2);
-            Action a = () => new Delivery(1, dateDelivery, orderComics1);
+            Action a = () => new Delivery(dateDelivery, orderComics1);
             a.Should().NotThrow<ArgumentException>();
-            Action b = () => new Delivery(1, dateDelivery, orderComics2);
+            Action b = () => new Delivery(dateDelivery, orderComics2);
             b.Should().Throw<ArgumentException>().WithMessage($"hoeveelheid kan niet negatief zijn.");
         }
         [TestMethod]
@@ -40,9 +40,9 @@ namespace Tests.DomainLayerTests
             Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"), 1);
             orderComics1.Add(comic1, 1);
             orderComics2.Add(comic2, 1);
-            Action a = () => new Delivery(1, dateDelivery, orderComics1);
+            Action a = () => new Delivery( dateDelivery, orderComics1);
             a.Should().NotThrow<ArgumentException>();
-            Action b = () => new Delivery(1, dateDeliveryInPast, orderComics2);
+            Action b = () => new Delivery(dateDeliveryInPast, orderComics2);
             b.Should().Throw<ArgumentException>().WithMessage($"levering kan niet voor in het verleden zijn.");
         }
     }
