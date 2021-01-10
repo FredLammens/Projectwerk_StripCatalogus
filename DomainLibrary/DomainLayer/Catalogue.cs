@@ -64,7 +64,7 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="index">index of comic to update</param>
         /// <param name="comic">comic object to update</param>
-        public void UpdateComic(int index, Comic comic)
+        public void UpdateComic(int index, Comic comic)//TODO: index aanpassen
         {
             if (index >= _comics.Count)
                 throw new DomainException("Index is te groot.");
@@ -95,6 +95,5 @@ namespace DomainLibrary.DomainLayer
                 return false;
         }
         #endregion
-
     }
 }

@@ -105,6 +105,16 @@ namespace DomainLibrary.DomainLayer
             uow.Deliveries.AddDelivery(delivery);
             uow.Commit();
         }
+        /// <summary>
+        /// Updates comic from catalogue
+        /// </summary>
+        /// <param name="comic">comic to update</param>
+        public void UpdateComic(Comic comic) 
+        {
+            uow.BeginTransaction();
+            //catalogue.UpdateComic(comic.)
+            //uow.Comics.UpdateComic()
+        }
         #endregion
 
     }

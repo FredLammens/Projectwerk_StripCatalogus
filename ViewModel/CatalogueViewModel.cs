@@ -1,10 +1,8 @@
 ﻿using DataLayer;
 using DomainLibrary.DomainLayer;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using ViewModel.PresentationBaseClasses;
 
@@ -12,18 +10,15 @@ namespace ViewModel
 {
     public class CatalogueViewModel : ViewModelBase
     {
-        private readonly ViewComic _selectedComic;
         private Controller controller;
         private List<ViewComic> _comicList;
         private ObservableCollection<GridRow> _filteredCollection;
-
 
 
         #region Constructors
         public CatalogueViewModel()
         {
             controller = new Controller(new UnitOfWork());
-            _selectedComic = new ViewComic();
             _comicList = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
             _filteredCollection = new ObservableCollection<GridRow>();
             FilterQuery = "De";
@@ -73,16 +68,9 @@ namespace ViewModel
             internal set;
         }
 
-        public ICommand EditComicCommand
-        {
-            get;
-            internal set;
-        }
-
         private void CreateCommand()
         {
             FilterCommand = new RelayCommand(FilterExecute);
-            EditComicCommand = new RelayCommand(EditComicExecute);
         }
 
         public void FilterExecute()
@@ -129,37 +117,6 @@ namespace ViewModel
                     break;
             }
         }
-
-        public void EditComicExecute()
-        {
-
-        }
         #endregion
-        public class GridRow
-        {
-            private ViewComic comic;
-
-            public String Title { get; set; }
-            public String Series { get; set; }
-            public String SeriesNumber { get; set; }
-            public String Authors { get; set; }
-            public String Publishers { get; set; }
-
-            public GridRow(ViewComic viewComic)
-            {
-                this.comic = viewComic;
-
-                Title = comic.Title;
-                Series = comic.Series.Name;
-                SeriesNumber = comic.SeriesNumber.ToString();
-
-                foreach (ViewAuthor author in viewComic.Authors)
-                {
-                    Authors = Authors + author.Name + ", ";
-                }
-
-                Publishers = viewComic.Publisher.Name;
-            }
-        }
     }
 }

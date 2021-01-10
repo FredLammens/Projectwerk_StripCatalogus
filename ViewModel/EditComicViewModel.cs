@@ -13,7 +13,7 @@ namespace ViewModel
 {
     public class EditComicViewModel : ViewModelBase
     {
-        private readonly ViewComic _comic;
+        private readonly ViewComic _newComic;
         private string _authorFilter;
         private Controller controller;
         private List<ViewAuthor> _allAuthorsList;
@@ -21,12 +21,14 @@ namespace ViewModel
         private ObservableCollection<ViewAuthor> _selectedAuthorsList;
         private ObservableCollection<ViewPublisher> _publisherList;
         private ObservableCollection<string> _titelList;
+        private ViewComic _oldComic;
 
         #region Constructors
-        public EditComicViewModel()
+        public EditComicViewModel(ViewComic oldComic)
         {
+            _oldComic = oldComic;
             controller = new Controller(new UnitOfWork());
-            _comic = new ViewComic();
+            _newComic = new ViewComic(); //Todo: 
             _series = new ViewSeries();
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>();
             _allAuthorsList = new List<ViewAuthor>(Mapper.AuthorMapper(controller.GetAuthors()));
@@ -34,8 +36,8 @@ namespace ViewModel
             _selectedAuthorsList = new ObservableCollection<ViewAuthor>();
             _publisherList = new ObservableCollection<ViewPublisher>(Mapper.PublisherMapper(controller.GetPublishers()).OrderBy(name => name));
             _titelList = new ObservableCollection<string>();
-
             CreateCommand();
+            SetComic(_oldComic);
         }
         #endregion
 
@@ -45,8 +47,8 @@ namespace ViewModel
         /// </summary>
         public string InputTitle
         {
-            get { return _comic.Title; }
-            set { _comic.Title = value; }
+            get { return _newComic.Title; }
+            set { _newComic.Title = value; }
         }
         /// <summary>
         /// DataBindinded variable for Comic-Series
@@ -62,12 +64,12 @@ namespace ViewModel
         /// </summary>
         public string InputSeriesNr
         {
-            get { return _comic.SeriesNumber.ToString(); }
+            get { return _newComic.SeriesNumber.ToString(); }
             set
             {
                 int number;
                 int.TryParse(value, out number);
-                _comic.SeriesNumber = number;
+                _newComic.SeriesNumber = number;
             }
         }
         ///<summary>
@@ -173,7 +175,7 @@ namespace ViewModel
         /// <summary>
         /// Databinded command for add comic
         /// </summary>
-        public ICommand AddCommand
+        public ICommand UpdateCommand
         {
             get;
             internal set;
@@ -203,7 +205,7 @@ namespace ViewModel
 
         private void CreateCommand()
         {
-            AddCommand = new RelayCommand(AddExecute);
+            UpdateCommand = new RelayCommand(UpdateExecute);
             AddAuthorCommand = new RelayCommand(AddAuthorExecute);
             RemoveAuthorCommand = new RelayCommand(RemoveAuthorExecute);
             //SetComicCommand = new RelayCommand(SetComicExecute);
@@ -212,13 +214,13 @@ namespace ViewModel
         /// <summary>
         /// Command for add comic
         /// </summary>
-        public void AddExecute()
+        public void UpdateExecute()
         {
             if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(InputSeries)))
                 throw new PresentationException("Pls fill everything in.");
 
-            ViewComic comic = new ViewComic(InputTitle, _series, _comic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
-            controller.AddComic(Mapper.ViewComicMapper(comic));
+            ViewComic comic = new ViewComic(InputTitle, _series, _newComic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
+            controller.AddComic(Mapper.ViewComicMapper(comic));//Todo: change naar updateComic
         }
         /// <summary>
         /// Command for adding author to the selected author list
@@ -240,8 +242,11 @@ namespace ViewModel
             SelectedAuthorList.Remove(author);
             PossibleAuthorsList.Add(author);
         }
-
-        public void SetComicExecute(ViewComic comic)
+        /// <summary>
+        /// sets ui values to the selectedcomic
+        /// </summary>
+        /// <param name="comic">comic to set</param>
+        public void SetComic(ViewComic comic)
         {
             InputTitle = comic.Title;
             InputSeries = comic.Series.Name;

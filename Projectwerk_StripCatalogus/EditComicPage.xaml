@@ -8,10 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="1000"
       Title="EditComicPage">
-
     <Grid>
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="100*" />
@@ -23,12 +20,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
-        <Grid.DataContext>
-            <ViewModel:EditComicViewModel/>
-        </Grid.DataContext>
-
         <!--In this textbox we enter the title of the comic-->
         <StackPanel Grid.ColumnSpan="2">
             <Label Content="Titel:"/>
@@ -82,8 +73,7 @@
             <Label Content="Uitgeverij:"/>
             <ComboBox x:Name="cmbEditPublisher" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
         </StackPanel>
-
-        <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Voeg toe" Command="{Binding AddCommand}" Height="20" Width="70"/>
+        <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Update" Command="{Binding UpdateCommand}" Height="20" Width="70"/>
 
     </Grid>
 </Page>
