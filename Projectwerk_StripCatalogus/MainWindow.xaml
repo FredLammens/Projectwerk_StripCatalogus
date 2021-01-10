@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="1000">
     <Grid>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="2">
             <Button x:Name="btnCatalogue" Content="Catalogue" MinWidth="100" Click="BtnCatalogue_Click"/>
             <Button x:Name="btnAddComic" Content="Add Comic" MinWidth="100" Margin="10,0,0,0" Click="BtnAddComic_Click"/>
             <Button x:Name="btnAddOthers" Content="Add Others" MinWidth="100" Margin="10,0,0,0" Click="btnAddOthers_Click"/>

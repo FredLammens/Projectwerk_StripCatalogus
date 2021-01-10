@@ -38,7 +38,7 @@
 
         <StackPanel Grid.Row="1" >
             <Label Content="Titel:"/>
-            <ComboBox Height="20" Width="200" VerticalContentAlignment="Top" HorizontalAlignment="Left" Margin="10,0,0,10"
+            <ComboBox Height="20" Width="180" VerticalContentAlignment="Top" HorizontalAlignment="Left" Margin="10,0,10,10"
                   IsEditable="True"
                   x:Name="comicCmb"  
                   IsTextSearchEnabled="False"
@@ -50,10 +50,10 @@
 
         <StackPanel Grid.Row="1"  Grid.Column="2">
             <Label Content="Amount:"/>
-            <TextBox Text="{Binding OrderAmount}"/>
+            <TextBox Margin="10,0,10,0" Text="{Binding OrderAmount}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Visibility="{Binding IsDelivery,Converter={StaticResource b2v}}">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Visibility="{Binding IsDelivery,Converter={StaticResource b2v}}" Margin="10,0,10,0">
             <Label Content="Date:"/>
             <DatePicker SelectedDate="{Binding SelectedDate}"/>
         </StackPanel>

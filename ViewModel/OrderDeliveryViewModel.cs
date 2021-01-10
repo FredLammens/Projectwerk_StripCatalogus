@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
@@ -99,13 +100,6 @@ namespace ViewModel
         /// <returns></returns>
         public List<ViewComic> GetComics()
         {
-            List<String> comicList = new List<string>();
-
-            foreach (ViewComic comic in _comics)
-            {
-                comicList.Add(comic.Title);
-            }
-
             return _comics;
         }
         #endregion
@@ -139,9 +133,10 @@ namespace ViewModel
         /// </summary>
         public void AddComicExecute()
         {
+            if (SelectedComic == null)
+                throw new PresentationException("Gelieve een strip te selecteren.");
             ViewComic comic = SelectedComic;
             int amount = OrderAmount;
-
             ComicList.Add(new KeyValuePair<ViewComic, int>(comic, amount));
         }
 
