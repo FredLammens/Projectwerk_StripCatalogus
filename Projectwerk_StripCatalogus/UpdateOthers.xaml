@@ -20,17 +20,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center">
-            <Label Content="Series:"/>
+            <Label Content="Oude serie:"/>
+            <ComboBox HorizontalAlignment="Left" Width="500" Margin="10,0,10,0" ItemsSource="{Binding SeriesList}" SelectedItem="{Binding SelectedSeries}"/>
+            <Label Content="Nieuwe serie:"/>
             <TextBox HorizontalAlignment="Left" Margin="10,0,10,0" Text="{Binding InputSeries}" Width="500"/>
             <Button HorizontalAlignment="Left"  Margin="10" Content="Voeg toe" Width="60" Command="{Binding InsertSeriesCommand}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <Label Content="Auteur:"/>
+            <Label Content="Oude auteur:"/>
+            <ComboBox HorizontalAlignment="Left" Width="500" Margin="10,0,10,0" ItemsSource="{Binding AuthorsList}" SelectedItem="{Binding SelectedAuthor}"/>
+            <Label Content="Nieuwe auteur:"/>
             <TextBox HorizontalAlignment="Left" Margin="10,0,10,0" Text="{Binding InputAuthor}" Width="500"/>
             <Button HorizontalAlignment="Left"  Margin="10" Content="Voeg toe" Width="60" Command="{Binding InsertAuthorCommand}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <Label Content="Uitgever:"/>
+            <Label Content="Oude uitgeverij:"/>
+            <ComboBox HorizontalAlignment="Left" Width="500" Margin="10,0,10,0" ItemsSource="{Binding PublishersList}" SelectedItem="{Binding SelectedPublisher}" />
+            <Label Content="Nieuwe uitgeverij:"/>
             <TextBox HorizontalAlignment="Left" Margin="10,0,10,0" Text="{Binding InputPublisher}" Width="500"/>
             <Button HorizontalAlignment="Left"  Margin="10" Content="Voeg toe" Width="60"  Command="{Binding InsertPublisherCommand}"/>
         </StackPanel>

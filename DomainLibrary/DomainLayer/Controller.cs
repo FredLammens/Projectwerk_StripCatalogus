@@ -98,7 +98,17 @@ namespace DomainLibrary.DomainLayer
             uow.Comics.AddAuthor(author);
             uow.Commit();
         }
-
+        /// <summary>
+        /// Updates author from database
+        /// </summary>
+        /// <param name="oldAuthor">author to update</param>
+        /// <param name="newAuthor">author with updated values</param>
+        public void UpdateAuthor(Author oldAuthor, Author newAuthor)
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdateAuthor(oldAuthor, newAuthor);
+            uow.Commit();
+        }
         /// <summary>
         /// Returns a list of all the publishers in the database
         /// </summary>
@@ -118,6 +128,17 @@ namespace DomainLibrary.DomainLayer
             uow.Commit();
         }
         /// <summary>
+        /// Updates publisher in database
+        /// </summary>
+        /// <param name="oldPublisher">publisher to update.</param>
+        /// <param name="newPublisher">publisher with values to update.</param>
+        public void UpdatePublisher(Publisher oldPublisher, Publisher newPublisher)
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdatePublisher(oldPublisher, newPublisher);
+            uow.Commit();
+        }
+        /// <summary>
         /// Gets series of catalogue
         /// </summary>
         /// <returns>list of series</returns>
@@ -133,6 +154,17 @@ namespace DomainLibrary.DomainLayer
         {
             uow.BeginTransaction();
             uow.Comics.AddSeries(series);
+            uow.Commit();
+        }
+        /// <summary>
+        /// Updates serie in database
+        /// </summary>
+        /// <param name="oldSeries">serie to update</param>
+        /// <param name="newSeries">serie with updated values</param>
+        public void UpdateSeries(Series oldSeries, Series newSeries) 
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdateSeries(oldSeries, newSeries);
             uow.Commit();
         }
         /// <summary>
