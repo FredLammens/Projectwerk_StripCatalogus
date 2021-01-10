@@ -29,10 +29,8 @@ namespace DataLayer
         /// <param name="ownsConnection">Wheter this context owns the connection.</param>
         public AdoNetContext(bool ownsConnection, string db = "Production")
         {
-            connection = new SqlConnection(GetConnectionString(db));
-            connection.Open();
+            OpenConnection(db);
             this.ownsConnection = ownsConnection;
-            transaction = connection.BeginTransaction();
         }
 
         /// <summary>
@@ -40,7 +38,7 @@ namespace DataLayer
         /// </summary>
         /// <param name="db">Which database to use, default is production.</param>
         /// <returns>The connection string.</returns>
-        private String GetConnectionString(string db = "Production")
+        private void OpenConnection(string db = "Production")
         {
             var builder = new ConfigurationBuilder();
             builder.AddJsonFile(@"Files\appsettings.json", optional: false);
@@ -51,14 +49,43 @@ namespace DataLayer
             switch (db)
             {
                 case "Production":
-                    connectionString = configuration.GetConnectionString("ProdSQLconnection").ToString();
+                    {
+                        connectionString = configuration.GetConnectionString("ProdSQLconnection").ToString();
+                        connection = new SqlConnection(connectionString);
+                        connection.Open();
+                    }
                     break;
                 case "Test":
-                    connectionString = configuration.GetConnectionString("TestSQLconnection").ToString();
+                    {
+                        connectionString = configuration.GetConnectionString("TestSQLconnection").ToString();
+                        connection = new SqlConnection(connectionString);
+                        connection.Open();
+                        EmptyDatabase();
+                    }
                     break;
             }
-
-            return connectionString;
+        }
+        /// <summary>
+        /// Empties the databse for test purposes.
+        /// </summary>
+        private void EmptyDatabase()
+        {
+            BeginTransaction();
+            using (var command = CreateCommand())
+            {
+                command.CommandText = "EXEC sp_MSForEachTable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL' " +
+                                      "EXEC sp_MSForEachTable 'DELETE FROM ?' " +
+                                      "DBCC CHECKIDENT('Authors', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Comics', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Series', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Deliveries', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Orders', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Publishers', RESEED, 0); " +
+                                      "DBCC CHECKIDENT('Stock', RESEED, 0); " +
+                                      "EXEC sp_MSForEachTable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL' ";
+                command.ExecuteNonQuery();
+            }
+            Commit();
         }
 
         /// <summary>
@@ -77,7 +104,7 @@ namespace DataLayer
         /// </summary>
         public void Commit()
         {
-            if(transaction == null)
+            if (transaction == null)
             {
                 throw new InvalidOperationException("Transaction is al voltooid.");
             }
@@ -87,7 +114,7 @@ namespace DataLayer
 
 
         /// <summary>
-        /// Disposes of the trasactiomn and or connection.
+        /// Disposes of the transaction and or connection.
         /// </summary>
         public void Dispose()
         {
@@ -101,6 +128,13 @@ namespace DataLayer
                 connection.Close();
                 connection = null;
             }
+        }
+        /// <summary>
+        /// Begins a new transaction.
+        /// </summary>
+        public void BeginTransaction()
+        {
+            transaction = connection.BeginTransaction();
         }
     }
 }

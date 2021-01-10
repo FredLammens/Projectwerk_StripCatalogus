@@ -14,7 +14,6 @@ namespace Tests.DomainLayerTests
         [TestMethod]
         public void OrderCheckAmountTest()
         {
-
             DateTime date = new DateTime(2021, 12, 01, 10, 00, 00);
             Dictionary<Comic, int> orderComics1 = new Dictionary<Comic, int>();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"), 5);

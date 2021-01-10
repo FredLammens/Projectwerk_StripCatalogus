@@ -9,37 +9,26 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// List of orders made
         /// </summary>
-        public List<Order> Orders { get; private set; }
+        public List<Order> Orders { get; private set; } = new List<Order>();
         /// <summary>
         /// List of deliveries made
         /// </summary>
-        public List<Delivery> Deliveries { get; private set; }
+        public List<Delivery> Deliveries { get; private set; } = new List<Delivery>();
         /// <summary>
-        /// Add order to orders
+        /// Add order to inventory
         /// </summary>
-        /// <param name="id">id of order</param>
-        /// <param name="date">date of order</param>
-        /// <param name="orderComics">list of comics to order with amounts</param>
-        /// <returns>Order made</returns>
-        public Order AddOrder(int id, Dictionary<Comic, int> orderComics) 
+        /// <param name="order">order to add</param>
+        public void AddOrder(Order order) 
         {
-            Order order = new Order(id, orderComics);
             Orders.Add(order);
-            return order;
         }
         /// <summary>
-        /// Add delivery to deliveries
+        /// Add delivery to inventory
         /// </summary>
-        /// <param name="id">id of delivery</param>
-        /// <param name="date">date delivery was made</param>
-        /// <param name="deliveryDate">date for delivery</param>
-        /// <param name="orderComics">list of comics to deliver with amounts</param>
-        /// <returns>Delivery made</returns>
-        public Delivery AddDelivery(int id,DateTime deliveryDate ,Dictionary<Comic, int> orderComics)
+        /// <param name="delivery">delivery to add</param>
+        public void AddDelivery(Delivery delivery)
         {
-            Delivery delivery = new Delivery(id, deliveryDate, orderComics);
             Deliveries.Add(delivery);
-            return delivery;
         }
     }
 }

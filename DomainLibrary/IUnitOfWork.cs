@@ -29,6 +29,10 @@ namespace DomainLibrary
         /// Saves the changes made to the database.
         /// </summary>
         public void Commit();
+        /// <summary>
+        /// Begins transaction.
+        /// </summary>
+        public void BeginTransaction();
         #endregion
     }
 }
