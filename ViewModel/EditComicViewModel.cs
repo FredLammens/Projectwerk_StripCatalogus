@@ -220,7 +220,8 @@ namespace ViewModel
                 throw new PresentationException("Pls fill everything in.");
 
             ViewComic comic = new ViewComic(InputTitle, _series, _newComic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
-            controller.AddComic(Mapper.ViewComicMapper(comic));//Todo: change naar updateComic
+            controller.UpdateComic(Mapper.ViewComicMapper(_oldComic),Mapper.ViewComicMapper(comic));//Todo: change naar updateComic
+            _oldComic = comic;
         }
         /// <summary>
         /// Command for adding author to the selected author list

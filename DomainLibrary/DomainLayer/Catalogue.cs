@@ -64,13 +64,16 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <param name="index">index of comic to update</param>
         /// <param name="comic">comic object to update</param>
-        public void UpdateComic(int index, Comic comic)//TODO: index aanpassen
+        public void UpdateComic(Comic oldComic, Comic updatedComic)//TODO: index aanpassen
         {
-            if (index >= _comics.Count)
-                throw new DomainException("Index is te groot.");
-            if (index < 0)
-                throw new DomainException("Index is te klein.");
-            _comics[index] = comic;
+            int index = _comics.FindIndex(x => x.GetHashCode() == oldComic.GetHashCode());
+            if (!_comics.Any(x => x.GetHashCode() == updatedComic.GetHashCode()))
+                _comics[index] = updatedComic;
+            else 
+            {
+                throw new DomainException("De geupdate comic zit al in de catalogus");
+            }
+
         }
         /// <summary>
         /// Sets comic if comics has no duplicates

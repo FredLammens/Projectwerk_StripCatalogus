@@ -47,13 +47,13 @@ namespace DomainLibrary.DomainLayer
         /// Adds comics to database and catalogue.
         /// </summary>
         /// <param name="comics">List of comics to add</param>
-        public void AddComics(IList<Comic> comics) 
+        public void AddComics(IList<Comic> comics)
         {
             uow.BeginTransaction();
             foreach (Comic comic in comics)
             {
-                if(catalogue.AddComic(comic))
-                uow.Comics.AddComic(comic);
+                if (catalogue.AddComic(comic))
+                    uow.Comics.AddComic(comic);
             }
             uow.Commit();
         }
@@ -62,7 +62,7 @@ namespace DomainLibrary.DomainLayer
         /// </summary>
         /// <returns>A catalogue of comics.</returns>
         public Catalogue GetCatalogue()
-        {        
+        {
             return catalogue;
         }
         /// <summary>
@@ -108,12 +108,17 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Updates comic from catalogue
         /// </summary>
-        /// <param name="comic">comic to update</param>
-        public void UpdateComic(Comic comic) 
+        /// <param name="oldComic">comic to update</param>
+        /// <param name="UpdatedComic">comic with updated values</param>
+        public void UpdateComic(Comic oldComic, Comic updatedComic)
         {
-            uow.BeginTransaction();
-            //catalogue.UpdateComic(comic.)
-            //uow.Comics.UpdateComic()
+            if (oldComic.GetHashCode() != updatedComic.GetHashCode())
+            {
+                uow.BeginTransaction();
+                catalogue.UpdateComic(oldComic, updatedComic);
+                uow.Comics.UpdateComic(oldComic, updatedComic);
+                uow.Commit();
+            }
         }
         #endregion
 
