@@ -26,7 +26,9 @@ namespace ViewModel
             _selectedComic = new ViewComic();
             _comicList = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
             _filteredCollection = new ObservableCollection<GridRow>();
-
+            FilterQuery = "De";
+            SelectedFilterItem = "System.Windows.Controls.ComboBoxItem: Titel";
+            FilterExecute();
             CreateCommand();
         }
         #endregion
@@ -92,7 +94,7 @@ namespace ViewModel
                 case "System.Windows.Controls.ComboBoxItem: Titel":
                     foreach (ViewComic viewComic in _comicList)
                     {
-                        if (viewComic.Title.Trim() == FilterQuery.Trim())
+                        if (viewComic.Title.Trim().Contains(FilterQuery.Trim()))
                             FilteredCollection.Add(new GridRow(viewComic));
                     }
                     break;
@@ -100,7 +102,7 @@ namespace ViewModel
                 case "System.Windows.Controls.ComboBoxItem: Reeks":
                     foreach (ViewComic viewComic in _comicList)
                     {
-                        if (viewComic.Series.Name == FilterQuery)
+                        if (viewComic.Series.Name.Trim().Contains(FilterQuery.Trim()))
                             FilteredCollection.Add(new GridRow(viewComic));
                     }
                     break;
@@ -110,7 +112,7 @@ namespace ViewModel
                     {
                         foreach (ViewAuthor author in viewComic.Authors)
                         {
-                            if (author.Name == FilterQuery)
+                            if (author.Name.Trim().Contains(FilterQuery.Trim()))
                                 FilteredCollection.Add(new GridRow(viewComic));
                         }
                     }
@@ -118,7 +120,7 @@ namespace ViewModel
                 case "System.Windows.Controls.ComboBoxItem: Uitgeverij":
                     foreach (ViewComic viewComic in _comicList)
                     {
-                        if (viewComic.Publisher.Name == FilterQuery)
+                        if (viewComic.Publisher.Name.Trim().Contains(FilterQuery.Trim()))
                             FilteredCollection.Add(new GridRow(viewComic));
                     }
                     break;
