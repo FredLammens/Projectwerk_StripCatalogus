@@ -141,7 +141,7 @@ CREATE TABLE [DeliveriesComics]
 
 
  CONSTRAINT [FK_107] FOREIGN KEY ([StockID])  REFERENCES [Stock]([ID]),
- CONSTRAINT [FK_72] FOREIGN KEY ([DeliverieID])  REFERENCES [Deliveries]([ID])
+ CONSTRAINT [FK_72] FOREIGN KEY ([DeliveryID])  REFERENCES [Deliveries]([ID])
 );
 GO
 
@@ -155,7 +155,7 @@ GO
 
 CREATE NONCLUSTERED INDEX [fkIdx_72] ON [DeliveriesComics] 
  (
-  [DeliverieID] ASC
+  [DeliveryID] ASC
  )
 
 GO

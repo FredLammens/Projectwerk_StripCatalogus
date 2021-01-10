@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataLayer.Repositories
 {
-    class DeliveryRepository : IDeliveryRepository
+    public class DeliveryRepository : IDeliveryRepository
     {
         #region Properties
         /// <summary>
@@ -83,7 +83,7 @@ namespace DataLayer.Repositories
                     command.AddParameter($"amount{i}", comicPair.Value);
 
                     command.CommandText = @"UPDATE Stock " +
-                                          $"SET Stock.Stock -= @amount{i}" +
+                                          $"SET Stock.Stock += @amount{i}" +
                                           $"WHERE Stock.ID = @stock_Id{i};";
 
                     i++;

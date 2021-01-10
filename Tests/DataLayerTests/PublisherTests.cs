@@ -31,6 +31,7 @@ namespace Tests.DataLayerTests
             result1 = cr.GetAllPublishers();
             result1.Should().HaveCount(2);
             result1.ElementAt(1).Name.Should().Be("publisher2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestUpdatePubliher()
@@ -47,6 +48,7 @@ namespace Tests.DataLayerTests
             result1 = cr.GetAllPublishers();
             result1.Should().HaveCount(1);
             result1.First().Name.Should().Be("publisher2");
+            context.Dispose();
         }
         [TestMethod]
         public void TestGetAllPublishers()
@@ -70,6 +72,7 @@ namespace Tests.DataLayerTests
             result1.First().Name.Should().Be("publisher1");
             result1.ElementAt(1).Name.Should().Be("publisher2");
             result1.ElementAt(2).Name.Should().Be("publisher3");
+            context.Dispose();
         }
         [TestMethod]
         public void CheckDuplicatePublisher()
@@ -88,6 +91,7 @@ namespace Tests.DataLayerTests
             result2.Should().HaveCount(2);
             result2.First().Name.Should().Be("publisher1");
             result2.ElementAt(1).Name.Should().Be("publisher2");
+            context.Dispose();
         }
     }
 }

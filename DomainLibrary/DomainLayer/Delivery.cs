@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DomainLibrary.DomainLayer
@@ -15,16 +16,24 @@ namespace DomainLibrary.DomainLayer
         /// Date of delivery made
         /// </summary>
         public DateTime Date { get; private set; }
+        private DateTime _deliveryDate;
         /// <summary>
         /// Date delivery planned
         /// </summary>
-        public DateTime DeliveryDate { get; set; }
+        public DateTime DeliveryDate { 
+            get => _deliveryDate;
+            set {
+                if (value < DateTime.Now)
+                    throw new ArgumentException("levering kan niet voor in het verleden zijn.");
+                _deliveryDate = value;
+            } 
+        }
 
         private Dictionary<Comic, int> _orderComics;
         /// <summary>
         /// List of comics from delivery combined with amounts
         /// </summary>
-        public Dictionary<Comic, int> OrderComics //deliverycomics and int => <0
+        public Dictionary<Comic, int> OrderComics
         {
             get => _orderComics;
             private set
@@ -57,30 +66,42 @@ namespace DomainLibrary.DomainLayer
         #endregion
         #region Methods
         /// <summary>
+        /// Adds an order to the list of orders
+        /// </summary>
+        /// <param name="comic">comic to add to order</param>
+        /// <param name="amount">amount of comic to add to order</param>
+        public void AddOrderCommic(Comic comic, int amount)
+        {
+            if (amount < 0)
+                throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
+            comic.AmountAvailable += amount;
+            _orderComics.Add(comic, amount);
+        }
+        /// <summary>
         /// Checks if amounts are possible with amounts available in comic and sets amountavailable.
         /// </summary>
         /// <param name="orderComics">list of orders , comics and amount comined</param>
         private void CheckSetOrderComics(Dictionary<Comic, int> orderComics)
         {
+            if (orderComics.Values.Any(amount => amount < 0))
+                throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
             foreach (var orderComic in orderComics)
             {
-                if (orderComic.Value > orderComic.Key.AmountAvailable)
-                    throw new ArgumentException($"amount: {orderComic.Value} exceeds amount of {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
-                orderComic.Key.AmountAvailable -= orderComic.Value;
+                orderComic.Key.AmountAvailable += orderComic.Value;
             }
         }
         #endregion
         #region overriden methods
         public override string ToString()
         {
-            String toReturn = $"Delivery: {Id}\n" +
-                              $"Made on: {Date}\n" +
-                              $"To be delivered on: {DeliveryDate}" +
-                              $"With Products:\n";
+            String toReturn = $"Levering: {Id}\n" +
+                              $"Gemaakt op: {Date}\n" +
+                              $"Te leveren op: {DeliveryDate}" +
+                              $"Met producten: \n";
             string toAdd = "";
             foreach (var orderComic in OrderComics)
             {
-                toAdd += "Comic Name: " + orderComic.Key.Title + "Amount: " + orderComic.Value + " \n"; 
+                toAdd += "Strip naam: " + orderComic.Key.Title + "hoeveelheid: " + orderComic.Value + " \n"; 
             }
             return toReturn + toAdd;
         }

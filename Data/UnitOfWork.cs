@@ -41,9 +41,9 @@ namespace DataLayer
                 Orders = new OrderRepository(context);
             }
 
-            if (Comics == null)
+            if (Deliveries == null)
             {
-                Comics = new ComicRepository(context);
+                Deliveries = new DeliveryRepository(context);
             }
         }
         #endregion
