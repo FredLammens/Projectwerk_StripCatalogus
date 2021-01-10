@@ -17,8 +17,8 @@ namespace Tests.DataLayerTests
         public void TestAddOrder()
         {
             Dictionary<Comic, int> orderComics = new Dictionary<Comic, int>();
-            Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"), 1);
-            Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"), 5);
+            Comic comic1 = new Comic("Het verhaal van de ambetante test", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"), 1);
+            Comic comic2 = new Comic("Test deel 2", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"), 5);
             orderComics.Add(comic1, 1);
             orderComics.Add(comic2, 1);
             Controller controller = new Controller(new UnitOfWork());

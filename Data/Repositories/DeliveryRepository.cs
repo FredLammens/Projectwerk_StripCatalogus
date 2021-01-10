@@ -122,7 +122,6 @@ namespace DataLayer.Repositories
 
                     if (id == null)
                         throw new DataException($"Comic {comic.Title} is not in the database");
-
                     comic.Id = (int)id;
 
                     i++;

@@ -48,14 +48,12 @@ namespace Tests.DomainLayerTests
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"));
             catalogue.AddComic(comic1);
-            Action act = () => catalogue.RemoveComic(comic1);
-            act.Should().NotThrow<DomainException>();
-            Action act2 = () => catalogue.RemoveComic(comic2);
-            act2.Should().Throw<DomainException>().WithMessage("Comic bestaat niet.");
+            catalogue.RemoveComic(comic1).Should().BeTrue();
+            catalogue.RemoveComic(comic2).Should().BeFalse();
 
         }
         [TestMethod]
-        public void UpdateComicCheckIndexShouldThrowException()
+        public void UpdateComicCheckForDoubleShouldThrowException()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
@@ -63,10 +61,8 @@ namespace Tests.DomainLayerTests
             catalogue.AddComic(comic1);
             Action act1 = () => catalogue.UpdateComic(comic1, comic2);
             act1.Should().NotThrow<DomainException>();
-            Action act2 = () => catalogue.UpdateComic(comic1, comic2);
-            act2.Should().Throw<DomainException>().WithMessage("Index is te groot.");
-            Action act3 = () => catalogue.UpdateComic(comic1, comic2);
-            act3.Should().Throw<DomainException>().WithMessage("Index is te klein.");
+            Action act2 = () => catalogue.UpdateComic(comic2, comic2);
+            act2.Should().Throw<DomainException>().WithMessage("De geupdate comic zit al in de catalogus");
         }
         [TestMethod]
         public void SetComicDupliacteShouldThrowException()
