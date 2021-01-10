@@ -25,7 +25,7 @@ namespace Projectwerk_StripCatalogus_UI
         }
 
         /// <summary>
-        /// In this method we will change the properties of the selected comic
+        /// change's the properties of the selected comic
         /// </summary>
         private void btnChangeComic_Click(object sender, RoutedEventArgs e)
         {

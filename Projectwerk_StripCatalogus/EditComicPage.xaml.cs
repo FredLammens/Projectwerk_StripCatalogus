@@ -21,6 +21,10 @@ namespace Projectwerk_StripCatalogus_UI
     /// </summary>
     public partial class EditComicPage : Page
     {
+        /// <summary>
+        /// constructor that sets selectedcomic to comicviewmodel
+        /// </summary>
+        /// <param name="selectedComic">selected comic to edit</param>
         public EditComicPage(ViewComic selectedComic)
         {
             this.DataContext = new EditComicViewModel(selectedComic);
