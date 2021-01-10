@@ -214,7 +214,9 @@ namespace ViewModel
             get;
             internal set;
         }
-
+        /// <summary>
+        /// Binds commands to methods
+        /// </summary>
         private void CreateCommand()
         {
             AddCommand = new RelayCommand(AddExecute);

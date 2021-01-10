@@ -25,6 +25,10 @@ namespace ViewModel
         private ObservableCollection<ViewSeries> _seriesList;
 
         #region Constructors
+        /// <summary>
+        /// constructor for setting controller and all used list + binding coimmands and populates comic if selected
+        /// </summary>
+        /// <param name="oldComic"></param>
         public EditComicViewModel(ViewComic oldComic)
         {
             _oldComic = oldComic;
