@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace Projectwerk_StripCatalogus_UI
 {
@@ -24,12 +25,18 @@ namespace Projectwerk_StripCatalogus_UI
         }
 
         /// <summary>
-        /// In this method we will change the properties of the selected comic
+        /// change's the properties of the selected comic
         /// </summary>
         private void btnChangeComic_Click(object sender, RoutedEventArgs e)
         {
-            EditComicPage editComicPage = new EditComicPage();
-            NavigationService.Navigate(editComicPage);
+            GridRow selected = (GridRow)dgComic.SelectedItem;
+            if (selected == null)
+                MessageBox.Show("Gelieve een strip te selecteren a.u.b.","Warning",MessageBoxButton.OK);
+            else
+            {
+                EditComicPage editComicPage = new EditComicPage(selected.Comic);
+                NavigationService.Navigate(editComicPage);
+            }
         }
     }
 }

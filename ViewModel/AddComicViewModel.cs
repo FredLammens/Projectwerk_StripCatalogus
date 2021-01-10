@@ -20,6 +20,7 @@ namespace ViewModel
         private ObservableCollection<ViewAuthor> _possibleAuthorsList;
         private ObservableCollection<ViewAuthor> _selectedAuthorsList;
         private ObservableCollection<ViewPublisher> _publisherList;
+        private ObservableCollection<ViewSeries> _seriesList;
         private ObservableCollection<string> _titelList;
 
         #region Constructors
@@ -27,14 +28,13 @@ namespace ViewModel
         {
             controller = new Controller(new UnitOfWork());
             _comic = new ViewComic();
-            _series = new ViewSeries();
+            _seriesList = new ObservableCollection<ViewSeries>(Mapper.SeriesMapper(controller.GetSeries()).OrderBy(name => name));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>();
             _allAuthorsList = new List<ViewAuthor>(Mapper.AuthorMapper(controller.GetAuthors()));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>(_allAuthorsList);
             _selectedAuthorsList = new ObservableCollection<ViewAuthor>();
             _publisherList = new ObservableCollection<ViewPublisher>(Mapper.PublisherMapper(controller.GetPublishers()).OrderBy(name => name));
             _titelList = new ObservableCollection<string>();
-
             CreateCommand();
         }
         #endregion
@@ -50,12 +50,7 @@ namespace ViewModel
         /// <summary>
         /// DataBindinded variable for Comic-Series
         /// </summary>
-        private ViewSeries _series;
-        public string InputSeries
-        {
-            get { return _series.Name; }
-            set { _series.Name = value; }
-        }
+        public ViewSeries SelectedViewSeries;
         /// <summary>
         /// DataBindinded variable for Comic-Series-Nr
         /// </summary>
@@ -129,6 +124,17 @@ namespace ViewModel
             set
             {
                 _publisherList = value;
+            }
+        }
+        /// <summary>
+        /// A list of all possible series
+        /// </summary>
+        public ObservableCollection<ViewSeries> SeriesList
+        {
+            get { return _seriesList; }
+            set
+            {
+                _seriesList = value;
             }
         }
         /// <summary>
@@ -208,7 +214,9 @@ namespace ViewModel
             get;
             internal set;
         }
-
+        /// <summary>
+        /// Binds commands to methods
+        /// </summary>
         private void CreateCommand()
         {
             AddCommand = new RelayCommand(AddExecute);
@@ -221,10 +229,10 @@ namespace ViewModel
         /// </summary>
         public void AddExecute()
         {
-            if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(InputSeries)))
+            if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(SelectedViewSeries.Name)))
                 throw new PresentationException("Pls fill everything in.");
 
-            ViewComic comic = new ViewComic(InputTitle,_series, _comic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
+            ViewComic comic = new ViewComic(InputTitle, SelectedViewSeries, _comic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
             controller.AddComic(Mapper.ViewComicMapper(comic));
         }
         /// <summary>
@@ -248,13 +256,6 @@ namespace ViewModel
             PossibleAuthorsList.Add(author);
         }
         #endregion
-
-
-
-
-
-
-
 
     }
 }

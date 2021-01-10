@@ -1,10 +1,9 @@
 ﻿using DataLayer;
 using DomainLibrary.DomainLayer;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 
 namespace ViewModel
@@ -12,10 +11,16 @@ namespace ViewModel
     public class OrderDeliveryViewModel : ViewModelBase
     {
         private List<ViewComic> _comics;
-        public ObservableCollection<KeyValuePair<ViewComic, int>> _comicList;
         private Controller controller;
+        /// <summary>
+        /// holds comics to display => order & delivery
+        /// </summary>
+        public ObservableCollection<KeyValuePair<ViewComic, int>> _comicList;
 
         #region Constructors
+        /// <summary>
+        /// constructor that sets controller and comics
+        /// </summary>
         public OrderDeliveryViewModel()
         {
             controller = new Controller(new UnitOfWork());
@@ -43,10 +48,10 @@ namespace ViewModel
         /// </summary>
         public int OrderAmount { get; set; }
 
+        private bool _isOrder = true;
         /// <summary>
         /// Databinded variabele to check if Order radiobutton is checked
         /// </summary>
-        private bool _isOrder = true;
         public bool IsOrder
         {
             get { return _isOrder;  }
@@ -57,10 +62,10 @@ namespace ViewModel
             }
         }
 
+        private bool _isDelivery = false;
         /// <summary>
         /// Databinded variabele to check if Delivery radiobutton is checked
         /// </summary>
-        private bool _isDelivery = false;
         public bool IsDelivery
         {
             get { return _isDelivery; }
@@ -99,34 +104,38 @@ namespace ViewModel
         /// <returns></returns>
         public List<ViewComic> GetComics()
         {
-            List<String> comicList = new List<string>();
-
-            foreach (ViewComic comic in _comics)
-            {
-                comicList.Add(comic.Title);
-            }
-
             return _comics;
         }
         #endregion
 
         #region Commands
+        /// <summary>
+        /// commmand for ui to addcomic
+        /// </summary>
         public ICommand AddComic
         {
             get;
             internal set;
         }
+        /// <summary>
+        /// command for ui to removeComic
+        /// </summary>
         public ICommand RemoveComic
         {
             get;
             internal set;
         }
+        /// <summary>
+        /// command for ui to addorder or to add delivery
+        /// </summary>
         public ICommand AddOrderDelivery
         {
             get;
             internal set;
         }
-
+        /// <summary>
+        /// connects methods to commands
+        /// </summary>
         private void CreateCommand()
         {
             AddComic = new RelayCommand(AddComicExecute);
@@ -139,9 +148,10 @@ namespace ViewModel
         /// </summary>
         public void AddComicExecute()
         {
+            if (SelectedComic == null)
+                throw new PresentationException("Gelieve een strip te selecteren.");
             ViewComic comic = SelectedComic;
             int amount = OrderAmount;
-
             ComicList.Add(new KeyValuePair<ViewComic, int>(comic, amount));
         }
 
@@ -161,9 +171,9 @@ namespace ViewModel
             Dictionary<Comic, int> comicDict = Mapper.ComicDictMapper(ComicList);
 
             if (IsOrder == true)
-                controller.AddOrder(DateTime.Now, comicDict);
+                controller.AddOrder(new Order(comicDict));
             else
-                controller.AddDelivery(DateTime.Now, SelectedDate, comicDict);
+                controller.AddDelivery(new Delivery(SelectedDate, comicDict));
         }
         #endregion
     }

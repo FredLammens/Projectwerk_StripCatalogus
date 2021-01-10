@@ -528,25 +528,45 @@ namespace Data.Repositories
             var oldComic = Mapper.ToDComic(toUpdate);
             var newComic = Mapper.ToDComic(updated);
             AddDSeries(newComic.Series);
-            AddDSeries(oldComic.Series);
+            AddDPublisher(newComic.Publisher);
+            AddDComic(oldComic);
+            newComic.Id = oldComic.Id;
+            AddDAuthors(newComic);
+            AddDAuthors(oldComic);
+            DeleteComicAuthorsLinks(oldComic);
+            LinkAuthorComic(newComic);
             using (var command = context.CreateCommand())
             {
                 command.CommandText = "UPDATE Comics " +
-                                      "SET Title =  @newTitle, SeriesNr = @newSeriesNr, Series_ID = @newSeriesId " +
-                                      "WHERE Title = @title AND SeriesNr = @seriesNr And Series_ID = @seriesId;";
+                                      "SET Title =  @newTitle, SeriesNr = @newSeriesNr, Series_ID = @newSeriesId, Publisher_ID = @newPublisherId " +
+                                      "WHERE ID = @Id;";
 
-                command.AddParameter("title", oldComic.Title);
-                command.AddParameter("seriesNr", oldComic.SeriesNumber);
-                command.AddParameter("seriesId", oldComic.Series.Id);
-
+                command.AddParameter("Id", oldComic.Id);
+                //-----------------------------------------------------------------
+                command.AddParameter("newPublisherId", newComic.Publisher.Id);
                 command.AddParameter("newTitle", newComic.Title);
                 command.AddParameter("newSeriesNr", newComic.SeriesNumber);
                 command.AddParameter("newSeriesId", newComic.Series.Id);
                 command.ExecuteNonQuery();
-
             }
         }
-
+        /// <summary>
+        /// Deletes the link between comic and authors
+        /// </summary>
+        /// <param name="oldComic">comic to delete links from</param>
+        private void DeleteComicAuthorsLinks(DComic oldComic) 
+        {
+            using (var command = context.CreateCommand())
+            {
+                command.AddParameter($"ComicId", oldComic.Id);
+                for (int i = 0; i < oldComic.Authors.Count; i++)
+                {
+                    command.CommandText = @$"DELETE From Comics_Authors Where Authors_ID = @AuthorId{i} And Comics_Id = @ComicId";
+                    command.AddParameter($"AuthorId{i}", oldComic.Authors[i].Id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public void UpdateSeries(Series toUpdate, Series updated)
         {
             var oldSeries = Mapper.ToDSeries(toUpdate);

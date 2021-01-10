@@ -13,7 +13,7 @@ namespace ViewModel
         /// Maps a viewcomic object to a comic object. So that it can be transfered to the domainLayer.
         /// </summary>
         /// <param name="viewcomic">viewcomic object</param>
-        /// <returns></returns>
+        /// <returns>Comic object</returns>
         public static Comic ViewComicMapper(ViewComic viewcomic) 
         {
             return new Comic(viewcomic.Title, new Series(viewcomic.Series.Name), viewcomic.SeriesNumber, ViewAuthorMapper(viewcomic.Authors), new Publisher(viewcomic.Publisher.Name));
@@ -21,12 +21,17 @@ namespace ViewModel
         /// <summary>
         /// Maps a comic object to a viewcomic object.
         /// </summary>
-        /// <param name="comic"></param>
-        /// <returns></returns>
+        /// <param name="comic">comic to map</param>
+        /// <returns>Viewcomic object</returns>
         private static ViewComic ComicMapper(Comic comic) 
         {
             return new ViewComic(comic.Title, new ViewSeries(comic.Series.Name), comic.SeriesNumber, AuthorMapper(comic.Authors), new ViewPublisher(comic.Publisher.Name));
         }
+        /// <summary>
+        /// Maps comics to list of viewComics
+        /// </summary>
+        /// <param name="comics">comics to map</param>
+        /// <returns>list of viewcomics</returns>
         public static List<ViewComic> ComicsMapper(IEnumerable<Comic> comics) 
         {
             List<ViewComic> viewComics = new List<ViewComic>();
@@ -39,8 +44,8 @@ namespace ViewModel
         /// <summary>
         /// Maps a list of ViewAuthors objects to Authors objects. So that it can be transfered to the domainLayer.
         /// </summary>
-        /// <param name="viewAuthors"></param>
-        /// <returns></returns>
+        /// <param name="viewAuthors">viewauthors to map</param>
+        /// <returns>list of authors</returns>
         private static List<Author> ViewAuthorMapper(List<ViewAuthor> viewAuthors) 
         {
             List<Author> authors = new List<Author>();
@@ -53,8 +58,8 @@ namespace ViewModel
         /// <summary>
         /// Maps a list of Authors objects to ViewAuthors objects.
         /// </summary>
-        /// <param name="authors"></param>
-        /// <returns></returns>
+        /// <param name="authors">authors to map</param>
+        /// <returns>list of viewAuthors</returns>
         public static List<ViewAuthor> AuthorMapper(IReadOnlyList<Author> authors) 
         {
             List<ViewAuthor> viewAuthors = new List<ViewAuthor>();
@@ -67,8 +72,8 @@ namespace ViewModel
         /// <summary>
         /// Maps a list of Publisher objects to ViewPublisher objects.
         /// </summary>
-        /// <param name="publishers"></param>
-        /// <returns></returns>
+        /// <param name="publishers">publishers to map</param>
+        /// <returns>list of viewPublishers</returns>
         public static List<ViewPublisher> PublisherMapper(IReadOnlyList<Publisher> publishers)
         {
             List<ViewPublisher> viewPublishers = new List<ViewPublisher>();
@@ -78,12 +83,25 @@ namespace ViewModel
             }
             return viewPublishers;
         }
-
+        /// <summary>
+        /// Maps a list of Series objects to ViewPublisher objects.
+        /// </summary>
+        /// <param name="series">series to map</param>
+        /// <returns>list of viewseries</returns>
+        public static List<ViewSeries> SeriesMapper(IReadOnlyList<Series> series)
+        {
+            List<ViewSeries> viewSeries = new List<ViewSeries>();
+            foreach (Series serie in series)
+            {
+                viewSeries.Add(new ViewSeries(serie.Name));
+            }
+            return viewSeries;
+        }
         /// <summary>
         /// Maps a KeyValuePair of <ViewComic, int> to a dictionary of <Comic, int>
         /// </summary>
         /// <param name="viewcomicDict"></param>
-        /// <returns></returns>
+        /// <returns>Dictionary consisting of comics with amounts in dictionary</returns>
         public static Dictionary<Comic, int> ComicDictMapper(ObservableCollection<KeyValuePair<ViewComic, int>> viewcomicDict)
         {
             Dictionary<Comic, int> comicDict = new Dictionary<Comic, int>();

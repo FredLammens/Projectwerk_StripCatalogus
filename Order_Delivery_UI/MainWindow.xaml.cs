@@ -28,13 +28,19 @@ namespace Order_Delivery_UI
             InitializeComponent();
             viewModel = new OrderDeliveryViewModel();      
         }
-
+        /// <summary>
+        /// adds item to combobox
+        /// </summary>
+        /// <param name="comboBox"></param>
+        /// <param name="comic"></param>
         private void addItem(ComboBox comboBox, ViewComic comic)
         {
             if (!comboBox.Items.Contains(comic))
                 comboBox.Items.Add(comic);
         }
-
+        /// <summary>
+        /// used for combobox autocomplete feature
+        /// </summary>
         private void comicCmb_KeyUp(object sender, KeyEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -65,7 +71,7 @@ namespace Order_Delivery_UI
             }
 
             if (!found)
-                comboBox.Items.Add("Er is geen suggestie gevonden");
+                comboBox.Items.Add("Er zijn geen suggestie gevonden");
         }
     }
 }

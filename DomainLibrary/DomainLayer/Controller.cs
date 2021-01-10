@@ -38,31 +38,46 @@ namespace DomainLibrary.DomainLayer
         /// <param name="comic">Comic to add.</param>
         public void AddComic(Comic comic)
         {
-            uow.BeginTransaction();
-            catalogue.AddComic(comic);
-            uow.Comics.AddComic(comic);
-            uow.Commit();
+            if (catalogue.AddComic(comic))
+            {
+                uow.BeginTransaction();
+                uow.Comics.AddComic(comic);
+                uow.Commit();
+            }
         }
         /// <summary>
         /// Adds comics to database and catalogue.
         /// </summary>
         /// <param name="comics">List of comics to add</param>
-        public void AddComics(IList<Comic> comics) 
+        public void AddComics(IList<Comic> comics)
         {
             uow.BeginTransaction();
             foreach (Comic comic in comics)
             {
-                if(catalogue.AddComic(comic))
-                uow.Comics.AddComic(comic);
+                if (catalogue.AddComic(comic))
+                    uow.Comics.AddComic(comic);
             }
             uow.Commit();
+        }
+        /// <summary>
+        /// Removes comic from catalogue and database
+        /// </summary>
+        /// <param name="comic">comic to remove</param>
+        public void RemoveComic(Comic comic)
+        {
+            if (catalogue.RemoveComic(comic))
+            {
+                uow.BeginTransaction();
+                uow.Comics.RemoveComic(comic);
+                uow.Commit();
+            }
         }
         /// <summary>
         /// Returns the catalogue
         /// </summary>
         /// <returns>A catalogue of comics.</returns>
         public Catalogue GetCatalogue()
-        {        
+        {
             return catalogue;
         }
         /// <summary>
@@ -74,12 +89,83 @@ namespace DomainLibrary.DomainLayer
             return uow.Comics.GetAllAuthors().ToList();
         }
         /// <summary>
+        /// Adds author to database
+        /// </summary>
+        /// <param name="author">author to add</param>
+        public void AddAuthor(Author author)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddAuthor(author);
+            uow.Commit();
+        }
+        /// <summary>
+        /// Updates author from database
+        /// </summary>
+        /// <param name="oldAuthor">author to update</param>
+        /// <param name="newAuthor">author with updated values</param>
+        public void UpdateAuthor(Author oldAuthor, Author newAuthor)
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdateAuthor(oldAuthor, newAuthor);
+            uow.Commit();
+        }
+        /// <summary>
         /// Returns a list of all the publishers in the database
         /// </summary>
         /// <returns>A list of publishers.</returns>
         public List<Publisher> GetPublishers()
         {
             return uow.Comics.GetAllPublishers().ToList();
+        }
+        /// <summary>
+        /// Adds publisher to database
+        /// </summary>
+        /// <param name="publisher">publisher to add</param>
+        public void AddPublisher(Publisher publisher)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddPublisher(publisher);
+            uow.Commit();
+        }
+        /// <summary>
+        /// Updates publisher in database
+        /// </summary>
+        /// <param name="oldPublisher">publisher to update.</param>
+        /// <param name="newPublisher">publisher with values to update.</param>
+        public void UpdatePublisher(Publisher oldPublisher, Publisher newPublisher)
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdatePublisher(oldPublisher, newPublisher);
+            uow.Commit();
+        }
+        /// <summary>
+        /// Gets series of catalogue
+        /// </summary>
+        /// <returns>list of series</returns>
+        public List<Series> GetSeries()
+        {
+            return uow.Comics.GetAllSeries().ToList();
+        }
+        /// <summary>
+        /// Adds serie to database
+        /// </summary>
+        /// <param name="series">serie to add</param>
+        public void AddSeries(Series series)
+        {
+            uow.BeginTransaction();
+            uow.Comics.AddSeries(series);
+            uow.Commit();
+        }
+        /// <summary>
+        /// Updates serie in database
+        /// </summary>
+        /// <param name="oldSeries">serie to update</param>
+        /// <param name="newSeries">serie with updated values</param>
+        public void UpdateSeries(Series oldSeries, Series newSeries) 
+        {
+            uow.BeginTransaction();
+            uow.Comics.UpdateSeries(oldSeries, newSeries);
+            uow.Commit();
         }
         /// <summary>
         /// Adds order to inventory
@@ -104,6 +190,21 @@ namespace DomainLibrary.DomainLayer
             inventory.AddDelivery(delivery); //Todo: fix
             uow.Deliveries.AddDelivery(delivery);
             uow.Commit();
+        }
+        /// <summary>
+        /// Updates comic from catalogue
+        /// </summary>
+        /// <param name="oldComic">comic to update</param>
+        /// <param name="UpdatedComic">comic with updated values</param>
+        public void UpdateComic(Comic oldComic, Comic updatedComic)
+        {
+            if (oldComic.GetHashCode() != updatedComic.GetHashCode())
+            {
+                uow.BeginTransaction();
+                catalogue.UpdateComic(oldComic, updatedComic);
+                uow.Comics.UpdateComic(oldComic, updatedComic);
+                uow.Commit();
+            }
         }
         #endregion
 

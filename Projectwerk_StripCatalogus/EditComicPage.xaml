@@ -8,10 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="1000"
       Title="EditComicPage">
-
     <Grid>
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="100*" />
@@ -23,12 +20,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
-        <Grid.DataContext>
-            <ViewModel:EditComicViewModel/>
-        </Grid.DataContext>
-
         <!--In this textbox we enter the title of the comic-->
         <StackPanel Grid.ColumnSpan="2">
             <Label Content="Titel:"/>
@@ -42,7 +33,7 @@
         <!--In this textbox we enter what serie the comic belongs to-->
         <StackPanel Grid.Row="1">
             <Label Content="Reeks:"/>
-            <TextBox x:Name="txtSeriesEdit" Margin="10,0,10,0" Text="{Binding InputSeries}"/>
+            <ComboBox x:Name="cmbEditSeries" Margin="10,0,10,0" ItemsSource="{Binding SeriesList}" SelectedItem ="{Binding SelectedViewSeries}"/>
         </StackPanel>
 
         <!--In this textbox we enter number of the comic in the serie-->
@@ -80,10 +71,9 @@
         <!--In this textbox we enter the Publisher(s) of the comic-->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="Uitgeverij:"/>
-            <ComboBox x:Name="cmbEditPublisher" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
+            <ComboBox x:Name="cmbEditPublishers" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
         </StackPanel>
-
-        <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Voeg toe" Command="{Binding AddCommand}" Height="20" Width="70"/>
+        <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Update" Command="{Binding UpdateCommand}" Height="20" Width="70"/>
 
     </Grid>
 </Page>

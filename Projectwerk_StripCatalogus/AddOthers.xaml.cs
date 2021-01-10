@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,23 +10,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModel;
-using ViewModel.PresentationBaseClasses;
 
 namespace Projectwerk_StripCatalogus_UI
 {
     /// <summary>
-    /// Interaction logic for EditComicPage.xaml
+    /// Interaction logic for AddOthers.xaml
     /// </summary>
-    public partial class EditComicPage : Page
+    public partial class AddOthers : Page
     {
-        /// <summary>
-        /// constructor that sets selectedcomic to comicviewmodel
-        /// </summary>
-        /// <param name="selectedComic">selected comic to edit</param>
-        public EditComicPage(ViewComic selectedComic)
+        public AddOthers()
         {
-            this.DataContext = new EditComicViewModel(selectedComic);
             InitializeComponent();
         }
     }

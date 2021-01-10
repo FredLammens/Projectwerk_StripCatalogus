@@ -53,24 +53,29 @@ namespace DomainLibrary.DomainLayer
         /// Removes a comic of the catalogue
         /// </summary>
         /// <param name="comic">comic object to remove</param>
-        public void RemoveComic(Comic comic)
+        /// /// <returns>false if not in catalogue </returns>
+        public bool RemoveComic(Comic comic)
         {
             if (!_comics.Contains(comic))
-                throw new DomainException("Comic bestaat niet.");
+                return false;
             _comics.Remove(comic);
+            return true;
         }
         /// <summary>
         /// Updates a comic of the catalogue
         /// </summary>
         /// <param name="index">index of comic to update</param>
         /// <param name="comic">comic object to update</param>
-        public void UpdateComic(int index, Comic comic)
+        public void UpdateComic(Comic oldComic, Comic updatedComic)
         {
-            if (index >= _comics.Count)
-                throw new DomainException("Index is te groot.");
-            if (index < 0)
-                throw new DomainException("Index is te klein.");
-            _comics[index] = comic;
+            int index = _comics.FindIndex(x => x.GetHashCode() == oldComic.GetHashCode());
+            if (!_comics.Any(x => x.GetHashCode() == updatedComic.GetHashCode()))
+                _comics[index] = updatedComic;
+            else 
+            {
+                throw new DomainException("De geupdate comic zit al in de catalogus");
+            }
+
         }
         /// <summary>
         /// Sets comic if comics has no duplicates
@@ -95,6 +100,5 @@ namespace DomainLibrary.DomainLayer
                 return false;
         }
         #endregion
-
     }
 }

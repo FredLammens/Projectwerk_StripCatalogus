@@ -42,5 +42,19 @@ namespace Projectwerk_StripCatalogus
         {
             Main.Content = new AddComicPage();
         }
+        /// <summary>
+        /// button to oopen page where we can add series, publishers, authors 
+        /// </summary>
+        private void btnAddOthers_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new AddOthers();
+        }
+        /// <summary>
+        /// button to oopen page where we can udpate series, publishers, authors 
+        /// </summary>
+        private void btnUpdateOthers_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new UpdateOthers();
+        }
     }
 }

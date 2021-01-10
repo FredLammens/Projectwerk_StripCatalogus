@@ -22,13 +22,5 @@ namespace Projectwerk_StripCatalogus_UI
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// In this method we will add a new comic
-        /// </summary>
-        private void btnAddComic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
