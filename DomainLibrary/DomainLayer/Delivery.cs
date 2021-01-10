@@ -15,7 +15,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Date of delivery made
         /// </summary>
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; private set; } = DateTime.Now;
         private DateTime _deliveryDate;
         /// <summary>
         /// Date delivery planned
@@ -55,10 +55,9 @@ namespace DomainLibrary.DomainLayer
         /// <param name="date">date delivery was registered</param>
         /// <param name="deliveryDate">date for delivery</param>
         /// <param name="orderComics">comics and amounts to be delivered</param>
-        public Delivery(int id, DateTime date, DateTime deliveryDate, Dictionary<Comic, int> orderComics)
+        public Delivery(int id, DateTime deliveryDate, Dictionary<Comic, int> orderComics)
         {
             Id = id;
-            Date = date;
             DeliveryDate = deliveryDate;
             OrderComics = orderComics;
         }

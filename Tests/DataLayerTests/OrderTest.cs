@@ -25,7 +25,7 @@ namespace Tests.DataLayerTests
             Controller controller = new Controller(new UnitOfWork());
             //controller.AddComic(comic1);
             // controller.AddComic(comic2);
-            Order order = new Order(1, date, orderComics);
+            Order order = new Order(1, orderComics);
             orderRepo.AddOrder(order);
             context.Commit();
         }
