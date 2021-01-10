@@ -33,7 +33,7 @@
         <!--In this textbox we enter what serie the comic belongs to-->
         <StackPanel Grid.Row="1">
             <Label Content="Reeks:"/>
-            <TextBox x:Name="txtSeriesEdit" Margin="10,0,10,0" Text="{Binding InputSeries}"/>
+            <ComboBox x:Name="cmbEditSeries" Margin="10,0,10,0" ItemsSource="{Binding SeriesList}" SelectedItem ="{Binding SelectedViewSeries}"/>
         </StackPanel>
 
         <!--In this textbox we enter number of the comic in the serie-->

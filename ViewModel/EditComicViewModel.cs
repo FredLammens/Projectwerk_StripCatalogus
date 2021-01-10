@@ -22,6 +22,7 @@ namespace ViewModel
         private ObservableCollection<ViewPublisher> _publisherList;
         private ObservableCollection<string> _titelList;
         private ViewComic _oldComic;
+        private ObservableCollection<ViewSeries> _seriesList;
 
         #region Constructors
         public EditComicViewModel(ViewComic oldComic)
@@ -29,7 +30,7 @@ namespace ViewModel
             _oldComic = oldComic;
             controller = new Controller(new UnitOfWork());
             _newComic = new ViewComic(); //Todo: 
-            _series = new ViewSeries();
+            _seriesList = new ObservableCollection<ViewSeries>(Mapper.SeriesMapper(controller.GetSeries()).OrderBy(name => name));//Todo: controller.GetSeries()
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>();
             _allAuthorsList = new List<ViewAuthor>(Mapper.AuthorMapper(controller.GetAuthors()));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>(_allAuthorsList);
@@ -53,12 +54,8 @@ namespace ViewModel
         /// <summary>
         /// DataBindinded variable for Comic-Series
         /// </summary>
-        private ViewSeries _series;
-        public string InputSeries
-        {
-            get { return _series.Name; }
-            set { _series.Name = value; }
-        }
+        public ViewSeries SelectedViewSeries { get; set; }
+
         /// <summary>
         /// DataBindinded variable for Comic-Series-Nr
         /// </summary>
@@ -133,6 +130,14 @@ namespace ViewModel
             set
             {
                 _publisherList = value;
+            }
+        }
+        public ObservableCollection<ViewSeries> SeriesList
+        {
+            get { return _seriesList; }
+            set
+            {
+                _seriesList = value;
             }
         }
         /// <summary>
@@ -216,11 +221,11 @@ namespace ViewModel
         /// </summary>
         public void UpdateExecute()
         {
-            if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(InputSeries)))
+            if (_selectedAuthorsList.Count == 0 || String.IsNullOrEmpty(InputTitle) || (String.IsNullOrEmpty(SelectedViewPublisher.Name) || String.IsNullOrEmpty(SelectedViewSeries.Name)))
                 throw new PresentationException("Pls fill everything in.");
 
-            ViewComic comic = new ViewComic(InputTitle, _series, _newComic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
-            controller.UpdateComic(Mapper.ViewComicMapper(_oldComic),Mapper.ViewComicMapper(comic));//Todo: change naar updateComic
+            ViewComic comic = new ViewComic(InputTitle, SelectedViewSeries, _newComic.SeriesNumber, new List<ViewAuthor>(_selectedAuthorsList), SelectedViewPublisher);
+            controller.UpdateComic(Mapper.ViewComicMapper(_oldComic),Mapper.ViewComicMapper(comic));
             _oldComic = comic;
         }
         /// <summary>
@@ -250,7 +255,7 @@ namespace ViewModel
         public void SetComic(ViewComic comic)
         {
             InputTitle = comic.Title;
-            InputSeries = comic.Series.Name;
+            SelectedViewSeries = comic.Series;
             InputSeriesNr = comic.SeriesNumber.ToString();
 
             foreach (ViewAuthor author in comic.Authors)

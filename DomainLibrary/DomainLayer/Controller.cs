@@ -82,6 +82,14 @@ namespace DomainLibrary.DomainLayer
             return uow.Comics.GetAllPublishers().ToList();
         }
         /// <summary>
+        /// Gets series of catalogue
+        /// </summary>
+        /// <returns>list of series</returns>
+        public List<Series> GetSeries()
+        {
+            return uow.Comics.GetAllSeries().ToList();
+        }
+        /// <summary>
         /// Adds order to inventory
         /// </summary>
         public void AddOrder(Order order)

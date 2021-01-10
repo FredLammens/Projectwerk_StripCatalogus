@@ -78,7 +78,20 @@ namespace ViewModel
             }
             return viewPublishers;
         }
-
+        /// <summary>
+        /// Maps a list of Series objects to ViewPublisher objects.
+        /// </summary>
+        /// <param name="series">series to map</param>
+        /// <returns>list of viewseries</returns>
+        public static List<ViewSeries> SeriesMapper(IReadOnlyList<Series> series)
+        {
+            List<ViewSeries> viewSeries = new List<ViewSeries>();
+            foreach (Series serie in series)
+            {
+                viewSeries.Add(new ViewSeries(serie.Name));
+            }
+            return viewSeries;
+        }
         /// <summary>
         /// Maps a KeyValuePair of <ViewComic, int> to a dictionary of <Comic, int>
         /// </summary>
