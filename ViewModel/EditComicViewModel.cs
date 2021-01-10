@@ -29,8 +29,8 @@ namespace ViewModel
         {
             _oldComic = oldComic;
             controller = new Controller(new UnitOfWork());
-            _newComic = new ViewComic(); //Todo: 
-            _seriesList = new ObservableCollection<ViewSeries>(Mapper.SeriesMapper(controller.GetSeries()).OrderBy(name => name));//Todo: controller.GetSeries()
+            _newComic = new ViewComic(); 
+            _seriesList = new ObservableCollection<ViewSeries>(Mapper.SeriesMapper(controller.GetSeries()).OrderBy(name => name));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>();
             _allAuthorsList = new List<ViewAuthor>(Mapper.AuthorMapper(controller.GetAuthors()));
             _possibleAuthorsList = new ObservableCollection<ViewAuthor>(_allAuthorsList);
@@ -213,7 +213,6 @@ namespace ViewModel
             UpdateCommand = new RelayCommand(UpdateExecute);
             AddAuthorCommand = new RelayCommand(AddAuthorExecute);
             RemoveAuthorCommand = new RelayCommand(RemoveAuthorExecute);
-            //SetComicCommand = new RelayCommand(SetComicExecute);
         }
 
         /// <summary>
