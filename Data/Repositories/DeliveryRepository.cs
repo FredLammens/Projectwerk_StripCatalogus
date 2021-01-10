@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataLayer.Repositories
 {
-    class DeliveryRepository : IDeliveryRepository
+    public class DeliveryRepository : IDeliveryRepository
     {
         #region Properties
         /// <summary>
