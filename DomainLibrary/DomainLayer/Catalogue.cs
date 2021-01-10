@@ -53,18 +53,20 @@ namespace DomainLibrary.DomainLayer
         /// Removes a comic of the catalogue
         /// </summary>
         /// <param name="comic">comic object to remove</param>
-        public void RemoveComic(Comic comic)
+        /// /// <returns>false if not in catalogue </returns>
+        public bool RemoveComic(Comic comic)
         {
             if (!_comics.Contains(comic))
-                throw new DomainException("Comic bestaat niet.");
+                return false;
             _comics.Remove(comic);
+            return true;
         }
         /// <summary>
         /// Updates a comic of the catalogue
         /// </summary>
         /// <param name="index">index of comic to update</param>
         /// <param name="comic">comic object to update</param>
-        public void UpdateComic(Comic oldComic, Comic updatedComic)//TODO: index aanpassen
+        public void UpdateComic(Comic oldComic, Comic updatedComic)
         {
             int index = _comics.FindIndex(x => x.GetHashCode() == oldComic.GetHashCode());
             if (!_comics.Any(x => x.GetHashCode() == updatedComic.GetHashCode()))

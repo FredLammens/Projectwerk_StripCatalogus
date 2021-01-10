@@ -48,6 +48,8 @@
         </DataGrid>
 
         <!--The button to open the page where we change the properties of the comic-->
-        <Button x:Name="btnChangeComic" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True" Click="btnChangeComic_Click" Content="Pas strip aan" />
+        <Button x:Name="btnChangeComic" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True" Click="btnChangeComic_Click" Content="Pas strip aan" />
+        <!--The button to remove the comic-->
+        <Button x:Name="btnRemoveComic" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True"  Content="Verwijder strip" Command="{Binding DeleteCommand}"/>
     </Grid>
 </Page>

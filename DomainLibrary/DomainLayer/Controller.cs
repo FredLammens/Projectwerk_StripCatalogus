@@ -38,10 +38,12 @@ namespace DomainLibrary.DomainLayer
         /// <param name="comic">Comic to add.</param>
         public void AddComic(Comic comic)
         {
-            uow.BeginTransaction();
-            catalogue.AddComic(comic);
-            uow.Comics.AddComic(comic);
-            uow.Commit();
+            if (catalogue.AddComic(comic))
+            {
+                uow.BeginTransaction();
+                uow.Comics.AddComic(comic);
+                uow.Commit();
+            }
         }
         /// <summary>
         /// Adds comics to database and catalogue.
@@ -56,6 +58,19 @@ namespace DomainLibrary.DomainLayer
                     uow.Comics.AddComic(comic);
             }
             uow.Commit();
+        }
+        /// <summary>
+        /// Removes comic from catalogue and database
+        /// </summary>
+        /// <param name="comic">comic to remove</param>
+        public void RemoveComic(Comic comic)
+        {
+            if (catalogue.RemoveComic(comic))
+            {
+                uow.BeginTransaction();
+                uow.Comics.RemoveComic(comic);
+                uow.Commit();
+            }
         }
         /// <summary>
         /// Returns the catalogue

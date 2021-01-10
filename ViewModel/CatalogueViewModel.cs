@@ -68,9 +68,19 @@ namespace ViewModel
             internal set;
         }
 
+        public ICommand DeleteCommand { get; internal set; }
+
         private void CreateCommand()
         {
             FilterCommand = new RelayCommand(FilterExecute);
+            DeleteCommand = new RelayCommand(DeleteExecute);
+        }
+        public void DeleteExecute() 
+        {
+            Comic toDelete = Mapper.ViewComicMapper(_selectedGridRow.Comic);
+            controller.RemoveComic(toDelete);
+            _comicList = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
+            FilterExecute();
         }
 
         public void FilterExecute()
