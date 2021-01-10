@@ -38,6 +38,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="comic">Comic to add.</param>
         public void AddComic(Comic comic)
         {
+            uow.BeginTransaction();
             catalogue.AddComic(comic);
             uow.Comics.AddComic(comic);
             uow.Commit();
@@ -48,6 +49,7 @@ namespace DomainLibrary.DomainLayer
         /// <param name="comics">List of comics to add</param>
         public void AddComics(IList<Comic> comics) 
         {
+            uow.BeginTransaction();
             foreach (Comic comic in comics)
             {
                 if(catalogue.AddComic(comic))
@@ -82,12 +84,12 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Adds order to inventory
         /// </summary>
-        /// <param name="id">id of order</param>
-        /// <param name="date">date of order</param>
-        /// <param name="orderComics">list of comics to order with amounts</param>
-        public void AddOrder(int id, DateTime date, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
+        public void AddOrder(Order order)
         {
-            inventory.AddOrder(id, date, orderComics);
+            uow.BeginTransaction();
+            inventory.AddOrder(order);
+            uow.Orders.AddOrder(order);
+            uow.Commit();
         }
         /// <summary>
         /// Adds delivery to inventory
@@ -96,9 +98,12 @@ namespace DomainLibrary.DomainLayer
         /// <param name="date">date delivery was made</param>
         /// <param name="deliveryDate">date for delivery</param>
         /// <param name="orderComics">list of comics to deliver with amounts</param>
-        public void AddDelivery(int id, DateTime date, DateTime deliveryDate, Dictionary<Comic, int> orderComics) //mag eventueel weg ? ui laag kan hier direct aan ?
+        public void AddDelivery(Delivery delivery)
         {
-            inventory.AddDelivery(id, date, deliveryDate, orderComics);
+            uow.BeginTransaction();
+            inventory.AddDelivery(delivery); //Todo: fix
+            uow.Deliveries.AddDelivery(delivery);
+            uow.Commit();
         }
         #endregion
 

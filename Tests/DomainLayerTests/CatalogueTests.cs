@@ -6,28 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tests
+namespace Tests.DomainLayerTests
 {
     [TestClass]
     public class CatalogueTests
     {
-        /// <summary>
-        /// checks if multiple of same comic are added to catalogue the catalogue throws an error. 
-        /// </summary>
-        [TestMethod]
-        public void DuplicateComicsShouldThrow() 
-        {
-            Catalogue catalogue = new Catalogue();
-            String title = "title";
-            Series series = new Series("Series");
-            List<Author> authors = new List<Author>(){ new Author("Author1"), new Author("Author2") };
-            Publisher publisher = new Publisher("Uitgevrij");
-            Comic comic = new Comic(title, series, 1, authors, publisher);
-            catalogue.AddComic(comic);
-
-            Action act = () => catalogue.AddComic(comic);
-            act.Should().Throw<DomainException>().WithMessage("De strip title zit al in de catalogus.");
-        }
         /// <summary>
         /// checks if adding comics does not return any exception and has been added ot the comics list.
         /// </summary>
@@ -48,18 +31,15 @@ namespace Tests
             catalogue.Comics.Count.Should().Be(2);
         }
         [TestMethod]
-        public void AddComicExistsShouldThrowException()
+        public void AddComicExistsShouldReturnFalse()
         {
             Catalogue catalogue = new Catalogue();
             Comic comic1 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
             Comic comic2 = new Comic("Oklahoma Jim", new Series("Lucky Luke"), 69, new List<Author>() { new Author("Léturgie Jean"), new Author("Morris"), new Author("Conrad Didier"), new Author("Pearce") }, new Publisher("Dupuis"));
             Comic comic3 = new Comic("De legende van het Westen", new Series("Lucky Luke"), 73, new List<Author>() { new Author("Morris"), new Author("Nordmann Patrick") }, new Publisher("Dupuis"));
-            Action act1 = () => catalogue.AddComic(comic1);
-            act1.Should().NotThrow<DomainException>();
-            Action act2 = () => catalogue.AddComic(comic2);
-            act2.Should().NotThrow<DomainException>();
-            Action act3 = () => catalogue.AddComic(comic3);
-            act3.Should().Throw<DomainException>().WithMessage($"De strip {comic3.Title} zit al in de catalogus.");
+            catalogue.AddComic(comic1).Should().BeTrue();
+            catalogue.AddComic(comic2).Should().BeTrue();
+            catalogue.AddComic(comic3).Should().BeFalse();
         }
         [TestMethod]
         public void RemoveComicDoesntExistShouldThrowException()

@@ -125,8 +125,8 @@ GO
 CREATE TABLE [Deliveries]
 (
  [ID]           int  IDENTITY (1, 1) NOT NULL ,
- [Date]         datetime NOT NULL ,
- [DeliveryDate] datetime NOT NULL ,
+ [Date]         varchar(50) NOT NULL ,
+ [DeliveryDate] varchar(50) NOT NULL ,
 
 
  CONSTRAINT [PK_deliveries] PRIMARY KEY CLUSTERED ([ID] ASC)
@@ -165,7 +165,7 @@ GO
 CREATE TABLE [Orders]
 (
  [ID]        int  IDENTITY (1, 1) NOT NULL ,
- [OrderDate] datetime NOT NULL ,
+ [OrderDate] varchar(50) NOT NULL ,
 
 
  CONSTRAINT [PK_orders] PRIMARY KEY CLUSTERED ([ID] ASC)

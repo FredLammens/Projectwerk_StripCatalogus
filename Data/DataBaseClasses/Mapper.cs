@@ -160,36 +160,6 @@ namespace DataLayer.DataBaseClasses
         }
         #endregion
 
-        #region toOrder
-        /// <summary>
-        /// Transforms a DOrder object into a Order object.
-        /// </summary>
-        /// <param name="dOrder">DOrder to transform.</param>
-        /// <returns>A Order object.</returns>
-        static public Order ToOrder(DOrder dOrder)
-        {
-            Order toReturn = new Order(dOrder.Id, dOrder.Date, ToOrderComics(dOrder.OrderComics));
-
-            return toReturn;
-        }
-
-        /// <summary>
-        /// Transforms a Dictionary of DComics and ints to a Dictionary of Comics and ints.
-        /// </summary>
-        /// <param name="orderComics">OrderComics to transform.</param>
-        /// <returns>The transformed dictionary.</returns>
-        private static Dictionary<Comic, int> ToOrderComics(Dictionary<DComic, int> orderComics)
-        {
-            Dictionary<Comic, int> toReturn = new Dictionary<Comic, int>();
-            foreach (var item in orderComics)
-            {
-                toReturn.Add(ToComic(item.Key), item.Value);
-            }
-
-            return toReturn;
-        }
-        #endregion
-
         #region toDDelivery
         /// <summary>
         /// Transforms a Delivery object into a DDelivery object.
@@ -204,21 +174,5 @@ namespace DataLayer.DataBaseClasses
         }
 
         #endregion
-
-        #region toDDelivery
-        /// <summary>
-        /// Transforms a Delivery object into a DDelivery object.
-        /// </summary>
-        /// <param name="delivery">Delivery to transform.</param>
-        /// <returns>A DDelivery object.</returns>
-        static public Delivery toDelivery(DDelivery dDelivery)
-        {
-            Delivery toReturn = new Delivery(dDelivery.Id, dDelivery.Date, dDelivery.DeliveryDate, ToOrderComics(dDelivery.OrderComics));
-
-            return toReturn;
-        }
-
-        #endregion
-
     }
 }

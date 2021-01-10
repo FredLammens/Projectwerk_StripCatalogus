@@ -49,8 +49,9 @@ namespace DataLayer.Repositories
             using (var command = context.CreateCommand())
             {
                 command.CommandText = $@"Insert into Orders (OrderDate) " +
-                                        "values (@date);";
-                command.AddParameter("date", dOrder.Date);
+                                        "values (@orderdate) " +
+                                        "SELECT CAST(scope_identity() AS int);";
+                command.AddParameter("orderdate", dOrder.Date.ToString());
                 dOrder.Id = (int)command.ExecuteScalar();
             }
         }

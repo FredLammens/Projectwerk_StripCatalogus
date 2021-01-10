@@ -48,11 +48,11 @@ namespace DataLayer.Repositories
             using (var command = context.CreateCommand())
             {
                 command.CommandText = $@"Insert into Deliveries (DeliveryDate, Date) " +
-                                        "values (@deliveryDate ,@date);";
+                                        "values ('@deliveryDate' ,'@date') " +
+                                        "SELECT CAST(scope_identity() AS int);";
 
-                command.AddParameter("date", dDelivery.Date);
-                command.AddParameter("deliveryDate", dDelivery.DeliveryDate);
-
+                command.AddParameter("date", dDelivery.Date.ToString());
+                command.AddParameter("deliveryDate", dDelivery.DeliveryDate.ToString());
                 dDelivery.Id = (int)command.ExecuteScalar();
             }
         }

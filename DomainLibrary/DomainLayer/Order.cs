@@ -15,7 +15,7 @@ namespace DomainLibrary.DomainLayer
         /// <summary>
         /// Date of order made
         /// </summary>
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; private set; } = DateTime.Now;
 
         private Dictionary<Comic, int> _orderComics;
         /// <summary>
@@ -42,10 +42,9 @@ namespace DomainLibrary.DomainLayer
         /// <param name="id">name of order</param>
         /// <param name="date">date order was made</param>
         /// <param name="orderComics">comics and amounts of order</param>
-        public Order(int id, DateTime date, Dictionary<Comic, int> orderComics)
+        public Order(int id, Dictionary<Comic, int> orderComics)
         {
             Id = id;
-            Date = date;
             OrderComics = orderComics;
         }
         #endregion

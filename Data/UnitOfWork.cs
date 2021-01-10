@@ -52,5 +52,9 @@ namespace DataLayer
         {
             context.Commit();
         }
+        public void BeginTransaction() 
+        {
+            context.BeginTransaction();
+        }
     }
 }
