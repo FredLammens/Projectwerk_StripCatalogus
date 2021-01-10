@@ -160,12 +160,10 @@ namespace ViewModel
         {
             Dictionary<Comic, int> comicDict = Mapper.ComicDictMapper(ComicList);
 
-            /*if (IsOrder == true)
-                controller.AddOrder();
+            if (IsOrder == true)
+                controller.AddOrder(DateTime.Now, comicDict);
             else
-                controller.AddDelivery();*/
-
-
+                controller.AddDelivery(DateTime.Now, SelectedDate, comicDict);
         }
         #endregion
     }

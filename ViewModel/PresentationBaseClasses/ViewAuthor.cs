@@ -47,6 +47,14 @@ namespace ViewModel.PresentationBaseClasses
             return HashCode.Combine(Name);
         }
 
+
+        #endregion
+
+        #region ToString
+        public override string ToString()
+        {
+            return Name;
+        }
         #endregion
     }
 }
