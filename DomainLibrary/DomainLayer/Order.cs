@@ -27,7 +27,6 @@ namespace DomainLibrary.DomainLayer
             private set 
             {
                 CheckAmount(value);
-                AddToAmounts(value);
                 _orderComics = value;
             } 
         }
@@ -60,7 +59,7 @@ namespace DomainLibrary.DomainLayer
         {
             if(amount < 0)
                 throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
-            comic.AmountAvailable += amount;
+            comic.AmountAvailable -= amount;
             _orderComics.Add(comic, amount);
         }
         /// <summary>
@@ -75,17 +74,7 @@ namespace DomainLibrary.DomainLayer
             {
                 if (orderComic.Value > orderComic.Key.AmountAvailable)
                     throw new ArgumentException($"hoeveelheid: {orderComic.Value} overschrijdt hoeveelheid van {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
-            }
-        }
-        /// <summary>
-        /// Adds the amount of order to the comic
-        /// </summary>
-        /// <param name="orderComics">list of orders , comics and amount comined</param>
-        private void AddToAmounts(Dictionary<Comic, int> orderComics) 
-        {
-            foreach (var orderComic in orderComics)
-            {
-                orderComic.Key.AmountAvailable += orderComic.Value;
+                orderComic.Key.AmountAvailable -= orderComic.Value; //Removes the amount of order to the comic
             }
         }
         #endregion

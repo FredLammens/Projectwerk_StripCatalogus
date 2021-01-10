@@ -74,7 +74,7 @@ namespace DomainLibrary.DomainLayer
         {
             if (amount < 0)
                 throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
-            comic.AmountAvailable -= amount;
+            comic.AmountAvailable += amount;
             _orderComics.Add(comic, amount);
         }
         /// <summary>
@@ -87,9 +87,7 @@ namespace DomainLibrary.DomainLayer
                 throw new ArgumentException("hoeveelheid kan niet negatief zijn.");
             foreach (var orderComic in orderComics)
             {
-                if (orderComic.Value > orderComic.Key.AmountAvailable)
-                    throw new ArgumentException($"hoeveelheid: {orderComic.Value} overschrijdt de hoeveelheid van {orderComic.Key.Title}: {orderComic.Key.AmountAvailable}.");
-                orderComic.Key.AmountAvailable -= orderComic.Value;
+                orderComic.Key.AmountAvailable += orderComic.Value;
             }
         }
         #endregion
