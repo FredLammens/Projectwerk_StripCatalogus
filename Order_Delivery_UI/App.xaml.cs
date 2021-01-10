@@ -16,11 +16,16 @@ namespace Order_Delivery_UI
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// used for calling unhandledexceptionhandler
+        /// </summary>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
         }
-
+        /// <summary>
+        /// shows the exception in an error message
+        /// </summary>
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;

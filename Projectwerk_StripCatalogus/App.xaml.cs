@@ -26,8 +26,6 @@ namespace Projectwerk_StripCatalogus
         /// <summary>
         /// shows the exception in an error message
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
