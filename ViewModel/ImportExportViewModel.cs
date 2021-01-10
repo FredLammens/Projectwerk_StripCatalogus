@@ -40,9 +40,9 @@ namespace ViewModel
 
         public void ImportExecute()
         {
-            // var openFileDialog = new OpenFileDialog();
-            //(openFileDialog.ShowDialog() == true);
-            // txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+             /*var openFileDialog = new OpenFileDialog();
+            (openFileDialog.ShowDialog() == true);
+             txtEditor.Text = File.ReadAllText(openFileDialog.FileName);*/
 
 
             string comicsFilePath = @"C:\Users\niels\Downloads\dump.json";
@@ -54,7 +54,7 @@ namespace ViewModel
                 comicsToImport.Add(Mapper.ViewComicMapper(comic));
             }
 
-            //controller.AddComics(comicsToImport);
+            controller.AddComics(comicsToImport);
         }
 
         public void ExportExecute()

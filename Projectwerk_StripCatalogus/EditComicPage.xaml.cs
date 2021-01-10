@@ -14,22 +14,13 @@ using System.Windows.Shapes;
 namespace Projectwerk_StripCatalogus_UI
 {
     /// <summary>
-    /// Interaction logic for CataloguePage.xaml
+    /// Interaction logic for EditComicPage.xaml
     /// </summary>
-    public partial class CataloguePage : Page
+    public partial class EditComicPage : Page
     {
-        public CataloguePage()
+        public EditComicPage()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// In this method we will change the properties of the selected comic
-        /// </summary>
-        private void btnChangeComic_Click(object sender, RoutedEventArgs e)
-        {
-            EditComicPage editComicPage = new EditComicPage();
-            NavigationService.Navigate(editComicPage);
         }
     }
 }

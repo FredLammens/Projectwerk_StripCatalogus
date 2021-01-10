@@ -4,15 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projectwerk_StripCatalogus_UI"
-      xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="Projectwerk_StripCatalogus_UI.AddComicPage"
+      xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="Projectwerk_StripCatalogus_UI.EditComicPage"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="1000"
-      Title="AddComicPage">
+      Title="EditComicPage">
 
     <Grid>
-        <Grid.DataContext>
-            <ViewModel:AddComicViewModel/>
-        </Grid.DataContext>
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="100*" />
@@ -25,10 +24,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+
+        <Grid.DataContext>
+            <ViewModel:EditComicViewModel/>
+        </Grid.DataContext>
+
         <!--In this textbox we enter the title of the comic-->
         <StackPanel Grid.ColumnSpan="2">
             <Label Content="Titel:"/>
-            <TextBox x:Name="txtTitle" Margin="10,0,10,0" Text="{Binding InputTitle}">
+            <TextBox x:Name="txtTitleEdit" Margin="10,0,10,0" Text="{Binding InputTitle}">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding KeyUpCommand}" Key="{Binding ReturnKeyPressed.GestureKey}" />
                 </TextBox.InputBindings>
@@ -38,24 +42,22 @@
         <!--In this textbox we enter what serie the comic belongs to-->
         <StackPanel Grid.Row="1">
             <Label Content="Reeks:"/>
-            <TextBox x:Name="txtSeries" Margin="10,0,10,0" Text="{Binding InputSeries}"/>
+            <TextBox x:Name="txtSeriesEdit" Margin="10,0,10,0" Text="{Binding InputSeries}"/>
         </StackPanel>
 
         <!--In this textbox we enter number of the comic in the serie-->
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Nummer in reeks:"/>
-            <TextBox x:Name="txtSeriesNumber" Margin="10,0,10,0" Text="{Binding InputSeriesNr}"/>
+            <TextBox x:Name="txtSeriesNumberEdit" Margin="10,0,10,0" Text="{Binding InputSeriesNr}"/>
         </StackPanel>
-
-        <!--In this textbox we enter the Author(s) of the comic-->
 
         <StackPanel Grid.RowSpan="4" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Margin="0,0,20,0">
                 <StackPanel Margin="0,0,0,10">
                     <Label Content="Mogelijkse Auteurs:"/>
-                    <TextBox x:Name="txtAuthorFilter" Margin="10,0,10,0" Text="{Binding AuthorFilter}"  />
+                    <TextBox x:Name="txtEditAuthorFilter" Margin="10,0,10,0" Text="{Binding AuthorFilter}"  />
                 </StackPanel>
-                <DataGrid x:Name="PossibleAuthorsList" Height="250" AutoGenerateColumns="False" Width="250" HorizontalAlignment="Left" SelectedItem="{Binding SelectedPossibleAuthor}"  ItemsSource="{Binding PossibleAuthorsList}">
+                <DataGrid x:Name="PossibleEditAuthorsList" Height="250" AutoGenerateColumns="False" Width="250" HorizontalAlignment="Left" SelectedItem="{Binding SelectedPossibleAuthor}"  ItemsSource="{Binding PossibleAuthorsList}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Binding="{Binding Name}"/>
                     </DataGrid.Columns>
@@ -67,7 +69,7 @@
             </StackPanel>
             <StackPanel Margin="20,0,0,0">
                 <Label Content="Geselecteerde Autheurs:" Margin="0,0,0,25"/>
-                <DataGrid x:Name="SelectedAuthorsList" AutoGenerateColumns="False" Height="250" Width="250" SelectedItem="{Binding SelectedCurrentAuthor}"  ItemsSource="{Binding SelectedAuthorList}">
+                <DataGrid x:Name="SelectedEditAuthorsList" AutoGenerateColumns="False" Height="250" Width="250" SelectedItem="{Binding SelectedCurrentAuthor}"  ItemsSource="{Binding SelectedAuthorList}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Binding="{Binding Name}"/>
                     </DataGrid.Columns>
@@ -78,9 +80,10 @@
         <!--In this textbox we enter the Publisher(s) of the comic-->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="Uitgeverij:"/>
-            <ComboBox x:Name="cmbPublisher" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
+            <ComboBox x:Name="cmbEditPublisher" Margin="10,0,10,0" ItemsSource="{Binding PublisherList}" SelectedItem ="{Binding SelectedViewPublisher}"/>
         </StackPanel>
 
-        <Button x:Name="btnAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Voeg toe" Command="{Binding AddCommand}" Height="20" Width="70"/>
+        <Button x:Name="btnEditAddComic" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Voeg toe" Command="{Binding AddCommand}" Height="20" Width="70"/>
+
     </Grid>
 </Page>
