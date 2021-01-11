@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="StripCatalogus" Height="500" Width="1087">
+        Title="StripCatalogus" Height="500" Width="1000">
     <Grid>
         <StackPanel>
             <Menu DockPanel.Dock="Top">
@@ -14,6 +14,6 @@
             <MenuItem Header="_Update Others" Click="btnUpdateOthers_Click"/>
         </Menu>
         </StackPanel>
-        <Frame MinHeight="430" x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
