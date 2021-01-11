@@ -26,6 +26,8 @@ namespace Order_Delivery_UI
         public MainWindow()
         {
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
+            datePicker.DisplayDateStart = DateTime.Now;
             viewModel = new OrderDeliveryViewModel();      
         }
         /// <summary>

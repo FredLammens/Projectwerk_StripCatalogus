@@ -57,7 +57,7 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Visibility="{Binding IsDelivery,Converter={StaticResource b2v}}" Margin="10,0,10,0">
             <Label Content="Date:"/>
-            <DatePicker SelectedDate="{Binding SelectedDate}"/>
+            <DatePicker x:Name="datePicker" SelectedDate="{Binding SelectedDate}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2">
