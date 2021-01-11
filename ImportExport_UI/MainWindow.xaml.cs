@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using ViewModel;
 namespace ImportExport_UI
 {
@@ -27,7 +28,9 @@ namespace ImportExport_UI
         /// </summary>
         private async void ImportComicsBtn_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             await Task.Run(() => Importcomics());
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
         /// <summary>
         /// asynchronously imports comic after showing dialog.
@@ -89,7 +92,9 @@ namespace ImportExport_UI
             {
                 path = dialog.SelectedPath;
             }
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             await Task.Run(() => export(path));
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
     }
 }
