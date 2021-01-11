@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Order_Delivery_UI"
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="Order_Delivery_UI.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="400">
+        MinWidth="420"
+        MinHeight="450"
+        Title="Orders/Deliveries" Height="500" Width="420">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
