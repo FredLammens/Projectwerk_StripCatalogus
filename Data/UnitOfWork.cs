@@ -28,9 +28,10 @@ namespace DataLayer
         /// <summary>
         /// Makes a UnitOfWork that establishes a connection the the database.
         /// </summary>
-        public UnitOfWork()
+        /// <param name="db">Which database to use, defult is production.</param>
+        public UnitOfWork(string db = "Production")
         {
-            context = new AdoNetContext(true);
+            context = new AdoNetContext(true, db);
             if (Comics == null)
             {
                 Comics = new ComicRepository(context);

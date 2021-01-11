@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using ViewModel.PresentationBaseClasses;
 
@@ -102,13 +103,13 @@ namespace ViewModel
         /// </summary>
         /// <param name="viewcomicDict"></param>
         /// <returns>Dictionary consisting of comics with amounts in dictionary</returns>
-        public static Dictionary<Comic, int> ComicDictMapper(ObservableCollection<KeyValuePair<ViewComic, int>> viewcomicDict)
+        public static Dictionary<Comic, int> ComicDictMapper(ObservableCollection<KeyValuePair<ViewComic, int>> viewcomicDict, Catalogue catalogue)
         {
             Dictionary<Comic, int> comicDict = new Dictionary<Comic, int>();
 
             for (int i = 0; i < viewcomicDict.Count ; i++)
             {
-                Comic comic = ViewComicMapper(viewcomicDict[i].Key);
+                Comic comic = catalogue.Comics.Single(c => c.GetHashCode() == Mapper.ViewComicMapper(viewcomicDict[i].Key).GetHashCode());
 
                 comicDict.Add(comic, viewcomicDict[i].Value);
             }

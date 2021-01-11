@@ -168,12 +168,16 @@ namespace ViewModel
         /// </summary>
         public void AddOrderDeliveryExecute()
         {
-            Dictionary<Comic, int> comicDict = Mapper.ComicDictMapper(ComicList);
+            Dictionary<Comic, int> comicDict = Mapper.ComicDictMapper(ComicList, controller.GetCatalogue());
+
+
 
             if (IsOrder == true)
                 controller.AddOrder(new Order(comicDict));
             else
                 controller.AddDelivery(new Delivery(SelectedDate, comicDict));
+
+            ComicList = new ObservableCollection<KeyValuePair<ViewComic, int>>();
         }
         #endregion
     }
