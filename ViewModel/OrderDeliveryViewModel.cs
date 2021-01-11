@@ -16,7 +16,7 @@ namespace ViewModel
         /// <summary>
         /// holds comics to display => order & delivery
         /// </summary>
-        public ObservableCollection<KeyValuePair<ViewComic, int>> _comicList;
+        public ObservableCollection<KeyValuePair<ViewComic, int>> _comicList = new ObservableCollection<KeyValuePair<ViewComic, int>>();
 
         #region Constructors
         /// <summary>
@@ -32,7 +32,6 @@ namespace ViewModel
             {
                 controller = new Controller(new UnitOfWork());
                 _comics = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
-                _comicList = new ObservableCollection<KeyValuePair<ViewComic, int>>();
             });
         }
 
