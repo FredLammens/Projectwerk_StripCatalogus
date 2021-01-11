@@ -43,8 +43,7 @@
         <Button x:Name="btnFilter" Grid.Column="2" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Filter" Command="{Binding FilterCommand}" />
 
         <!--In this datagrid we will show the information of the comics filtered by our selection in the combobox-->
-        <DataGrid x:Name="dgComic" Grid.Row="1" Grid.ColumnSpan="3" SelectedItem="{Binding SelectedGridRow}" ItemsSource="{Binding FilteredCollection}">
-
+        <DataGrid x:Name="dgComic" Grid.Row="1" Grid.ColumnSpan="3" SelectedItem="{Binding SelectedGridRow}" ItemsSource="{Binding FilteredCollection}" ColumnWidth="*">
         </DataGrid>
 
         <!--The button to open the page where we change the properties of the comic-->
