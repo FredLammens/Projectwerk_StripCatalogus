@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ViewModel
@@ -23,11 +24,16 @@ namespace ViewModel
         /// </summary>
         public OrderDeliveryViewModel()
         {
-            controller = new Controller(new UnitOfWork());
-            _comics = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
-            _comicList = new ObservableCollection<KeyValuePair<ViewComic, int>>();
-
             CreateCommand();
+        }
+        public async Task Init()
+        {
+            await Task.Run(() =>
+            {
+                controller = new Controller(new UnitOfWork());
+                _comics = new List<ViewComic>(Mapper.ComicsMapper(controller.GetCatalogue().Comics));
+                _comicList = new ObservableCollection<KeyValuePair<ViewComic, int>>();
+            });
         }
 
         #endregion
@@ -54,7 +60,7 @@ namespace ViewModel
         /// </summary>
         public bool IsOrder
         {
-            get { return _isOrder;  }
+            get { return _isOrder; }
             set
             {
                 _isOrder = value;
