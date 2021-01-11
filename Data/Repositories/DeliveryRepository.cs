@@ -48,7 +48,7 @@ namespace DataLayer.Repositories
             using (var command = context.CreateCommand())
             {
                 command.CommandText = $@"Insert into Deliveries (DeliveryDate, Date) " +
-                                        "values ('@deliveryDate' ,'@date') " +
+                                        "values (@deliveryDate ,@date) " +
                                         "SELECT CAST(scope_identity() AS int);";
 
                 command.AddParameter("date", dDelivery.Date.ToString());
@@ -82,10 +82,13 @@ namespace DataLayer.Repositories
                     command.AddParameter($"stock_Id{i}", StockID);
                     command.AddParameter($"amount{i}", comicPair.Value);
 
+                    command.ExecuteNonQuery();
+
                     command.CommandText = @"UPDATE Stock " +
-                                          $"SET Stock.Stock += @amount{i}" +
+                                          $"SET Stock.Stock += @amount{i} " +
                                           $"WHERE Stock.ID = @stock_Id{i};";
 
+                    command.ExecuteNonQuery();
                     i++;
                 }
 
@@ -114,7 +117,7 @@ namespace DataLayer.Repositories
                     if (seriesId == null)
                         throw new DataException($"Series {comic.Series.Name} is not in the database");
 
-                    command.CommandText = @$"Select * From Comics Where Comics.Title = @title{i}  AND Comics.SeriesNr = @series_Nr{i} AND Comics.Series_ID = @series_Id{i};";
+                    command.CommandText = @$"Select * From Comics Where Comics.Title = @title{i}  AND Comics.SeriesNr = @series_Nr{i} OR @series_Nr{i} IS NULL AND Comics.Series_ID = @series_Id{i};";
                     command.AddParameter($"title{i}", comic.Title);
                     command.AddParameter($"series_Nr{i}", comic.SeriesNumber);
                     command.AddParameter($"series_Id{i}", seriesId);
