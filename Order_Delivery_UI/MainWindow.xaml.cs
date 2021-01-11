@@ -25,10 +25,19 @@ namespace Order_Delivery_UI
 
         public MainWindow()
         {
+            viewModel = new OrderDeliveryViewModel();
             InitializeComponent();
+            loadWindow();
             datePicker.SelectedDate = DateTime.Now;
             datePicker.DisplayDateStart = DateTime.Now;
-            viewModel = new OrderDeliveryViewModel();      
+        }
+        private async void loadWindow() 
+        {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
+            window.Visibility = Visibility.Hidden;
+            await viewModel.Init();
+            window.Visibility = Visibility.Visible;
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
         /// <summary>
         /// adds item to combobox
