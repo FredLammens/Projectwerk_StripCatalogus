@@ -6,11 +6,13 @@
         mc:Ignorable="d"
         Title="StripCatalogus" Height="500" Width="1000">
     <Grid>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="2">
-            <Button x:Name="btnCatalogue" Content="Catalogue" MinWidth="100" Click="BtnCatalogue_Click"/>
-            <Button x:Name="btnAddComic" Content="Add Comic" MinWidth="100" Margin="10,0,0,0" Click="BtnAddComic_Click"/>
-            <Button x:Name="btnAddOthers" Content="Add Others" MinWidth="100" Margin="10,0,0,0" Click="btnAddOthers_Click"/>
-            <Button x:Name="btnUpdateOthers" Content="Update Others" MinWidth="100" Margin="10,0,0,0" Click="btnUpdateOthers_Click"/>
+        <StackPanel>
+            <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Catalogue" Click="BtnCatalogue_Click"/>
+            <MenuItem Header="_Add Comic" Click="BtnAddComic_Click"/>
+            <MenuItem Header="_Add Others" Click="btnAddOthers_Click"/>
+            <MenuItem Header="_Update Others" Click="btnUpdateOthers_Click"/>
+        </Menu>
         </StackPanel>
         <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
     </Grid>

@@ -32,7 +32,9 @@ namespace Projectwerk_StripCatalogus
         /// </summary>
         private void BtnCatalogue_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             Main.Content = new CataloguePage();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
 
         /// <summary>
@@ -40,21 +42,27 @@ namespace Projectwerk_StripCatalogus
         /// </summary>
         private void BtnAddComic_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             Main.Content = new AddComicPage();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
         /// <summary>
         /// button to oopen page where we can add series, publishers, authors 
         /// </summary>
         private void btnAddOthers_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             Main.Content = new AddOthers();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
         /// <summary>
         /// button to oopen page where we can udpate series, publishers, authors 
         /// </summary>
         private void btnUpdateOthers_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             Main.Content = new UpdateOthers();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
         }
     }
 }
